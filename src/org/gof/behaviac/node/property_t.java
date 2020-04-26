@@ -1,4 +1,4 @@
-package org.gof.behaviac.behaviortree;
+package org.gof.behaviac.node;
 
 public class property_t {
 	public String name;

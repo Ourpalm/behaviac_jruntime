@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.gof.behaviac.behaviortree.BehaviorTree;
+import org.gof.behaviac.node.BehaviorTree;
 
 
 public class Workspace implements Closeable {
