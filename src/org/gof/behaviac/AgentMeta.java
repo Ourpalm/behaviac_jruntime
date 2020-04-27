@@ -37,4 +37,14 @@ public class AgentMeta {
 		return null;
 	}
 
+	public static AgentMeta GetMeta(long classId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IProperty GetProperty(long propId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
