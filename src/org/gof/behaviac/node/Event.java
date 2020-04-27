@@ -17,7 +17,7 @@ public class Event extends ConditionBase {
 		return false;
 	}
 
-	public void switchTo(Agent pAgent, Map<Integer, IInstantiatedVariable> eventParams) {
+	public void switchTo(Agent pAgent, Map<Long, IInstantiatedVariable> eventParams) {
 		
 	}
 

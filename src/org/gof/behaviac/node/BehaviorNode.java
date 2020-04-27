@@ -47,7 +47,7 @@ public abstract class BehaviorNode {
 		this.m_className = m_className;
 	}
 
-	public boolean hasEvents() {
+	public boolean HasEvents() {
 		return this.m_bHasEvents;
 	}
 
@@ -148,8 +148,8 @@ public abstract class BehaviorNode {
 		Debug.check(false);
 	}
 
-	private void load_properties_pars_attachments_children(boolean bNode, int version, String agentType, Element node) {
-		var bHasEvents = this.hasEvents();
+	protected void load_properties_pars_attachments_children(boolean bNode, int version, String agentType, Element node) {
+		var bHasEvents = this.HasEvents();
 		List<property_t> properties = new ArrayList<property_t>();
 
 		for (var c : node.elements()) {
@@ -435,7 +435,7 @@ public abstract class BehaviorNode {
 		return;
 	}
 
-	public boolean CheckEvents(String eventName, Agent pAgent, Map<Integer, IInstantiatedVariable> eventParams) {
+	public boolean CheckEvents(String eventName, Agent pAgent, Map<Long, IInstantiatedVariable> eventParams) {
 		if (this.m_events != null) {
 			// bool bTriggered = false;
 			for (int i = 0; i < this.m_events.size(); ++i) {

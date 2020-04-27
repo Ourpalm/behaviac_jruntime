@@ -2,16 +2,78 @@ package org.gof.behaviac.node;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.Debug;
+import org.gof.behaviac.ICustomizedProperty;
+import org.gof.behaviac.IInstantiatedVariable;
+import org.gof.behaviac.Utils;
 
 public class BehaviorTree extends BehaviorNode {
 	private final int SupportedVersion = 5;
 	private String m_name = "";
 	private boolean m_bIsFSM = false;
+	private Map<Long, ICustomizedProperty> m_localProps;
+
+	public Map<Long, ICustomizedProperty> getLocalProps() {
+		return this.m_localProps;
+	}
+
+	public void AddPar(String agentType, String typeName, String name, String valueStr) {
+		this.AddLocal(agentType, typeName, name, valueStr);
+	}
+
+	public void AddLocal(String agentType, String typeName, String name, String valueStr) {
+		if (this.m_localProps == null) {
+			this.m_localProps = new HashMap<>();
+		}
+
+		var varId = Utils.MakeVariableId(name);
+		ICustomizedProperty prop = AgentMeta.CreateProperty(typeName, varId, name, valueStr);
+		this.m_localProps.put(varId, prop);
+
+		var type = Utils.GetElementTypeFromName(typeName);
+
+		if (type != null) {
+			prop = AgentMeta.CreateArrayItemProperty(typeName, varId, name);
+			varId = Utils.MakeVariableId(name + "[]");
+			this.m_localProps.put(varId, prop);
+		}
+	}
+
+	public void InstantiatePars(Map<Long, IInstantiatedVariable> vars) {
+		if (this.m_localProps != null) {
+			for (var it : m_localProps.entrySet()) {
+				vars.put(it.getKey(), it.getValue().Instantiate());
+			}
+		}
+	}
+
+	public void UnInstantiatePars(Map<Long, IInstantiatedVariable> vars) {
+		if (this.m_localProps != null) {
+			for (var it : m_localProps.entrySet()) {
+				vars.remove(it.getKey());
+			}
+		}
+	}
+
+	@Override
+	protected void load_local(int version, String agentType, Element node) {
+		if (node.getName() != "par") {
+			Debug.check(false);
+			return;
+		}
+		var name = node.attribute("name").getValue();
+		var type = node.attribute("type").getValue().replace("::", ".");
+		var value = node.attribute("value").getValue();
+
+		this.AddLocal(agentType, type, name, value);
+	}
 
 	public boolean load_xml(byte[] pBuffer) {
 		try {
@@ -45,13 +107,25 @@ public class BehaviorTree extends BehaviorNode {
 		return true;
 	}
 
-	
-	private void load(int version, String agentType, List<property_t> properties) {
-
+	public String GetName() {
+		return this.m_name;
 	}
 
-	private boolean load_attachment(int version, String agentType, boolean bHasEvents, Element c) {
-		// TODO Auto-generated method stub
-		return false;
+	public void SetName(String name) {
+		this.m_name = name;
+	}
+
+	public boolean isFSM() {
+		return this.m_bIsFSM;
+	}
+
+	public void setFSM(boolean value) {
+		this.m_bIsFSM = value;
+	}
+
+	@Override
+	protected org.gof.behaviac.node.BehaviorTask createTask() {
+		BehaviorTreeTask pTask = new BehaviorTreeTask();
+		return pTask;
 	}
 }
