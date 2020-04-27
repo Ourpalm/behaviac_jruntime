@@ -137,4 +137,13 @@ public class Utils {
 
 		return type;
 	}
+	
+	public static Object Clone(Object value) {
+		return value;
+	}
+
+	public static Object ConvertFromString(Class<?> clazz, String valueStr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -20,7 +20,7 @@ public abstract class BehaviorTask {
 	}
 
 	public void Init(BehaviorNode node) {
-		Debug.check(node != null);
+		Debug.Check(node != null);
 
 		this.m_node = node;
 		this.m_id = this.m_node.getId();
@@ -43,7 +43,7 @@ public abstract class BehaviorTask {
 			task = task.m_parent;
 		}
 
-		Debug.check(task instanceof BehaviorTreeTask);
+		Debug.Check(task instanceof BehaviorTreeTask);
 		BehaviorTreeTask tree = (BehaviorTreeTask) task;
 
 		return tree;
@@ -129,6 +129,7 @@ public abstract class BehaviorTask {
 		if (this.m_bHasManagingParent) {
 			boolean bHasManagingParent = false;
 			int parentsCount = 0;
+			//TODO::改造为threadlocal或者实例变量
 			BehaviorTask[] parents = new BehaviorTask[kMaxParentsCount];
 
 			BranchTask parentBranch = this.GetParent();
@@ -137,13 +138,12 @@ public abstract class BehaviorTask {
 
 			// back track the parents until the managing branch
 			while (parentBranch != null) {
-				Debug.check(parentsCount < kMaxParentsCount, "weird tree!");
+				Debug.Check(parentsCount < kMaxParentsCount, "weird tree!");
 
 				parents[parentsCount++] = parentBranch;
 
 				if (parentBranch.GetCurrentTask() == this) {
 					// Debug.Check(parentBranch->GetNode()->IsManagingChildrenAsSubTrees());
-
 					bHasManagingParent = true;
 					break;
 				}
@@ -186,7 +186,7 @@ public abstract class BehaviorTask {
 				// this if must be after BehaviorTreeTask and IsManagingChildrenAsSubTrees
 				tree = (BranchTask) task;
 			} else {
-				Debug.check(false);
+				Debug.Check(false);
 			}
 
 			task = task.m_parent;
@@ -351,7 +351,7 @@ public abstract class BehaviorTask {
 			ReferencedBehavior refTree = (ReferencedBehavior) n;
 			btName = refTree.GetReferencedTree(pAgent);
 		} else {
-			Debug.check(false);
+			Debug.Check(false);
 		}
 
 		return btName;
@@ -396,7 +396,7 @@ public abstract class BehaviorTask {
 			if (status == EBTStatus.BT_FAILURE) {
 				phase = Effector.EPhase.E_FAILURE;
 			} else {
-				Debug.check(status == EBTStatus.BT_SUCCESS);
+				Debug.Check(status == EBTStatus.BT_SUCCESS);
 			}
 
 			this.m_node.ApplyEffects(pAgent, phase);

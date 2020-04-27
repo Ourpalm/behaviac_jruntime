@@ -63,16 +63,16 @@ public abstract class BehaviorNode {
 		this.m_children.add(pChild);
 	}
 
-	public BehaviorTask createAndInitTask() {
+	public BehaviorTask CreateAndInitTask() {
 		BehaviorTask pTask = this.createTask();
 
-		Debug.check(pTask != null);
-		pTask.init(this);
+		Debug.Check(pTask != null);
+		pTask.Init(this);
 
 		return pTask;
 	}
 
-	public int getChildrenCount() {
+	public int GetChildrenCount() {
 		if (this.m_children != null) {
 			return this.m_children.size();
 		}
@@ -80,7 +80,7 @@ public abstract class BehaviorNode {
 		return 0;
 	}
 
-	public BehaviorNode getChild(int index) {
+	public BehaviorNode GetChild(int index) {
 		if (this.m_children != null && index < this.m_children.size()) {
 			return this.m_children.get(index);
 		}
@@ -145,7 +145,7 @@ public abstract class BehaviorNode {
 	}
 
 	protected void load_local(int version, String agentType, Element node) {
-		Debug.check(false);
+		Debug.Check(false);
 	}
 
 	protected void load_properties_pars_attachments_children(boolean bNode, int version, String agentType, Element node) {
@@ -157,7 +157,7 @@ public abstract class BehaviorNode {
 				if (c.getName() == "attachment") {
 					bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
 				} else if (c.getName() == "custom") {
-					Debug.check(c.elements().size() == 1);
+					Debug.Check(c.elements().size() == 1);
 					var customNode = c.elements().get(0);
 					BehaviorNode pChildNode = BehaviorNode.load(agentType, customNode, version);
 					this.m_customCondition = pChildNode;
@@ -197,7 +197,7 @@ public abstract class BehaviorNode {
 			}
 
 			BehaviorNode pAttachment = BehaviorNode.Create(pAttachClassName);
-			Debug.check(pAttachment != null);
+			Debug.Check(pAttachment != null);
 
 			if (pAttachment != null) {
 				pAttachment.setClassName(pAttachClassName);
@@ -226,7 +226,7 @@ public abstract class BehaviorNode {
 
 			return bHasEvents;
 		} catch (Exception ex) {
-			Debug.check(false, ex.getMessage());
+			Debug.Check(false, ex.getMessage());
 		}
 
 		return bHasEvents;
@@ -235,7 +235,7 @@ public abstract class BehaviorNode {
 	private boolean load_property_pars(List<property_t> properties, Element c, int version, String agentType) {
 		try {
 			if (c.getName() == "property") {
-				Debug.check(c.attributeCount() == 1);
+				Debug.Check(c.attributeCount() == 1);
 
 				for (var prop : c.attributes()) {
 					property_t p = new property_t(prop.getName(), prop.getValue());
@@ -256,17 +256,17 @@ public abstract class BehaviorNode {
 				return true;
 			}
 		} catch (Exception ex) {
-			Debug.check(false, ex.getMessage());
+			Debug.Check(false, ex.getMessage());
 		}
 
 		return false;
 	}
 
 	protected static BehaviorNode load(String agentType, Element node, int version) {
-		Debug.check(node.getName() == "node");
+		Debug.Check(node.getName() == "node");
 		var pClassName = node.attribute("class").getValue();
 		BehaviorNode pNode = BehaviorNode.Create(pClassName);
-		Debug.check(pNode != null, "unsupported class " + pClassName);
+		Debug.Check(pNode != null, "unsupported class " + pClassName);
 		if (pNode != null) {
 			pNode.setClassName(pClassName);
 			var idStr = node.attribute("id").getValue();
@@ -282,17 +282,17 @@ public abstract class BehaviorNode {
 	}
 
 	public void Attach(BehaviorNode pAttachment, boolean bIsPrecondition, boolean bIsEffector, boolean bIsTransition) {
-		Debug.check(bIsTransition == false);
+		Debug.Check(bIsTransition == false);
 
 		if (bIsPrecondition) {
-			Debug.check(!bIsEffector);
+			Debug.Check(!bIsEffector);
 
 			if (this.m_preconditions == null) {
 				this.m_preconditions = new ArrayList<Precondition>();
 			}
 
 			Precondition predicate = (Precondition) pAttachment;
-			Debug.check(predicate != null);
+			Debug.Check(predicate != null);
 			this.m_preconditions.add(predicate);
 
 			var phase = predicate.getPhase();
@@ -304,17 +304,17 @@ public abstract class BehaviorNode {
 			} else if (phase == Precondition.EPhase.E_BOTH) {
 				this.m_both_precond++;
 			} else {
-				Debug.check(false);
+				Debug.Check(false);
 			}
 		} else if (bIsEffector) {
-			Debug.check(!bIsPrecondition);
+			Debug.Check(!bIsPrecondition);
 
 			if (this.m_effectors == null) {
 				this.m_effectors = new ArrayList<Effector>();
 			}
 
 			Effector effector = (Effector) pAttachment;
-			Debug.check(effector != null);
+			Debug.Check(effector != null);
 			this.m_effectors.add(effector);
 
 			var phase = effector.getPhase();
@@ -326,7 +326,7 @@ public abstract class BehaviorNode {
 			} else if (phase == Effector.EPhase.E_BOTH) {
 				this.m_both_effectors++;
 			} else {
-				Debug.check(false);
+				Debug.Check(false);
 			}
 		} else {
 			if (this.m_events == null) {
@@ -461,7 +461,7 @@ public abstract class BehaviorNode {
 	}
 
 	public boolean Evaluate(Agent pAgent) {
-		Debug.check(false, "only Condition/Sequence/And/Or allowed");
+		Debug.Check(false, "only Condition/Sequence/And/Or allowed");
 		return false;
 	}
 

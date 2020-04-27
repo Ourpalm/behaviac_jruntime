@@ -11,11 +11,11 @@ public interface IInstantiatedVariable {
 
 	void SetValue(Agent self, Object value, int index);
 
-	String getName();
+	String GetName();
 
 	void Log(Agent self);
 
-	IInstantiatedVariable clone();
+	IInstantiatedVariable Clone();
 
 	void CopyTo(Agent pAgent);
 }

@@ -1,9 +1,7 @@
 package org.gof.behaviac.node;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.dom4j.DocumentHelper;
@@ -65,7 +63,7 @@ public class BehaviorTree extends BehaviorNode {
 	@Override
 	protected void load_local(int version, String agentType, Element node) {
 		if (node.getName() != "par") {
-			Debug.check(false);
+			Debug.Check(false);
 			return;
 		}
 		var name = node.attribute("name").getValue();
@@ -77,7 +75,7 @@ public class BehaviorTree extends BehaviorNode {
 
 	public boolean load_xml(byte[] pBuffer) {
 		try {
-			Debug.check(pBuffer != null);
+			Debug.Check(pBuffer != null);
 			var xml = new String(pBuffer, StandardCharsets.UTF_8);
 			var doc = DocumentHelper.parseText(xml);
 			var behaviorNode = doc.getRootElement();
@@ -101,7 +99,7 @@ public class BehaviorTree extends BehaviorNode {
 			this.load_properties_pars_attachments_children(true, version, agentType, behaviorNode);
 
 		} catch (Exception e) {
-			Debug.check(false, e.getMessage());
+			Debug.Check(false, e.getMessage());
 			return false;
 		}
 		return true;
