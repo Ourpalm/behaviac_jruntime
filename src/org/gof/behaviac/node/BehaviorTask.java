@@ -15,8 +15,6 @@ public abstract class BehaviorTask {
 	protected BranchTask m_parent;
 	protected int m_id;
 	protected boolean m_bHasManagingParent;
-	private static final int kMaxParentsCount = 512;
-	private static BehaviorTask[] ms_parents = new BehaviorTask[kMaxParentsCount];
 
 	public static void DestroyTask(BehaviorTask task) {
 	}
@@ -123,22 +121,25 @@ public abstract class BehaviorTask {
 		return this.m_status;
 	}
 
+	private static final int kMaxParentsCount = 512;
+
 	private boolean CheckParentUpdatePreconditions(Agent pAgent) {
 		boolean bValid = true;
 
 		if (this.m_bHasManagingParent) {
 			boolean bHasManagingParent = false;
 			int parentsCount = 0;
+			BehaviorTask[] parents = new BehaviorTask[kMaxParentsCount];
 
 			BranchTask parentBranch = this.GetParent();
 
-			ms_parents[parentsCount++] = this;
+			parents[parentsCount++] = this;
 
 			// back track the parents until the managing branch
 			while (parentBranch != null) {
 				Debug.check(parentsCount < kMaxParentsCount, "weird tree!");
 
-				ms_parents[parentsCount++] = parentBranch;
+				parents[parentsCount++] = parentBranch;
 
 				if (parentBranch.GetCurrentTask() == this) {
 					// Debug.Check(parentBranch->GetNode()->IsManagingChildrenAsSubTrees());
@@ -152,7 +153,7 @@ public abstract class BehaviorTask {
 
 			if (bHasManagingParent) {
 				for (int i = parentsCount - 1; i >= 0; --i) {
-					BehaviorTask pb = ms_parents[i];
+					BehaviorTask pb = parents[i];
 
 					bValid = pb.CheckPreconditions(pAgent, true);
 
@@ -192,15 +193,6 @@ public abstract class BehaviorTask {
 		}
 
 		return tree;
-	}
-
-	@SuppressWarnings("unchecked")
-	private static boolean getRunningNodes_handler(BehaviorTask node, Agent pAgent, Object user_data) {
-		if (node.m_status == EBTStatus.BT_RUNNING) {
-			((List<BehaviorTask>) user_data).add(node);
-		}
-
-		return true;
 	}
 
 	private static boolean end_handler(BehaviorTask node, Agent pAgent, Object user_data) {
