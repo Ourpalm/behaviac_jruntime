@@ -1,7 +1,5 @@
 package org.gof.behaviac;
 
-import org.gof.behaviac.node.BehaviorTreeTask;
-
 public interface IMethod extends IInstanceMember {
 	IMethod Clone();
 

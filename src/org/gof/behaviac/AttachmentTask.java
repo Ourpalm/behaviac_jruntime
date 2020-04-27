@@ -1,7 +1,4 @@
-package org.gof.behaviac.node;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.NodeHandler_t;
+package org.gof.behaviac;
 
 public class AttachmentTask extends BehaviorTask {
 	protected AttachmentTask() {

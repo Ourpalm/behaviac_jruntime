@@ -1,14 +1,7 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.CVariable;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IInstantiatedVariable;
-import org.gof.behaviac.Utils;
 
 public class BehaviorTreeTask extends SingeChildTask {
 	private Map<Long, IInstantiatedVariable> m_localVars = new HashMap<Long, IInstantiatedVariable>();

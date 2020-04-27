@@ -1,6 +1,4 @@
-package org.gof.behaviac.node;
-
-import org.gof.behaviac.Agent;
+package org.gof.behaviac;
 
 public class ReferencedBehavior extends BehaviorNode {
 

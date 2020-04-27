@@ -1,4 +1,4 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -6,11 +6,6 @@ import java.util.Map;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.gof.behaviac.AgentMeta;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.ICustomizedProperty;
-import org.gof.behaviac.IInstantiatedVariable;
-import org.gof.behaviac.Utils;
 
 public class BehaviorTree extends BehaviorNode {
 	private final int SupportedVersion = 5;
@@ -122,7 +117,7 @@ public class BehaviorTree extends BehaviorNode {
 	}
 
 	@Override
-	protected org.gof.behaviac.node.BehaviorTask createTask() {
+	protected org.gof.behaviac.BehaviorTask createTask() {
 		BehaviorTreeTask pTask = new BehaviorTreeTask();
 		return pTask;
 	}

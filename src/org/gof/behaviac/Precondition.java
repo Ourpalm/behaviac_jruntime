@@ -1,9 +1,6 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.List;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.Debug;
 
 public class Precondition extends AttachAction {
 	public static enum EPhase {

@@ -10,11 +10,6 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
-import org.gof.behaviac.node.BehaviorNode;
-import org.gof.behaviac.node.BehaviorTask;
-import org.gof.behaviac.node.BehaviorTree;
-import org.gof.behaviac.node.BehaviorTreeTask;
-
 public class Workspace implements Closeable {
 
 	public static Workspace Instance = null;
@@ -132,6 +127,7 @@ public class Workspace implements Closeable {
 	private void UnRegisterStuff() {
 		Debug.Check(this.m_bRegistered);
 
+		
 		this.UnRegisterBehaviorNode();
 
 		AgentMeta.UnRegister();

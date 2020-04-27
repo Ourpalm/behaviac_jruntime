@@ -1,13 +1,7 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.List;
 import java.util.Map;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IInstantiatedVariable;
-import org.gof.behaviac.NodeHandler_t;
 
 public abstract class BehaviorTask {
 	public EBTStatus m_status;

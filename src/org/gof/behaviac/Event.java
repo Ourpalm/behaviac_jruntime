@@ -1,16 +1,7 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.List;
 import java.util.Map;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.AgentMeta;
-import org.gof.behaviac.Config;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.IInstantiatedVariable;
-import org.gof.behaviac.IMethod;
-import org.gof.behaviac.TriggerMode;
-import org.gof.behaviac.Utils;
 
 public class Event extends ConditionBase {
 	protected IMethod m_event;

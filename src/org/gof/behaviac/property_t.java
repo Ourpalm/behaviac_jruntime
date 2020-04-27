@@ -1,4 +1,4 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 public class property_t {
 	public String name;

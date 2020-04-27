@@ -8,11 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.gof.behaviac.node.BehaviorNode;
-import org.gof.behaviac.node.BehaviorTree;
-import org.gof.behaviac.node.BehaviorTreeTask;
-import org.gof.behaviac.node.Task;
-
 public class Agent implements Closeable {
 	private static AtomicLong idAlloc = new AtomicLong(0);
 

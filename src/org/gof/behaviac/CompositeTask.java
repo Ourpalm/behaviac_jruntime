@@ -1,11 +1,7 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.NodeHandler_t;
 
 public class CompositeTask extends BranchTask {
 	protected int m_activeChildIndex = InvalidChildIndex;

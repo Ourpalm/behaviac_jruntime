@@ -1,15 +1,10 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.dom4j.Element;
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IInstantiatedVariable;
-import org.gof.behaviac.Utils;
 
 public abstract class BehaviorNode {
 	private int m_id;

@@ -1,9 +1,4 @@
-package org.gof.behaviac.node;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.NodeHandler_t;
+package org.gof.behaviac;
 
 public class SingeChildTask extends BranchTask {
 	protected BehaviorTask m_root;

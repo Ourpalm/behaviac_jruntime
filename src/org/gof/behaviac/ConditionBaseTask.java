@@ -1,8 +1,4 @@
-package org.gof.behaviac.node;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.EBTStatus;
+package org.gof.behaviac;
 
 public class ConditionBaseTask extends LeafTask {
 	public ConditionBaseTask() {

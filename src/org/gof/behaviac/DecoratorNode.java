@@ -1,8 +1,6 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.List;
-
-import org.gof.behaviac.Agent;
 
 public abstract class DecoratorNode extends BehaviorNode {
 	public boolean m_bDecorateWhenChildEnds;

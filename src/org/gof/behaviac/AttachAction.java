@@ -1,16 +1,6 @@
-package org.gof.behaviac.node;
+package org.gof.behaviac;
 
 import java.util.List;
-
-import org.gof.behaviac.Agent;
-import org.gof.behaviac.AgentMeta;
-import org.gof.behaviac.Debug;
-import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.EOperatorType;
-import org.gof.behaviac.IInstanceMember;
-import org.gof.behaviac.IMethod;
-import org.gof.behaviac.OperationUtils;
-import org.gof.behaviac.StringUtils;
 
 public class AttachAction extends BehaviorNode {
 
