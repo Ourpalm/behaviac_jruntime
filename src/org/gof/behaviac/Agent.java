@@ -227,6 +227,20 @@ public class Agent implements Closeable {
 		return m_variables;
 	}
 
+	private Map<Long, IInstantiatedVariable> GetCustomizedVariables() {
+		var agentClassName = this.GetClassTypeName();
+		var agentClassId = Utils.MakeVariableId(agentClassName);
+		AgentMeta meta = AgentMeta.GetMeta(agentClassId);
+
+		if (meta != null) {
+			Map<Long, IInstantiatedVariable> vars = meta.InstantiateCustomizedProperties();
+
+			return vars;
+		}
+
+		return null;
+	}
+
 	IInstantiatedVariable GetInstantiatedVariable(long varId) {
 		// local var
 		var task = this.GetExcutingTreeTask();
@@ -447,7 +461,7 @@ public class Agent implements Closeable {
 		pAgent.m_priority = priority;
 		pAgent.SetName(pAgent.name);
 
-		// TODO;CBH;//Context.AddAgent(pAgent);
+		Context.AddAgent(pAgent);
 	}
 
 	public void btresetcurrrent() {

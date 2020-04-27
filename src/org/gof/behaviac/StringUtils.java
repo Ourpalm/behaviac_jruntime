@@ -10,4 +10,13 @@ public class StringUtils {
 		return true;
 	}
 
+	public static String FindExtension(String relativePath) {
+		String extension = "";
+		int i = relativePath.lastIndexOf('.');
+		if (i > 0) {
+			extension = relativePath.substring(i + 1);
+		}
+		return extension;
+	}
+
 }

@@ -1,6 +1,7 @@
 package org.gof.behaviac;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AgentMeta {
 	private HashMap<Long, IProperty> _memberProperties = new HashMap<Long, IProperty>();
@@ -45,6 +46,26 @@ public class AgentMeta {
 	public IProperty GetProperty(long propId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public IMethod GetMethod(long eventId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Map<Long, IInstantiatedVariable> InstantiateCustomizedProperties() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static void Register() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void UnRegister() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
