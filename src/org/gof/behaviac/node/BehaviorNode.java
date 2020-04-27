@@ -148,7 +148,8 @@ public abstract class BehaviorNode {
 		Debug.Check(false);
 	}
 
-	protected void load_properties_pars_attachments_children(boolean bNode, int version, String agentType, Element node) {
+	protected void load_properties_pars_attachments_children(boolean bNode, int version, String agentType,
+			Element node) {
 		var bHasEvents = this.HasEvents();
 		List<property_t> properties = new ArrayList<property_t>();
 

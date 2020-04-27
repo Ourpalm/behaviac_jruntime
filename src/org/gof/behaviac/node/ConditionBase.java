@@ -2,15 +2,16 @@ package org.gof.behaviac.node;
 
 import org.gof.behaviac.Agent;
 
-public class ConditionBase extends BehaviorNode {
-	@Override
-	public  boolean isValid(Agent pAgent, BehaviorTask pTask)
-    {
-        if (!(pTaskgetNode() instanceof ConditionBase))
-        {
-            return false;
-        }
+public abstract class ConditionBase extends BehaviorNode {
+	public ConditionBase() {
+	}
 
-        return base.IsValid(pAgent, pTask);
-    }
+	@Override
+	public boolean IsValid(Agent pAgent, BehaviorTask pTask) {
+		if (!(pTask.GetNode() instanceof ConditionBase)) {
+			return false;
+		}
+
+		return super.IsValid(pAgent, pTask);
+	}
 }
