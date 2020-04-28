@@ -117,7 +117,7 @@ public class State extends BehaviorNode {
 				Transition transition = transitions.get(i);
 
 				if (transition.Evaluate(pAgent, result)) {
-					nextStateId = transition.TargetStateId;
+					nextStateId = transition.GetTargetStateId();
 					Debug.Check(nextStateId != -1);
 
 					// transition actions
