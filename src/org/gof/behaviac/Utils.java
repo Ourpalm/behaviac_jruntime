@@ -153,6 +153,11 @@ public class Utils {
 		return null;
 	}
 
+	public static Object ConvertFromObject(Class<?> targetClazz, Object value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public static String GetNativeTypeName(Class<?> clazz) {
 		return clazz.getName();
 	}
