@@ -85,7 +85,6 @@ public class Workspace implements Closeable {
 
 		this.m_bInited = true;
 
-		ComparerRegister.Init();
 		ComputerRegister.Init();
 
 		Workspace.Instance.RegisterStuff();
@@ -107,7 +106,6 @@ public class Workspace implements Closeable {
 
 		Debug.Check(this.m_bRegistered);
 
-		ComparerRegister.Cleanup();
 		ComputerRegister.Cleanup();
 
 		this.UnRegisterStuff();
@@ -282,7 +280,7 @@ public class Workspace implements Closeable {
 	}
 
 	public BehaviorTreeTask CreateBehaviorTreeTask(String relativePath) {
-		Debug.Check(Utils.isNullOrEmpty(Path.GetExtension(relativePath)), "no extention to specify");
+		Debug.Check(Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
 		BehaviorTree bt = m_behaviortrees.get(relativePath);

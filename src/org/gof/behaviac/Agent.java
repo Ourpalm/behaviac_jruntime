@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class Agent implements Closeable {
+public abstract class Agent implements Closeable {
 	private static AtomicLong idAlloc = new AtomicLong(0);
 
 	public static long allocId() {
@@ -411,7 +411,7 @@ public class Agent implements Closeable {
             }
         }
 
-        Debug.Check(false, String.format("The variable \"%s\" with type \"{1}\" can not be found!", variableName);
+        Debug.Check(false, String.format("The variable \"%s\" with type \"{1}\" can not be found!", variableName));
     }
 
 	void SetVariableFromString(String variableName, String valueStr) {
@@ -480,7 +480,7 @@ public class Agent implements Closeable {
 
 	private void _btsetcurrent(String relativePath, TriggerMode triggerMode, boolean bByEvent) {
 		boolean bEmptyPath = Utils.isNullOrEmpty(relativePath);
-		Debug.Check(!bEmptyPath && Utils.isNullOrEmpty(Path.GetExtension(relativePath)));
+		Debug.Check(!bEmptyPath && Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)));
 		Debug.Check(Workspace.Instance.IsValidPath(relativePath));
 
 		if (!bEmptyPath) {
@@ -670,7 +670,7 @@ public class Agent implements Closeable {
 	}
 
 	public void btunload(String relativePath) {
-		Debug.Check(Utils.isNullOrEmpty(Path.GetExtension(relativePath)), "no extention to specify");
+		Debug.Check(Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(Workspace.Instance.IsValidPath(relativePath));
 
 		// clear the current bt if it is the current bt
@@ -917,4 +917,10 @@ public class Agent implements Closeable {
 			vector.clear();
 		}
 	}
+
+	public abstract Object GetProperty();
+
+	public abstract void SetProperty(String property, Object value);
+
+	public abstract Object ExecuteMethod(String method, Object[] args);
 }

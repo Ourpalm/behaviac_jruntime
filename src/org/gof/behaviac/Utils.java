@@ -146,4 +146,8 @@ public class Utils {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static String GetNativeTypeName(Class<?> clazz) {
+		return clazz.getName();
+	}
 }
