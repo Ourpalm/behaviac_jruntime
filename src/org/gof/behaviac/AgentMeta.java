@@ -1,20 +1,71 @@
 package org.gof.behaviac;
 
+import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.dom4j.DocumentHelper;
+
 public class AgentMeta {
+	private static HashMap<Long, AgentMeta> _agentMetas = new HashMap<Long, AgentMeta>();
+	private static HashMap<String, TypeCreator> _Creators = new HashMap<String, TypeCreator>();
+	private static HashMap<String, Class<?>> _typesRegistered = new HashMap<String, Class<?>>();
+	private static long _totalSignature = 0;
+	private static BehaviorLoader _behaviorLoader;
+
+	public static void SetBehaviorLoader(BehaviorLoader loader) {
+		_behaviorLoader = loader;
+	}
+
+	// -----------------------------------------------------------------------
 	private HashMap<Long, IProperty> _memberProperties = new HashMap<Long, IProperty>();
 	private HashMap<Long, ICustomizedProperty> _customizedProperties = new HashMap<Long, ICustomizedProperty>();
 	private HashMap<Long, ICustomizedProperty> _customizedStaticProperties = new HashMap<Long, ICustomizedProperty>();
 	private HashMap<Long, IInstantiatedVariable> _customizedStaticVars = null;
 	private HashMap<Long, IMethod> _methods = new HashMap<Long, IMethod>();
 
-	private static HashMap<Long, AgentMeta> _agentMetas = new HashMap<Long, AgentMeta>();
-	private static HashMap<String, TypeCreator> _Creators = new HashMap<String, TypeCreator>();
-	private static HashMap<String, Class<?>> _typesRegistered = new HashMap<String, Class<?>>();
+	private long _signature = 0;
+
+	public long GetSignature() {
+		return this._signature;
+	}
+
+	public AgentMeta() {
+		this(0);
+	}
+
+	public AgentMeta(long _signature) {
+		this._signature = _signature;
+	}
+
+	public static void Register() {
+		RegisterBasicTypes();
+
+		final String kLoaderClass = "behaviac.BehaviorLoaderImplement";
+		var loaderType = Class.forName(kLoaderClass);
+		_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
+		_behaviorLoader.Load();
+		LoadAllMetaFiles();
+	}
+
+	public static void UnRegister() {
+		UnRegisterBasicTypes();
+
+		if (_behaviorLoader != null) {
+			_behaviorLoader.UnLoad();
+		}
+
+		_agentMetas.clear();
+		_Creators.clear();
+	}
 
 	public static ICustomizedProperty CreateProperty(String typeName, long varId, String name, String valueStr) {
 		// TODO Auto-generated method stub
@@ -22,8 +73,7 @@ public class AgentMeta {
 	}
 
 	public static Class<?> GetTypeFromName(String typeName) {
-		// TODO Auto-generated method stub
-		return null;
+		return _typesRegistered.get(typeName);
 	}
 
 	public static ICustomizedProperty CreateArrayItemProperty(String typeName, long varId, String name) {
@@ -133,7 +183,7 @@ public class AgentMeta {
 				typeName = typeName.replace("::", ".");
 				propStr = propStr.replace("::", ".");
 
-				String[] props = propStr.split('.');
+				String[] props = propStr.split(".");
 				Debug.Check(props.length >= 3);
 
 				String instantceName = props[0];
@@ -296,9 +346,177 @@ public class AgentMeta {
 		return params_;
 	}
 
-	private static AgentMeta GetMeta(long agentClassId) {
+	private static void LoadAllMetaFiles() {
+		String metaFolder = "";
+		try {
+			String ext = ".xml";
+
+			metaFolder = Utils.Combine(Workspace.Instance.GetFilePath(), "meta");
+			metaFolder = metaFolder.replace('\\', '/');
+
+			if (!Utils.isNullOrEmpty(Workspace.Instance.GetMetaFile())) {
+				String metaFile = Utils.Combine(metaFolder, Workspace.Instance.GetMetaFile());
+				metaFile = Utils.ChangeExtension(metaFile, ".meta");
+
+				byte[] fileBuffer = Files.readAllBytes(Paths.get(metaFile, ext));
+
+				load_xml(fileBuffer);
+			} else {
+				var stream = Files.find(Paths.get(metaFolder), 1, (Path p, BasicFileAttributes attr) -> {
+					return p.toFile().getPath().endsWith(ext);
+				});
+
+				for (var iter = stream.iterator(); iter.hasNext();) {
+					var path = iter.next();
+					byte[] fileBuffer = Files.readAllBytes(path);
+					load_xml(fileBuffer);
+
+				}
+			}
+		} catch (Exception ex) {
+			Debug.LogWarning(ex.getMessage());
+		}
+	}
+
+	private static boolean checkSignature(String signatureStr) {
+		if (signatureStr != Long.toString(AgentMeta._totalSignature)) {
+			String errorInfo = "[meta] The types/AgentProperties.cs should be exported from the behaviac designer, and then integrated into your project!\n";
+
+			Debug.LogWarning(errorInfo);
+			Debug.Check(false, errorInfo);
+
+			return false;
+		}
+
+		return true;
+	}
+
+	private static void registerCustomizedProperty(AgentMeta meta, String propName, String typeName, String valueStr,
+			boolean isStatic) {
+		typeName = typeName.replace("::", ".");
+
+		var nameId = Utils.MakeVariableId(propName);
+		IProperty prop = meta.GetProperty(nameId);
+		ICustomizedProperty newProp = AgentMeta.CreateCustomizedProperty(typeName, nameId, propName, valueStr);
+
+		if (prop != null && newProp != null) {
+			Object newValue = newProp.GetValueObject(null);
+			Object value = prop.GetValueObject(null);
+
+			if (newValue != null && value != null && newValue.getClass() == value.getClass()) {
+				return;
+			}
+
+			String errorInfo = String.format(
+					"The type of '%s' has been modified to %s, which would bring the unpredictable consequences.",
+					propName, typeName);
+			Debug.LogWarning(errorInfo);
+			Debug.Check(false, errorInfo);
+		}
+
+		if (isStatic) {
+			meta.RegisterStaticCustomizedProperty(nameId, newProp);
+		} else {
+			meta.RegisterCustomizedProperty(nameId, newProp);
+		}
+
+		Class<?> type = AgentMeta.GetTypeFromName(typeName);
+
+		if (type == List.class) {
+			// Get item type, i.e. vector<int>
+			var strVector = "vector<";
+			int kStartIndex = strVector.length();
+			typeName = typeName.substring(kStartIndex, typeName.length() - 1); // item type
+			ICustomizedProperty arrayItemProp = AgentMeta.CreateCustomizedArrayItemProperty(typeName, nameId, propName);
+			nameId = Utils.MakeVariableId(propName + "[]");
+
+			if (isStatic) {
+				meta.RegisterStaticCustomizedProperty(nameId, arrayItemProp);
+			} else {
+				meta.RegisterCustomizedProperty(nameId, arrayItemProp);
+			}
+		}
+	}
+
+	private static ICustomizedProperty CreateCustomizedArrayItemProperty(String typeName, long nameId,
+			String propName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private static ICustomizedProperty CreateCustomizedProperty(String typeName, long nameId, String propName,
+			String valueStr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static boolean load_xml(byte[] pBuffer) {
+		try {
+			Debug.Check(pBuffer != null);
+			var xml = new String(pBuffer, StandardCharsets.UTF_8);
+			var doc = DocumentHelper.parseText(xml);
+			var rootNode = doc.getRootElement();
+
+			if (rootNode.elements().size() <= 0 || rootNode.getName() != "agents") {
+				return false;
+			}
+
+			String versionStr = rootNode.attribute("version").getValue();
+			Debug.Check(!Utils.isNullOrEmpty(versionStr));
+
+			String signatureStr = rootNode.attribute("signature").getValue();
+			checkSignature(signatureStr);
+
+			for (var bbNode : rootNode.elements()) {
+				if (bbNode.getName() == "agent" && bbNode.elements() != null) {
+					String agentType = bbNode.attribute("type").getValue().replace("::", ".");
+					var classId = Utils.MakeVariableId(agentType);
+					AgentMeta meta = AgentMeta.GetMeta(classId);
+
+					if (meta == null) {
+						meta = new AgentMeta();
+						_agentMetas.put(classId, meta);
+					}
+
+					String agentSignature = bbNode.attribute("signature").getValue();
+					if (agentSignature == Long.toString(meta.GetSignature())) {
+						continue;
+					}
+
+					for (var propertiesNode : bbNode.elements()) {
+						if (propertiesNode.getName() == "properties" && propertiesNode.elements() != null) {
+							for (var propertyNode : propertiesNode.elements()) {
+								if (propertyNode.getName() == "property") {
+									String memberStr = propertyNode.attribute("member").getValue();
+									boolean bIsMember = (!Utils.isNullOrEmpty(memberStr) && memberStr == "true");
+
+									if (!bIsMember) {
+										String propName = propertyNode.attribute("name").getValue();
+										String propType = propertyNode.attribute("type").getValue().replace("::", ".");
+										String valueStr = propertyNode.attribute("defaultvalue").getValue();
+										String isStatic = propertyNode.attribute("static").getValue();
+										boolean bIsStatic = (!Utils.isNullOrEmpty(isStatic) && isStatic == "true");
+
+										registerCustomizedProperty(meta, propName, propType, valueStr, bIsStatic);
+									}
+								}
+							}
+						}
+					} // end of for propertiesNode
+				}
+			} // end of for bbNode
+
+			return true;
+		} catch (Exception e) {
+			Debug.Check(false, e.getMessage());
+		}
+
+		Debug.Check(false);
+		return false;
+	}
+
+	private static AgentMeta GetMeta(long agentClassId) {
+		return _agentMetas.get(agentClassId);
 	}
 
 	private static IInstanceMember CreateInstanceProperty(String typeName, String instantceName,
@@ -313,28 +531,164 @@ public class AgentMeta {
 	}
 
 	public IProperty GetProperty(long propId) {
-		// TODO Auto-generated method stub
-		return null;
+		var r = _customizedStaticProperties.get(propId);
+		if (r == null)
+			r = _customizedProperties.get(propId);
+		if (r == null)
+			_memberProperties.get(propId);
+
+		return r;
 	}
 
-	public IMethod GetMethod(long eventId) {
-		// TODO Auto-generated method stub
-		return null;
+	public IProperty GetMemberProperty(long propId) {
+		return _memberProperties.get(propId);
+	}
+
+	public Map<Long, IProperty> GetMemberProperties() {
+		return Collections.unmodifiableMap(_memberProperties);
+	}
+
+	public IMethod GetMethod(long methodId) {
+		return _methods.get(methodId);
 	}
 
 	public Map<Long, IInstantiatedVariable> InstantiateCustomizedProperties() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Long, IInstantiatedVariable> vars = new HashMap<Long, IInstantiatedVariable>();
+
+		// instance customzied properties
+		for (var it : _customizedProperties.entrySet()) {
+			vars.put(it.getKey(), it.getValue().Instantiate());
+		}
+
+		for (var it : _customizedStaticProperties.entrySet()) {
+			vars.put(it.getKey(), it.getValue().Instantiate());
+		}
+		for (var it : _customizedStaticVars.entrySet()) {
+			vars.put(it.getKey(), it.getValue());
+		}
+		return vars;
 	}
 
-	public static void Register() {
-		// TODO Auto-generated method stub
-
+	public void RegisterMemberProperty(long propId, IProperty property) {
+		_memberProperties.put(propId, property);
 	}
 
-	public static void UnRegister() {
-		// TODO Auto-generated method stub
+	public void RegisterCustomizedProperty(long propId, ICustomizedProperty property) {
+		_customizedProperties.put(propId, property);
+	}
 
+	public void RegisterStaticCustomizedProperty(long propId, ICustomizedProperty property) {
+		_customizedStaticProperties.put(propId, property);
+	}
+
+	public void RegisterMethod(long methodId, IMethod method) {
+		_methods.put(methodId, method);
+	}
+
+	public static boolean Register(String typeName, Class<?> clazz) {
+		typeName = typeName.replace("::", ".");
+
+		TypeCreator tc = TypeCreator.Create(clazz);
+		_Creators.put(typeName, tc);
+
+		String vectorTypeName = String.format("vector<%s>", typeName);
+		TypeCreator tcl = TypeCreator.CreateList(clazz);
+		_Creators.put(vectorTypeName, tcl);
+
+		_typesRegistered.put(typeName, clazz);
+		_typesRegistered.put(vectorTypeName, ArrayList.class);
+
+		return true;
+	}
+
+	public static void UnRegister(String typeName) {
+		typeName = typeName.replace("::", ".");
+		String vectorTypeName = String.format("vector<%s>", typeName);
+
+		_typesRegistered.remove(typeName);
+		_typesRegistered.remove(vectorTypeName);
+
+		_Creators.remove(typeName);
+		_Creators.remove(vectorTypeName);
+	}
+
+	private static void RegisterBasicTypes() {
+
+		Register("bool", Boolean.class);
+		Register("Boolean", Boolean.class);
+		Register("byte", Byte.class);
+		Register("ubyte", Byte.class);
+		Register("Byte", Byte.class);
+		Register("char", Byte.class);
+		Register("Char", Byte.class);
+		Register("decimal", BigDecimal.class);
+		Register("Decimal", BigDecimal.class);
+		Register("double", double.class);
+		Register("Double", double.class);
+		Register("float", float.class);
+		Register("int", int.class);
+		Register("Int16", short.class);
+		Register("Int32", int.class);
+		Register("Int64", long.class);
+		Register("long", long.class);
+		Register("llong", long.class);
+
+		Register("sbyte", Byte.class);
+		Register("SByte", Byte.class);
+		Register("short", short.class);
+		Register("ushort", short.class);
+
+		Register("uint", int.class);
+		Register("UInt16", int.class);
+		Register("UInt32", int.class);
+		Register("UInt64", long.class);
+		Register("ulong", long.class);
+		Register("ullong", long.class);
+		Register("Single", float.class);
+		Register("string", String.class);
+		Register("String", String.class);
+		Register("object", Object.class);
+		Register("behaviac.Agent", Agent.class);
+		Register("behaviac.EBTStatus", EBTStatus.class);
+	}
+
+	private static void UnRegisterBasicTypes() {
+		UnRegister("bool");
+		UnRegister("Boolean");
+		UnRegister("byte");
+		UnRegister("ubyte");
+		UnRegister("Byte");
+		UnRegister("char");
+		UnRegister("Char");
+		UnRegister("decimal");
+		UnRegister("Decimal");
+		UnRegister("double");
+		UnRegister("Double");
+		UnRegister("float");
+		UnRegister("Single");
+		UnRegister("int");
+		UnRegister("Int16");
+		UnRegister("Int32");
+		UnRegister("Int64");
+		UnRegister("long");
+		UnRegister("llong");
+		UnRegister("sbyte");
+		UnRegister("SByte");
+		UnRegister("short");
+		UnRegister("ushort");
+
+		UnRegister("uint");
+		UnRegister("UInt16");
+		UnRegister("UInt32");
+		UnRegister("UInt64");
+		UnRegister("ulong");
+		UnRegister("ullong");
+
+		UnRegister("string");
+		UnRegister("String");
+		UnRegister("object");
+		UnRegister("behaviac.Agent");
+		UnRegister("behaviac.EBTStatus");
 	}
 
 }

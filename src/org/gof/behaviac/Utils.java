@@ -101,7 +101,7 @@ public class Utils {
 		if (bArrayType) {
 			int bracket0 = typeName.indexOf('<');
 			int bracket1 = typeName.indexOf('>');
-			//int len = bracket1 - bracket0 - 1;
+			// int len = bracket1 - bracket0 - 1;
 
 			var elementTypeName = typeName.substring(bracket0 + 1, bracket1);
 			var elementType = Utils.GetTypeFromName(elementTypeName);
@@ -137,7 +137,13 @@ public class Utils {
 
 		return type;
 	}
-	
+
+	public static String Combine(String path, String name) {
+		if (path.endsWith("\\") || path.endsWith("/"))
+			return path + name;
+		return path + "/" + name;
+	}
+
 	public static Object Clone(Object value) {
 		return value;
 	}
@@ -149,5 +155,13 @@ public class Utils {
 
 	public static String GetNativeTypeName(Class<?> clazz) {
 		return clazz.getName();
+	}
+
+	public static String ChangeExtension(String file, String newExt) {
+		var ext = StringUtils.FindExtension(file);
+		if(!isNullOrEmpty(ext)) {
+			file.replaceAll(ext, newExt);
+		}
+		return file;
 	}
 }

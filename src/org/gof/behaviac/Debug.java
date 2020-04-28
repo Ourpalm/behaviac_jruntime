@@ -18,4 +18,9 @@ public class Debug {
 	public static void Log(String text) {
 
 	}
+
+	public static void LogWarning(String text) {
+		// TODO Auto-generated method stub
+		
+	}
 }
