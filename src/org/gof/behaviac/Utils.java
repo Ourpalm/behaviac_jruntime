@@ -164,4 +164,10 @@ public class Utils {
 		}
 		return file;
 	}
+
+	public static TValue GetDefaultValue(Class<?> _clazz) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

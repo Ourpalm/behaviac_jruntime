@@ -923,4 +923,7 @@ public abstract class Agent implements Closeable {
 	public abstract void SetProperty(String property, Object value);
 
 	public abstract Object ExecuteMethod(String method, Object[] args);
+
+	public abstract long GetCurrentTime();
+	public abstract long GetFrameSinceStartup();
 }

@@ -16,5 +16,10 @@ public class TValue implements IValue {
 	public void Log(Agent agent, String name, boolean bForce) {
 		// TODO Auto-generated method stub
 	}
+	
+	@SuppressWarnings("unchecked")
+	public <T> T  getT() {
+		return (T)value;
+	}
 
 }
