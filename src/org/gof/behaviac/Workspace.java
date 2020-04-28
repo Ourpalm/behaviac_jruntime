@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.management.RuntimeErrorException;
@@ -339,6 +340,11 @@ public class Workspace implements Closeable {
 	public void close() throws IOException {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void OnBehaviorNodeLoaded(String nodeType, List<property_t> properties) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

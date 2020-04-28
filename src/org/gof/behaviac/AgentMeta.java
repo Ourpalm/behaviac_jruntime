@@ -50,10 +50,14 @@ public class AgentMeta {
 		RegisterBasicTypes();
 
 		final String kLoaderClass = "behaviac.BehaviorLoaderImplement";
-		var loaderType = Class.forName(kLoaderClass);
-		_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
-		_behaviorLoader.Load();
-		LoadAllMetaFiles();
+		try {
+			var loaderType = Class.forName(kLoaderClass);
+			_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
+			_behaviorLoader.Load();
+			LoadAllMetaFiles();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static void UnRegister() {
@@ -515,7 +519,7 @@ public class AgentMeta {
 		return false;
 	}
 
-	private static AgentMeta GetMeta(long agentClassId) {
+	static AgentMeta GetMeta(long agentClassId) {
 		return _agentMetas.get(agentClassId);
 	}
 

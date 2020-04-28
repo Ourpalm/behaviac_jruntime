@@ -18,7 +18,7 @@ public class BehaviorTreeTask extends SingeChildTask {
 		IInstantiatedVariable v = this.m_localVars.get(variableId);
 		if (v != null) {
 			@SuppressWarnings("unchecked")
-			CVariable<VariableType> var = (CVariable<VariableType>) v;
+			CVariable var = (CVariable) v;
 
 			if (var != null) {
 				var.SetValue(null, value);
@@ -91,7 +91,7 @@ public class BehaviorTreeTask extends SingeChildTask {
 
 	@Override
 	protected void onexit(Agent pAgent, EBTStatus status) {
-		pAgent.ExcutingTreeTask = this.m_excutingTreeTask;
+		pAgent.SetExcutingTreeTask(this.m_excutingTreeTask);
 		pAgent.LogReturnTree(this.GetName());
 
 		super.onexit(pAgent, status);
@@ -102,8 +102,8 @@ public class BehaviorTreeTask extends SingeChildTask {
 		Debug.Check(this.m_node != null);
 		Debug.Check(this.m_node instanceof BehaviorTree);
 
-		this.m_excutingTreeTask = pAgent.ExcutingTreeTask;
-		pAgent.ExcutingTreeTask = this;
+		this.m_excutingTreeTask = pAgent.GetExcutingTreeTask();
+		pAgent.SetExcutingTreeTask(this);
 
 		BehaviorTree tree = (BehaviorTree) this.m_node;
 		EBTStatus status = EBTStatus.BT_RUNNING;

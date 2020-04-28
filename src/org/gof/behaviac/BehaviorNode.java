@@ -291,7 +291,7 @@ public abstract class BehaviorNode {
 			Debug.Check(predicate != null);
 			this.m_preconditions.add(predicate);
 
-			var phase = predicate.getPhase();
+			var phase = predicate.GetPhase();
 
 			if (phase == Precondition.EPhase.E_ENTER) {
 				this.m_enter_precond++;
@@ -313,7 +313,7 @@ public abstract class BehaviorNode {
 			Debug.Check(effector != null);
 			this.m_effectors.add(effector);
 
-			var phase = effector.getPhase();
+			var phase = effector.GetPhase();
 
 			if (phase == Effector.EPhase.E_SUCCESS) {
 				this.m_success_effectors++;
@@ -373,7 +373,7 @@ public abstract class BehaviorNode {
 			Precondition pPrecond = this.m_preconditions.get(i);
 
 			if (pPrecond != null) {
-				Precondition.EPhase ph = pPrecond.getPhase();
+				Precondition.EPhase ph = pPrecond.GetPhase();
 
 				if (phase == Precondition.EPhase.E_BOTH || ph == Precondition.EPhase.E_BOTH || ph == phase) {
 					boolean taskBoolean = pPrecond.Evaluate(pAgent);
@@ -384,7 +384,7 @@ public abstract class BehaviorNode {
 							firstValidPrecond = false;
 							lastCombineValue = taskBoolean;
 						} else {
-							boolean andOp = pPrecond.isAnd();
+							boolean andOp = pPrecond.IsAnd();
 
 							if (andOp) {
 								lastCombineValue = lastCombineValue && taskBoolean;
@@ -420,7 +420,7 @@ public abstract class BehaviorNode {
 			Effector pEffector = this.m_effectors.get(i);
 
 			if (pEffector != null) {
-				Effector.EPhase ph = pEffector.getPhase();
+				Effector.EPhase ph = pEffector.GetPhase();
 
 				if (phase == Effector.EPhase.E_BOTH || ph == Effector.EPhase.E_BOTH || ph == phase) {
 					pEffector.Evaluate(pAgent);
