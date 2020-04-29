@@ -11,6 +11,8 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import com.sun.tools.jdi.Packet;
+
 public class Workspace implements Closeable {
 
 	public static Workspace Instance = null;
@@ -25,6 +27,7 @@ public class Workspace implements Closeable {
 	private Map<String, java.lang.reflect.Method> m_btCreators;
 	private Map<String, Class<?>> m_behaviorNodeTypes = new HashMap<>();
 	private boolean m_bRegistered = false;
+	private boolean m_bBuiltinNodesLoaded = false;
 
 	private static String GetDefaultFilePath() {
 		return "";
@@ -86,8 +89,6 @@ public class Workspace implements Closeable {
 
 		this.m_bInited = true;
 
-		ComputerRegister.Init();
-
 		Workspace.Instance.RegisterStuff();
 
 		if (Utils.IsNullOrEmpty(this.GetFilePath())) {
@@ -106,8 +107,6 @@ public class Workspace implements Closeable {
 		this.UnLoadAll();
 
 		Debug.Check(this.m_bRegistered);
-
-		ComputerRegister.Cleanup();
 
 		this.UnRegisterStuff();
 
@@ -311,7 +310,25 @@ public class Workspace implements Closeable {
 		Debug.Check(m_behaviorNodeTypes != null);
 		m_behaviorNodeTypes.clear();
 	}
-	
+
+	private synchronized void LoadBuiltinNodes() {
+		if (m_bBuiltinNodesLoaded)
+			return;
+		for (var clazz : PackageClass.find("org.gof.behaviac")) {
+			var anno = clazz.getAnnotation(RegisterableNode.class);
+			if (anno != null) {
+				String name;
+				if (!Utils.IsNullOrEmpty(anno.value())) {
+					name = anno.value();
+				} else {
+					name = clazz.getSimpleName();
+				}
+				name = "behaviac." + name;
+				m_behaviorNodeTypes.put(name, clazz);
+			}
+		}
+	}
+
 	public BehaviorNode CreateBehaviorNode(String className) {
 		try {
 			Class<?> type = null;

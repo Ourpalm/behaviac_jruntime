@@ -143,22 +143,45 @@ public class OperationUtils {
 		return false;
 	}
 
-	public static <T> T Compute(T left, T right, EOperatorType computeType) {
+	public static Object Compute(Object left, Object right, EOperatorType computeType) {
 		if (!(left instanceof Number)) {
 			Debug.Check(false, left.getClass().getName());
 		}
 		var clazz = left.getClass();
-		if (clazz == double.class || clazz == float.class) {
+		if (Utils.IsIntegerClass(left.getClass())) {
+			var v1 = ((Number) left).longValue();
+			var v2 = ((Number) right).longValue();
 			switch (computeType) {
 			case E_ADD:
-				// return (T)(GetDoubleValue(left) + GetDoubleValue(right));
+				return Utils.ConvertFromObject(left.getClass(), false, v1 + v2);
 			case E_SUB:
+				return Utils.ConvertFromObject(left.getClass(), false, v1 - v2);
 			case E_MUL:
+				return Utils.ConvertFromObject(left.getClass(), false, v1 * v2);
 			case E_DIV:
-
+				return Utils.ConvertFromObject(left.getClass(), false, v1 / v2);
+			default:
+				Debug.Check(false, "不支持的oper:" + computeType.toString() + " on type" + left.getClass().getName());
+				break;
+			}
+		} else if (Utils.IsFloatClass(clazz)) {
+			var v1 = ((Number) left).doubleValue();
+			var v2 = ((Number) right).doubleValue();
+			switch (computeType) {
+			case E_ADD:
+				return Utils.ConvertFromObject(left.getClass(), false, v1 + v2);
+			case E_SUB:
+				return Utils.ConvertFromObject(left.getClass(), false, v1 - v2);
+			case E_MUL:
+				return Utils.ConvertFromObject(left.getClass(), false, v1 * v2);
+			case E_DIV:
+				return Utils.ConvertFromObject(left.getClass(), false, v1 / v2);
+			default:
+				Debug.Check(false, "不支持的oper:" + computeType.toString() + " on type" + left.getClass().getName());
+				break;
 			}
 		}
-		Debug.Check(false, "TODO Compute");
+		Debug.Check(false, "不支持的compute类型:" + left.getClass().getName());
 		return right;
 	}
 

@@ -326,13 +326,13 @@ public class Utils {
 		return objVector;
 	}
 
-	public static final String OS = System.getProperty("os.name");
+	public static final String OS = System.getProperty("os.name").toLowerCase();
 
 	public static boolean isWindows() {
-		return OS.startsWith("Windows");
+		return OS.startsWith("windows");
 	}
 
 	public static boolean isLinux() {
-		return "Linux".equals(OS);
+		return OS.startsWith("linux");
 	}
 }
