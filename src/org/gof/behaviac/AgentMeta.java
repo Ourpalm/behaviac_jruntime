@@ -49,14 +49,16 @@ public class AgentMeta {
 	public static void Register() {
 		RegisterBasicTypes();
 
-		final String kLoaderClass = "behaviac.BehaviorLoaderImplement";
-		try {
-			var loaderType = Class.forName(kLoaderClass);
-			_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
-			_behaviorLoader.Load();
-			LoadAllMetaFiles();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		if (_behaviorLoader == null) {
+			final String kLoaderClass = "behaviac.BehaviorLoaderImplement";
+			try {
+				var loaderType = Class.forName(kLoaderClass);
+				_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
+				_behaviorLoader.Load();
+				LoadAllMetaFiles();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 

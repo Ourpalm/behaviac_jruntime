@@ -22,7 +22,6 @@ public class Workspace implements Closeable {
 	private Map<String, java.lang.reflect.Method> m_btCreators;
 	private Map<String, Class<?>> m_behaviorNodeTypes = new HashMap<>();
 	private boolean m_bRegistered = false;
-	private boolean m_bBuiltinNodesLoaded = false;
 
 	static {
 		Instance = new Workspace();
@@ -30,6 +29,10 @@ public class Workspace implements Closeable {
 
 	private static String GetDefaultFilePath() {
 		return "";
+	}
+
+	public Workspace() {
+		this.LoadBuiltinNodes();
 	}
 
 	private Map<String, BehaviorTree> GetBehaviorTrees() {
@@ -157,8 +160,7 @@ public class Workspace implements Closeable {
 
 	public byte[] ReadFileToBuffer(String file, String ext) {
 		try {
-			byte[] pBuffer = Files.readAllBytes(Paths.get(file));
-
+			byte[] pBuffer = Files.readAllBytes(Paths.get(file + ext));
 			return pBuffer;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -189,10 +191,10 @@ public class Workspace implements Closeable {
 			pBT = m_behaviortrees.get(relativePath);
 		}
 
-		var fullPath = this.GetFilePath() + relativePath;
+		var fullPath = Utils.Combine(this.GetFilePath(), relativePath);
 		fullPath = fullPath.replace('\\', '/');
 
-		var ext = "xml";
+		var ext = ".xml";
 		EFileFormat f = this.GetFileFormat();
 
 		var bLoadResult = false;
@@ -310,9 +312,7 @@ public class Workspace implements Closeable {
 		m_behaviorNodeTypes.clear();
 	}
 
-	private synchronized void LoadBuiltinNodes() {
-		if (m_bBuiltinNodesLoaded)
-			return;
+	private void LoadBuiltinNodes() {
 		for (var clazz : PackageClass.find("org.gof.behaviac")) {
 			var anno = clazz.getAnnotation(RegisterableNode.class);
 			if (anno != null) {
@@ -335,9 +335,7 @@ public class Workspace implements Closeable {
 				type = m_behaviorNodeTypes.get(className);
 			} else {
 				var fullClassName = "behaviac." + className.replace("::", ".");
-				type = Class.forName(fullClassName);
-				Debug.Check(type != null);
-				m_behaviorNodeTypes.put(className, type);
+				type = m_behaviorNodeTypes.get(fullClassName);
 			}
 
 			if (type != null) {

@@ -3,6 +3,8 @@ package org.gof.behaviac;
 import java.util.List;
 import java.util.Map;
 
+import org.gof.behaviac.conditions.ConditionBase;
+
 public class Event extends ConditionBase {
 	protected IMethod m_event;
 	protected String m_eventName;
