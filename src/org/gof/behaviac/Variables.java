@@ -29,7 +29,7 @@ public class Variables {
 	}
 
 	public void UnLoad(String variableName) {
-		Debug.Check(!Utils.isNullOrEmpty(variableName));
+		Debug.Check(!Utils.IsNullOrEmpty(variableName));
 
 		var varId = Utils.MakeVariableId(variableName);
 

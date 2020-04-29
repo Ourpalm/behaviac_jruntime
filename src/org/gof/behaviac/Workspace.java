@@ -54,7 +54,7 @@ public class Workspace implements Closeable {
 	}
 
 	public String GetFilePath() {
-		if (Utils.isNullOrEmpty(m_filePath)) {
+		if (Utils.IsNullOrEmpty(m_filePath)) {
 			m_filePath = GetDefaultFilePath();
 		}
 
@@ -90,7 +90,7 @@ public class Workspace implements Closeable {
 
 		Workspace.Instance.RegisterStuff();
 
-		if (Utils.isNullOrEmpty(this.GetFilePath())) {
+		if (Utils.IsNullOrEmpty(this.GetFilePath())) {
 			Debug.LogError("No FilePath file is specified!");
 			Debug.Check(false);
 
@@ -146,7 +146,7 @@ public class Workspace implements Closeable {
 	}
 
 	public void UnLoad(String relativePath) {
-		Debug.Check(Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
+		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
 		m_behaviortrees.remove(relativePath);
@@ -178,7 +178,7 @@ public class Workspace implements Closeable {
 	}
 
 	public boolean Load(String relativePath, boolean bForce) {
-		Debug.Check(Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
+		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
 		TryInit();
@@ -266,7 +266,7 @@ public class Workspace implements Closeable {
 	}
 
 	public boolean IsValidPath(String relativePath) {
-		Debug.Check(!Utils.isNullOrEmpty(relativePath));
+		Debug.Check(!Utils.IsNullOrEmpty(relativePath));
 
 		if (relativePath.charAt(0) == '.' && (relativePath.charAt(1) == '/' || relativePath.charAt(1) == '\\')) {
 			// ./dummy_bt
@@ -280,7 +280,7 @@ public class Workspace implements Closeable {
 	}
 
 	public BehaviorTreeTask CreateBehaviorTreeTask(String relativePath) {
-		Debug.Check(Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
+		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
 		BehaviorTree bt = m_behaviortrees.get(relativePath);

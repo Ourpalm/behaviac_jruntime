@@ -1,10 +1,11 @@
 package org.gof.behaviac;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.CRC32;
 
 public class Utils {
-	public static boolean isNullOrEmpty(String s) {
+	public static boolean IsNullOrEmpty(String s) {
 		return s == null || s.length() == 0;
 	}
 
@@ -15,10 +16,9 @@ public class Utils {
 	}
 
 	public static Class<?> GetPrimitiveTypeFromName(String typeName) {
-		if (isNullOrEmpty(typeName)) {
+		if (IsNullOrEmpty(typeName)) {
 			return null;
 		}
-
 		switch (typeName) {
 		case "bool":
 		case "Boolean":
@@ -144,35 +144,185 @@ public class Utils {
 		return path + "/" + name;
 	}
 
+	public static boolean IsIntegerClass(Class<?> clazz) {
+		return clazz == int.class || clazz == byte.class || clazz == short.class || clazz == long.class;
+	}
+
+	public static boolean IsFloatClass(Class<?> clazz) {
+		return clazz == float.class || clazz == double.class;
+	}
+
 	public static Object Clone(Object value) {
 		return value;
 	}
 
-	public static Object ConvertFromString(Class<?> clazz, String valueStr) {
-		// TODO Auto-generated method stub
+	public static Object ConvertFromString(Class<?> clazz, boolean isList, String valueStr) {
+		try {
+			if (!isList) {
+				if (IsIntegerClass(clazz)) {
+					return ConvertFromObject(clazz, false, Long.parseLong(valueStr));
+				}
+				if (IsFloatClass(clazz)) {
+					return ConvertFromObject(clazz, false, Double.parseDouble(valueStr));
+				}
+				if (clazz == String.class) {
+					return valueStr;
+				}
+				if (clazz == Boolean.class) {
+					return Boolean.parseBoolean(valueStr);
+				}
+				Debug.Check(false, String.format("unsupported convert from '%s' to <%s>", valueStr, clazz.toString()));
+			} else {
+				return FromStringVector(clazz, valueStr);
+			}
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	public static Object ConvertFromObject(Class<?> targetClazz, boolean isList, Object value) {
+		var clazz = targetClazz;
+		if (!isList) {
+			if (IsIntegerClass(clazz)) {
+				var longValue = ((Number) value).longValue();
+				if (clazz == int.class)
+					return (int) longValue;
+				else if (clazz == byte.class)
+					return (byte) longValue;
+				else if (clazz == short.class)
+					return (short) longValue;
+				else if (clazz == long.class)
+					return (long) longValue;
+			} else if (IsFloatClass(clazz)) {
+				var doubleValue = ((Number) value).doubleValue();
+				if (clazz == float.class)
+					return (float) doubleValue;
+				else if (clazz == double.class)
+					return (double) doubleValue;
+			} else if (clazz == Boolean.class) {
+				if (value.getClass() == Boolean.class)
+					return ((Boolean) value).booleanValue();
+				else if (value.getClass() == String.class)
+					return Boolean.parseBoolean((String) value);
+			} else if (clazz == String.class) {
+				if (value.getClass() == String.class)
+					return ((String) value);
+				return value.toString();
+			}
+		} else {
+			if (value instanceof List) {
+				var list = (List) value;
+				var result = new ArrayList<>(list.size());
+				for (int i = 0; i < list.size(); ++i) {
+					result.add(ConvertFromObject(targetClazz, false, list.get(i)));
+				}
+				return result;
+			}
+			Debug.Check(false, "不支持将值转化为vector!");
+		}
 		return null;
 	}
 
-	public static Object ConvertFromObject(Class<?> targetClazz, Object value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static String GetNativeTypeName(Class<?> clazz) {
+	public static String GetNativeTypeName(ClassInfo clazz) {
 		return clazz.getName();
 	}
 
 	public static String ChangeExtension(String file, String newExt) {
 		var ext = StringUtils.FindExtension(file);
-		if(!isNullOrEmpty(ext)) {
+		if (!IsNullOrEmpty(ext)) {
 			file.replaceAll(ext, newExt);
 		}
 		return file;
 	}
 
-	public static TValue GetDefaultValue(Class<?> _clazz) {
-		// TODO Auto-generated method stub
-		return null;
+	public static TValue GetDefaultValue(ClassInfo _clazz) {
+		if (_clazz.isList()) {
+			return new TValue(new ArrayList<Object>());
+		}
+		try {
+			return new TValue(_clazz.getElemClass().newInstance());
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
+	public static Agent GetParentAgent(Agent self, String _instance) {
+		return self;
+
+		// TODO:CBH 命名agent
+	}
+
+	private static int SkipPairedBrackets(String src, int indexBracketBegin) {
+		if (!IsNullOrEmpty(src) && src.charAt(indexBracketBegin) == '{') {
+			int depth = 0;
+			int pos = indexBracketBegin;
+
+			while (pos < src.length()) {
+				if (src.charAt(pos) == '{') {
+					depth++;
+				} else if (src.charAt(pos) == '}') {
+					if (--depth == 0) {
+						return pos;
+					}
+				}
+
+				pos++;
+			}
+		}
+		return -1;
+	}
+
+	private static Object FromStringVector(Class<?> elemClass, String src) {
+		var objVector = new ArrayList<Object>();
+
+		if (IsNullOrEmpty(src)) {
+			return objVector;
+		}
+
+		int semiColon = src.indexOf(':');
+		Debug.Check(semiColon != -1);
+		String countStr = src.substring(0, semiColon);
+		int count = Integer.parseInt(countStr);
+
+		int b = semiColon + 1;
+		int sep = b;
+
+		if (b < src.length() && src.charAt(b) == '{') {
+			sep = SkipPairedBrackets(src, b);
+			Debug.Check(sep != -1);
+		}
+
+		sep = src.indexOf('|', sep);
+
+		while (sep != -1) {
+			String elemStr = src.substring(b, sep);
+			Object elemObject = ConvertFromString(elemClass, false, elemStr);
+
+			objVector.add(elemObject);
+
+			b = sep + 1;
+
+			if (b < src.length() && src.charAt(b) == '{') {
+				sep = SkipPairedBrackets(src, b);
+				Debug.Check(b != -1);
+			} else {
+				sep = b;
+			}
+
+			sep = src.indexOf('|', sep);
+		}
+
+		if (b < src.length()) {
+			String elemStr = src.substring(b, src.length());
+			Object elemObject = ConvertFromString(elemClass, false, elemStr);
+
+			objVector.add(elemObject);
+		}
+
+		Debug.Check(objVector.size() == count);
+
+		return objVector;
+	}
 }

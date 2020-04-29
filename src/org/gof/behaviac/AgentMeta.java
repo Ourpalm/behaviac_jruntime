@@ -84,9 +84,9 @@ public class AgentMeta {
 		return null;
 	}
 
-	public static IInstanceMember ParseProperty(String value, Class<?> clazz) {
+	public static IInstanceMember ParseProperty(String value, ClassInfo clazz) {
 		try {
-			if (Utils.isNullOrEmpty(value)) {
+			if (Utils.IsNullOrEmpty(value)) {
 				return null;
 			}
 
@@ -115,7 +115,7 @@ public class AgentMeta {
 
 	public static IInstanceMember ParseProperty(String value, List<String> tokens) {
 		try {
-			if (Utils.isNullOrEmpty(value)) {
+			if (Utils.IsNullOrEmpty(value)) {
 				return null;
 			}
 
@@ -179,9 +179,9 @@ public class AgentMeta {
 				String arrayItem = "";
 				IInstanceMember indexMember = null;
 
-				if (!Utils.isNullOrEmpty(indexPropStr)) {
+				if (!Utils.IsNullOrEmpty(indexPropStr)) {
 					arrayItem = "[]";
-					indexMember = ParseProperty(indexPropStr, int.class);
+					indexMember = ParseProperty(indexPropStr, new ClassInfo(int.class));
 				}
 
 				typeName = typeName.replace("::", ".");
@@ -260,7 +260,7 @@ public class AgentMeta {
 
 	public static Tuple2<IMethod, String> ParseMethod(String valueStr, /* ref */ String methodName) {
 		// Self.test_ns::AgentActionTest::Action2(0)
-		if (Utils.isNullOrEmpty(valueStr) || (valueStr.charAt(0) == '\"' && valueStr.charAt(1) == '\"')) {
+		if (Utils.IsNullOrEmpty(valueStr) || (valueStr.charAt(0) == '\"' && valueStr.charAt(1) == '\"')) {
 			return null;
 		}
 
@@ -358,7 +358,7 @@ public class AgentMeta {
 			metaFolder = Utils.Combine(Workspace.Instance.GetFilePath(), "meta");
 			metaFolder = metaFolder.replace('\\', '/');
 
-			if (!Utils.isNullOrEmpty(Workspace.Instance.GetMetaFile())) {
+			if (!Utils.IsNullOrEmpty(Workspace.Instance.GetMetaFile())) {
 				String metaFile = Utils.Combine(metaFolder, Workspace.Instance.GetMetaFile());
 				metaFile = Utils.ChangeExtension(metaFile, ".meta");
 
@@ -466,7 +466,7 @@ public class AgentMeta {
 			}
 
 			String versionStr = rootNode.attribute("version").getValue();
-			Debug.Check(!Utils.isNullOrEmpty(versionStr));
+			Debug.Check(!Utils.IsNullOrEmpty(versionStr));
 
 			String signatureStr = rootNode.attribute("signature").getValue();
 			checkSignature(signatureStr);
@@ -492,14 +492,14 @@ public class AgentMeta {
 							for (var propertyNode : propertiesNode.elements()) {
 								if (propertyNode.getName() == "property") {
 									String memberStr = propertyNode.attribute("member").getValue();
-									boolean bIsMember = (!Utils.isNullOrEmpty(memberStr) && memberStr == "true");
+									boolean bIsMember = (!Utils.IsNullOrEmpty(memberStr) && memberStr == "true");
 
 									if (!bIsMember) {
 										String propName = propertyNode.attribute("name").getValue();
 										String propType = propertyNode.attribute("type").getValue().replace("::", ".");
 										String valueStr = propertyNode.attribute("defaultvalue").getValue();
 										String isStatic = propertyNode.attribute("static").getValue();
-										boolean bIsStatic = (!Utils.isNullOrEmpty(isStatic) && isStatic == "true");
+										boolean bIsStatic = (!Utils.IsNullOrEmpty(isStatic) && isStatic == "true");
 
 										registerCustomizedProperty(meta, propName, propType, valueStr, bIsStatic);
 									}
@@ -523,14 +523,26 @@ public class AgentMeta {
 		return _agentMetas.get(agentClassId);
 	}
 
-	private static IInstanceMember CreateInstanceProperty(String typeName, String instantceName,
-			IInstanceMember indexMember, long propId) {
-		// TODO Auto-generated method stub
+	private static IInstanceMember CreateInstanceProperty(String typeName, String instance, IInstanceMember indexMember,
+			long propId) {
+		typeName = GetTypeName(typeName);
+		if (_Creators.containsKey(typeName)) {
+			TypeCreator creator = _Creators.get(typeName);
+			return creator.CreateInstanceProperty(instance, indexMember, propId);
+		}
+
+		Debug.Check(false);
 		return null;
 	}
 
-	private static IInstanceMember CreateInstanceConst(String typeName, String strVale) {
-		// TODO Auto-generated method stub
+	private static IInstanceMember CreateInstanceConst(String typeName, String valueStr) {
+		typeName = GetTypeName(typeName);
+		if (_Creators.containsKey(typeName)) {
+			TypeCreator creator = _Creators.get(typeName);
+			return creator.CreateInstanceConst(typeName, valueStr);
+		}
+
+		Debug.Check(false);
 		return null;
 	}
 
@@ -695,4 +707,10 @@ public class AgentMeta {
 		UnRegister("behaviac.EBTStatus");
 	}
 
+	public static String GetTypeName(String typeName) {
+		typeName = typeName.replace("*", "");
+		// typeName = typeName.Replace("&lt;", "<");
+		// typeName = typeName.Replace("&gt;", ">");
+		return typeName;
+	}
 }

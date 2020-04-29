@@ -439,10 +439,10 @@ public abstract class BehaviorNode {
 				Event pE = (Event) pA;
 
 				// check events only
-				if (pE != null && !Utils.isNullOrEmpty(eventName)) {
+				if (pE != null && !Utils.IsNullOrEmpty(eventName)) {
 					var pEventName = pE.GetEventName();
 
-					if (!Utils.isNullOrEmpty(pEventName) && pEventName == eventName) {
+					if (!Utils.IsNullOrEmpty(pEventName) && pEventName == eventName) {
 						pE.switchTo(pAgent, eventParams);
 
 						if (pE.TriggeredOnce()) {

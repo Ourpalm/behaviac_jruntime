@@ -479,8 +479,8 @@ public abstract class Agent implements Closeable {
 	}
 
 	private void _btsetcurrent(String relativePath, TriggerMode triggerMode, boolean bByEvent) {
-		boolean bEmptyPath = Utils.isNullOrEmpty(relativePath);
-		Debug.Check(!bEmptyPath && Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)));
+		boolean bEmptyPath = Utils.IsNullOrEmpty(relativePath);
+		Debug.Check(!bEmptyPath && Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)));
 		Debug.Check(Workspace.Instance.IsValidPath(relativePath));
 
 		if (!bEmptyPath) {
@@ -670,7 +670,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	public void btunload(String relativePath) {
-		Debug.Check(Utils.isNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
+		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(Workspace.Instance.IsValidPath(relativePath));
 
 		// clear the current bt if it is the current bt

@@ -51,7 +51,7 @@ public class ReferencedBehavior extends BehaviorNode {
 				// conservatively make it true
 				boolean bHasEvents = true;
 
-				if (!Utils.isNullOrEmpty(szTreePath)) {
+				if (!Utils.IsNullOrEmpty(szTreePath)) {
 //                    if (Config.PreloadBehaviors)
 //                    {
 					BehaviorTree behaviorTree = Workspace.Instance.LoadBehaviorTree(szTreePath);

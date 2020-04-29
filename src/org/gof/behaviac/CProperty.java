@@ -3,9 +3,9 @@ package org.gof.behaviac;
 public class CProperty implements IProperty {
 
 	String _name;
-	Class<?> _clazz;
+	ClassInfo _clazz;
 
-	public CProperty(String name, Class<?> clazz) {
+	public CProperty(String name, ClassInfo clazz) {
 		_name = name;
 		_clazz = clazz;
 	}
@@ -40,7 +40,7 @@ public class CProperty implements IProperty {
 
 	@Override
 	public IInstanceMember CreateInstance(String instance, IInstanceMember indexMember) {
-		return new CInstanceProperty(instance, indexMember, this);
+		return new CInstanceProperty(_clazz, instance, indexMember, this);
 	}
 
 	@Override

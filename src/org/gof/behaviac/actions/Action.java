@@ -29,7 +29,7 @@ public class Action extends BehaviorNode {
 			property_t p = properties.get(i);
 
 			if (p.name == "Method") {
-				if (!Utils.isNullOrEmpty(p.value)) {
+				if (!Utils.IsNullOrEmpty(p.value)) {
 					this.m_method = AgentMeta.ParseMethod(p.value);
 				}
 			} else if (p.name == "ResultOption") {
@@ -43,7 +43,7 @@ public class Action extends BehaviorNode {
 					m_resultOption = EBTStatus.BT_SUCCESS;
 				}
 			} else if (p.name == "ResultFunctor") {
-				if (!Utils.isNullOrEmpty(p.value)) {
+				if (!Utils.IsNullOrEmpty(p.value)) {
 					this.m_resultFunctor = AgentMeta.ParseMethod(p.value);
 					;
 				}

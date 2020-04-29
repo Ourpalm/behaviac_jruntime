@@ -62,7 +62,7 @@ public class Event extends ConditionBase {
 	}
 
 	public void switchTo(Agent pAgent, Map<Long, IInstantiatedVariable> eventParams) {
-		if (!Utils.isNullOrEmpty(this.m_referencedBehaviorPath)) {
+		if (!Utils.IsNullOrEmpty(this.m_referencedBehaviorPath)) {
 			if (pAgent != null) {
 				TriggerMode tm = this.GetTriggerMode();
 

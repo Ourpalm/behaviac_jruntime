@@ -5,13 +5,13 @@ import java.util.List;
 public class CInstanceMember implements IInstanceMember {
 	protected String _instance = "Self";
 	protected IInstanceMember _indexMember = null;
-	protected Class<?> _clazz;
+	protected ClassInfo _clazz;
 
 	public CInstanceMember() {
 		_indexMember = null;
 	}
 
-	public CInstanceMember(String instance, IInstanceMember indexMember, Class<?> clazz) {
+	public CInstanceMember(String instance, IInstanceMember indexMember, ClassInfo clazz) {
 		_instance = instance;
 		_indexMember = indexMember;
 		_clazz = clazz;
@@ -56,7 +56,7 @@ public class CInstanceMember implements IInstanceMember {
 
 	@Override
 	public void SetValueAs(Agent self, IInstanceMember right) {
-		Object v = Utils.ConvertFromObject(right.GetValueObject(self));
+		Object v = Utils.ConvertFromObject(_clazz, right.GetValueObject(self));
 		SetValue(self, v);
 	}
 
