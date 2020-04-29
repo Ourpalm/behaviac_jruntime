@@ -126,7 +126,6 @@ public class Workspace implements Closeable {
 	private void UnRegisterStuff() {
 		Debug.Check(this.m_bRegistered);
 
-		
 		this.UnRegisterBehaviorNode();
 
 		AgentMeta.UnRegister();
@@ -344,7 +343,13 @@ public class Workspace implements Closeable {
 
 	public void OnBehaviorNodeLoaded(String nodeType, List<property_t> properties) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public long GetFrameSinceStartup() {
+		// TODO Auto-generated method stub
+		Debug.Check(false, "unimpl");
+		return 0;
 	}
 
 }
