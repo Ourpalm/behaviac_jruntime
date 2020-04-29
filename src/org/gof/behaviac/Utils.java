@@ -226,7 +226,8 @@ public class Utils {
 	}
 
 	public static String GetNativeTypeName(ClassInfo clazz) {
-		return clazz.getName();
+		//TODO::CBH
+		return clazz.getElemClass().getName();
 	}
 
 	public static String ChangeExtension(String file, String newExt) {

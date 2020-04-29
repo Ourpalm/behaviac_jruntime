@@ -3,15 +3,10 @@ package org.gof.behaviac;
 import java.io.Closeable;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.management.RuntimeErrorException;
-
-import com.sun.tools.jdi.Packet;
 
 public class Workspace implements Closeable {
 
@@ -28,6 +23,10 @@ public class Workspace implements Closeable {
 	private Map<String, Class<?>> m_behaviorNodeTypes = new HashMap<>();
 	private boolean m_bRegistered = false;
 	private boolean m_bBuiltinNodesLoaded = false;
+
+	static {
+		Instance = new Workspace();
+	}
 
 	private static String GetDefaultFilePath() {
 		return "";
