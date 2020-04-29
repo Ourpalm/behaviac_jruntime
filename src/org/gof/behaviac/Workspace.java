@@ -231,7 +231,7 @@ public class Workspace implements Closeable {
 		}
 
 		if (bLoadResult) {
-			Debug.Check(pBT.GetName() == relativePath);
+			Debug.Check(pBT.GetName().equals(relativePath));
 
 			if (!bNewly) {
 				Debug.Check(m_behaviortrees.get(pBT.GetName()) == pBT);
