@@ -11,8 +11,10 @@ import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.LeafTask;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class WaitFrames extends BehaviorNode {
 	private IInstanceMember m_frames;
 

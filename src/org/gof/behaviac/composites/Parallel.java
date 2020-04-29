@@ -8,8 +8,10 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class Parallel extends BehaviorNode {
 	// options when a parallel node is considered to be failed.
 	// FAIL_ON_ONE: the node fails as soon as one of its children fails.

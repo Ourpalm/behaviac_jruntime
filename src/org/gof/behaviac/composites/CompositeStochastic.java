@@ -11,8 +11,10 @@ import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.IMethod;
 import org.gof.behaviac.RandomGenerator;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class CompositeStochastic extends BehaviorNode {
 	protected IMethod m_method;
 

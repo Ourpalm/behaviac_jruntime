@@ -4,7 +4,9 @@ import org.gof.behaviac.Agent;
 import org.gof.behaviac.BehaviorNode;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
+import org.gof.behaviac.RegisterableNode;
 
+@RegisterableNode
 public class Method extends BehaviorNode {
 	public Method() {
 	}

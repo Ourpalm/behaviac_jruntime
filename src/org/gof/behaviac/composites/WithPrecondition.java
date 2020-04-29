@@ -5,7 +5,9 @@ import org.gof.behaviac.BehaviorNode;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 
+@RegisterableNode
 public class WithPrecondition extends BehaviorNode {
 	public WithPrecondition() {
 	}

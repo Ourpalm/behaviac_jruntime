@@ -8,8 +8,10 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.Tuple2;
 
+@RegisterableNode
 public class Selector extends BehaviorNode {
 	public Selector() {
 	}

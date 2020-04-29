@@ -10,9 +10,11 @@ import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IMethod;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 import org.gof.behaviac.composites.Sequence;
 
+@RegisterableNode
 public class Task extends BehaviorNode {
 	public static final String LOCAL_TASK_PARAM_PRE = "_$local_task_param_$_";
 	protected IMethod m_task;

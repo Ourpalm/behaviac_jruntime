@@ -16,6 +16,7 @@ import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.IInstantiatedVariable;
 import org.gof.behaviac.IMethod;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.SingeChildTask;
 import org.gof.behaviac.Utils;
 import org.gof.behaviac.Workspace;
@@ -24,6 +25,7 @@ import org.gof.behaviac.fsm.Transition;
 import org.gof.behaviac.htn.Task;
 import org.gof.behaviac.fsm.State;
 
+@RegisterableNode
 public class ReferencedBehavior extends BehaviorNode {
 	protected List<Transition> m_transitions;
 	protected IInstanceMember m_referencedBehaviorPath;

@@ -6,7 +6,9 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 
+@RegisterableNode
 public class IfElse extends BehaviorNode {
 	public IfElse() {
 	}

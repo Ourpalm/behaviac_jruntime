@@ -9,9 +9,11 @@ import org.gof.behaviac.CInstanceMember;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IInstanceMember;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.Workspace;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class WaitFramesState extends State {
 	protected IInstanceMember m_frames;
 

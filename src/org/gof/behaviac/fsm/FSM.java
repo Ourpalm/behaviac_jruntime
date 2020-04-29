@@ -9,7 +9,10 @@ import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.property_t;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 
+
+@RegisterableNode
 public class FSM extends BehaviorNode {
 	private int m_initialid = -1;
 

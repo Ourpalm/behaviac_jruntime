@@ -5,7 +5,9 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.DecoratorNode;
 import org.gof.behaviac.DecoratorTask;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 
+@RegisterableNode
 public class DecoratorAlwaysRunning extends DecoratorNode {
 
 	@Override

@@ -7,8 +7,10 @@ import org.gof.behaviac.Debug;
 import org.gof.behaviac.DecoratorNode;
 import org.gof.behaviac.DecoratorTask;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class DecoratorLog extends DecoratorNode {
 	protected String m_message;
 

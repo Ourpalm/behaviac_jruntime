@@ -311,7 +311,7 @@ public class Workspace implements Closeable {
 		Debug.Check(m_behaviorNodeTypes != null);
 		m_behaviorNodeTypes.clear();
 	}
-
+	
 	public BehaviorNode CreateBehaviorNode(String className) {
 		try {
 			Class<?> type = null;

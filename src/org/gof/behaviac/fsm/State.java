@@ -12,9 +12,11 @@ import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IMethod;
 import org.gof.behaviac.LeafTask;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.Tuple2;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class State extends BehaviorNode {
 	protected boolean m_bIsEndState;
 	protected IMethod m_method;

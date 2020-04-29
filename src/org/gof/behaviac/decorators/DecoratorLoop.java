@@ -6,8 +6,10 @@ import org.gof.behaviac.Agent;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class DecoratorLoop extends DecoratorCount {
 	protected boolean m_bDoneWithinFrame;
 

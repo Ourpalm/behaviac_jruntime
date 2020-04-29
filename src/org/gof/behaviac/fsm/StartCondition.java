@@ -8,8 +8,10 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.Effector;
 import org.gof.behaviac.Precondition;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class StartCondition extends Precondition {
 	protected List<Effector.EffectorConfig> m_effectors = new ArrayList<Effector.EffectorConfig>();
 	protected int m_targetId = -1;

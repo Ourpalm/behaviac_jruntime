@@ -10,8 +10,10 @@ import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.LeafTask;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class Assignment extends BehaviorNode {
 	protected IInstanceMember m_opl;
 	protected IInstanceMember m_opr;

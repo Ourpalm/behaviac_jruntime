@@ -1,15 +1,14 @@
 package org.gof.behaviac.decorators;
 
-import java.util.List;
-
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.DecoratorNode;
 import org.gof.behaviac.DecoratorTask;
 import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.property_t;
+import org.gof.behaviac.RegisterableNode;
 
+@RegisterableNode
 public class DecoratorNot extends DecoratorNode {
 
 	public DecoratorNot() {

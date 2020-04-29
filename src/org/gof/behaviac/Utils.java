@@ -325,4 +325,14 @@ public class Utils {
 
 		return objVector;
 	}
+
+	public static final String OS = System.getProperty("os.name");
+
+	public static boolean isWindows() {
+		return OS.startsWith("Windows");
+	}
+
+	public static boolean isLinux() {
+		return "Linux".equals(OS);
+	}
 }

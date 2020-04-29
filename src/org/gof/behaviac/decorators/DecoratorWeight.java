@@ -11,8 +11,10 @@ import org.gof.behaviac.DecoratorNode;
 import org.gof.behaviac.DecoratorTask;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IInstanceMember;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 
+@RegisterableNode
 public class DecoratorWeight extends DecoratorNode {
 	protected IInstanceMember m_weight;
 

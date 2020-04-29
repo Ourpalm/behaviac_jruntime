@@ -5,8 +5,10 @@ import org.gof.behaviac.BehaviorNode;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
+import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.SingeChildTask;
 
+@RegisterableNode
 public class WaitforSignal extends BehaviorNode {
 	public WaitforSignal() {
 	}
