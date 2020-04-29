@@ -5,19 +5,18 @@ import java.util.List;
 public class CVariable implements IInstantiatedVariable {
 	Object _value;
 	String _name;
-	Class<?> _clazz;
+	ClassInfo _clazz;
 
-	@SuppressWarnings("unchecked")
-	public CVariable(String name, Object value, Class<?> clazz) {
+	public CVariable(String name, Object value, ClassInfo clazz) {
 		_name = name;
-		_value = Utils.Clone(value);
+		_value = Utils.Clone(clazz.getElemClass(), clazz.isList(), value);
 		_clazz = clazz;
 	}
 
-	public CVariable(String name, String valueStr, Class<?> clazz) {
+	public CVariable(String name, String valueStr, ClassInfo clazz) {
 		_name = name;
 		_clazz = clazz;
-		_value = Utils.ConvertFromString(clazz, valueStr);
+		_value = Utils.ConvertFromString(clazz.getElemClass(), clazz.isList(), valueStr);
 		_name = name;
 	}
 
@@ -42,7 +41,7 @@ public class CVariable implements IInstantiatedVariable {
 
 	@Override
 	public void SetValueFromString(Agent self, String valueStr) {
-		_value = Utils.ConvertFromString(_clazz, valueStr);
+		_value = Utils.ConvertFromString(_clazz.getElemClass(), _clazz.isList(), valueStr);
 	}
 
 	@Override

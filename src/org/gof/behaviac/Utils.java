@@ -152,8 +152,8 @@ public class Utils {
 		return clazz == float.class || clazz == double.class;
 	}
 
-	public static Object Clone(Object value) {
-		return value;
+	public static Object Clone(Class<?> clazz, boolean isList, Object value) {
+		return ConvertFromObject(clazz, isList, value);
 	}
 
 	public static Object ConvertFromString(Class<?> clazz, boolean isList, String valueStr) {
@@ -239,10 +239,10 @@ public class Utils {
 
 	public static TValue GetDefaultValue(ClassInfo _clazz) {
 		if (_clazz.isList()) {
-			return new TValue(new ArrayList<Object>());
+			return new TValue(_clazz, new ArrayList<Object>());
 		}
 		try {
-			return new TValue(_clazz.getElemClass().newInstance());
+			return new TValue(_clazz, _clazz.getElemClass().newInstance());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

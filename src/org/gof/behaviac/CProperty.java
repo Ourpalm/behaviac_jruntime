@@ -24,7 +24,7 @@ public class CProperty implements IProperty {
 
 	@Override
 	public void SetValueFromString(Agent self, String valueStr) {
-		var value = Utils.ConvertFromString(this._clazz, valueStr);
+		var value = Utils.ConvertFromString(_clazz.getElemClass(), _clazz.isList(), valueStr);
 		SetValue(self, value);
 	}
 

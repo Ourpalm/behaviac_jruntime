@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.gof.behaviac.htn.Task;
+
 public abstract class Agent implements Closeable {
 	private static AtomicLong idAlloc = new AtomicLong(0);
 
@@ -860,7 +862,7 @@ public abstract class Agent implements Closeable {
 		this.btonevent(eventName, null);
 	}
 
-	public void FireEvent(String eventName, Object[] parameters, Class<?>[] classes) {
+	public void FireEvent(String eventName, Object[] parameters, ClassInfo[] classes) {
 		Map<Long, IInstantiatedVariable> eventParams = new HashMap<Long, IInstantiatedVariable>();
 
 		for (int i = 0; i < parameters.length; ++i) {

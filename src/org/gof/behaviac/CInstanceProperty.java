@@ -3,7 +3,7 @@ package org.gof.behaviac;
 public class CInstanceProperty extends CInstanceMember {
 	CProperty _property;
 
-	public CInstanceProperty(Class<?> clazz, String instance, IInstanceMember indexMember, CProperty prop) {
+	public CInstanceProperty(ClassInfo clazz, String instance, IInstanceMember indexMember, CProperty prop) {
 		super(instance, indexMember, clazz);
 		_property = prop;
 	}

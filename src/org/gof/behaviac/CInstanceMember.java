@@ -56,7 +56,7 @@ public class CInstanceMember implements IInstanceMember {
 
 	@Override
 	public void SetValueAs(Agent self, IInstanceMember right) {
-		Object v = Utils.ConvertFromObject(_clazz, right.GetValueObject(self));
+		Object v = Utils.ConvertFromObject(_clazz.getElemClass(), _clazz.isList(), right.GetValueObject(self));
 		SetValue(self, v);
 	}
 
