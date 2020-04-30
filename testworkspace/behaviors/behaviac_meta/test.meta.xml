@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<meta>
+  <types />
+  <agents>
+    <agent classfullname="behaviac::Agent" DisplayName="behaviac::Agent" Desc="behaviac::Agent" IsRefType="true" IsImplemented="true">
+      <Method Name="VectorLength" DisplayName="VectorLength" Desc="VectorLength" Class="behaviac::Agent" ReturnType="int" ReturnTypeFullName="System.Int32" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="const IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+      </Method>
+      <Method Name="VectorAdd" DisplayName="VectorAdd" Desc="VectorAdd" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorRemove" DisplayName="VectorRemove" Desc="VectorRemove" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorContains" DisplayName="VectorContains" Desc="VectorContains" Class="behaviac::Agent" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorClear" DisplayName="VectorClear" Desc="VectorClear" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+      </Method>
+      <Method Name="LogMessage" DisplayName="LogMessage" Desc="LogMessage" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="const char*" TypeFullName="System.String" DisplayName="param0" Desc="param0" />
+      </Method>
+    </agent>
+    <agent classfullname="org::gof::worldsrv::MyAgent" base="behaviac::Agent" OldName="MyAgent" DisplayName="org::gof::worldsrv::MyAgent" Desc="org::gof::worldsrv::MyAgent" IsRefType="true" IsCustomized="true">
+      <Member Name="v1" DisplayName="v1" Desc="v1" Class="org::gof::worldsrv::MyAgent" Type="behaviac::EBTStatus" TypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" defaultvalue="BT_INVALID" Static="false" Public="false" Readonly="false" />
+      <Member Name="v2" DisplayName="v2" Desc="v2" Class="org::gof::worldsrv::MyAgent" Type="bool" TypeFullName="System.Boolean" defaultvalue="false" Static="false" Public="false" Readonly="false" />
+      <Member Name="v3" DisplayName="v3" Desc="v3" Class="org::gof::worldsrv::MyAgent" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v4" DisplayName="v4" Desc="v4" Class="org::gof::worldsrv::MyAgent" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v5" DisplayName="v5" Desc="v5" Class="org::gof::worldsrv::MyAgent" Type="float" TypeFullName="System.Single" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v6" DisplayName="v6" Desc="v6" Class="org::gof::worldsrv::MyAgent" Type="double" TypeFullName="System.Double" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v7" DisplayName="v7" Desc="v7" Class="org::gof::worldsrv::MyAgent" Type="string" TypeFullName="System.String" defaultvalue="" Static="false" Public="false" Readonly="false" />
+      <Member Name="v11" DisplayName="v11" Desc="v11" Class="org::gof::worldsrv::MyAgent" Type="vector&lt;behaviac::EBTStatus&gt;" TypeFullName="System.Collections.Generic.List`1[[XMLPluginBehaviac.behaviac_EBTStatus, BehaviacDesignerBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
+      <Member Name="v12" DisplayName="v12" Desc="v12" Class="org::gof::worldsrv::MyAgent" Type="vector&lt;bool&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
+      <Member Name="v13" DisplayName="v13" Desc="v13" Class="org::gof::worldsrv::MyAgent" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v14" DisplayName="v14" Desc="v14" Class="org::gof::worldsrv::MyAgent" Type="float" TypeFullName="System.Single" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v15" DisplayName="v15" Desc="v15" Class="org::gof::worldsrv::MyAgent" Type="double" TypeFullName="System.Double" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v16" DisplayName="v16" Desc="v16" Class="org::gof::worldsrv::MyAgent" Type="string" TypeFullName="System.String" defaultvalue="" Static="false" Public="false" Readonly="false" />
+      <Method Name="m1" DisplayName="m1" Desc="m1" Class="org::gof::worldsrv::MyAgent" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
+        <Param Name="v1" Type="bool" TypeFullName="System.Boolean" DisplayName="v1" Desc="" />
+        <Param Name="v2" Type="uint" TypeFullName="System.UInt32" DisplayName="v2" Desc="" />
+        <Param Name="v3" Type="float" TypeFullName="System.Single" DisplayName="v3" Desc="" />
+        <Param Name="v4" Type="string" TypeFullName="System.String" DisplayName="v4" Desc="" />
+        <Param Name="v5" Type="long" TypeFullName="System.Int64" DisplayName="v5" Desc="" />
+        <Param Name="v11" Type="vector&lt;bool&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v11" Desc="" />
+        <Param Name="v12" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v12" Desc="" />
+        <Param Name="v13" Type="double" TypeFullName="System.Double" DisplayName="v13" Desc="" />
+      </Method>
+    </agent>
+  </agents>
+  <instances />
+</meta>
