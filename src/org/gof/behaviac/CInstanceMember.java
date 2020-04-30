@@ -2,6 +2,8 @@ package org.gof.behaviac;
 
 import java.util.List;
 
+import org.gof.behaviac.utils.Utils;
+
 public class CInstanceMember implements IInstanceMember {
 	protected String _instance = "Self";
 	protected IInstanceMember _indexMember = null;

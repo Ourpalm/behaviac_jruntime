@@ -1,8 +1,13 @@
-package org.gof.behaviac;
+package org.gof.behaviac.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.CRC32;
+
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.AgentMeta;
+import org.gof.behaviac.ClassInfo;
+import org.gof.behaviac.Debug;
 
 public class Utils {
 	public static boolean IsNullOrEmpty(String s) {

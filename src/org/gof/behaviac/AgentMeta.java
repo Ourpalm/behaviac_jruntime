@@ -14,6 +14,10 @@ import java.util.Map;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.QName;
+import org.gof.behaviac.utils.StringUtils;
+import org.gof.behaviac.utils.Tuple2;
+import org.gof.behaviac.utils.Tuple4;
+import org.gof.behaviac.utils.Utils;
 
 public class AgentMeta {
 	private static HashMap<Long, AgentMeta> _agentMetas = new HashMap<Long, AgentMeta>();

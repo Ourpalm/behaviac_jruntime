@@ -1,5 +1,8 @@
 package org.gof.behaviac;
 
+import org.gof.behaviac.utils.TValue;
+import org.gof.behaviac.utils.Utils;
+
 public class CProperty implements IProperty {
 
 	String _name;

@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.gof.behaviac.htn.Task;
+import org.gof.behaviac.utils.StringUtils;
+import org.gof.behaviac.utils.Utils;
 
 public abstract class Agent implements Closeable {
 	private static AtomicLong idAlloc = new AtomicLong(0);

@@ -9,8 +9,8 @@ import org.gof.behaviac.Debug;
 import org.gof.behaviac.DecoratorNode;
 import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.RegisterableNode;
-import org.gof.behaviac.Tuple2;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.utils.Tuple2;
 
 @RegisterableNode
 public class DecoratorIterator extends DecoratorNode {

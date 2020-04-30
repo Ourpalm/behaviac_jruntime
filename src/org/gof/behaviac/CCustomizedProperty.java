@@ -1,5 +1,7 @@
 package org.gof.behaviac;
 
+import org.gof.behaviac.utils.Utils;
+
 public class CCustomizedProperty extends CProperty implements ICustomizedProperty {
 	long _id;
 	Object _defaultValue;

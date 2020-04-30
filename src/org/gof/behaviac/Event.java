@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gof.behaviac.conditions.ConditionBase;
+import org.gof.behaviac.utils.Utils;
 
 public class Event extends ConditionBase {
 	protected IMethod m_event;

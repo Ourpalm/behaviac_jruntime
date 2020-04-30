@@ -1,8 +1,12 @@
-package org.gof.behaviac;
+package org.gof.behaviac.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.gof.behaviac.AgentMeta;
+import org.gof.behaviac.Debug;
+import org.gof.behaviac.IInstanceMember;
 
 public class StringUtils {
 

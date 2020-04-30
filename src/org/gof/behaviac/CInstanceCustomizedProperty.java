@@ -1,5 +1,7 @@
 package org.gof.behaviac;
 
+import org.gof.behaviac.utils.Utils;
+
 public class CInstanceCustomizedProperty extends CInstanceMember {
 	long _id;
 

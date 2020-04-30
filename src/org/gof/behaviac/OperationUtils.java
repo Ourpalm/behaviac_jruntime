@@ -3,6 +3,9 @@ package org.gof.behaviac;
 import java.util.List;
 import java.util.function.Function;
 
+import org.gof.behaviac.utils.Utils;
+import org.gof.behaviac.utils.Void;
+
 public class OperationUtils {
 	public static EOperatorType ParseOperatorType(String operatorType) {
 		switch (operatorType) {

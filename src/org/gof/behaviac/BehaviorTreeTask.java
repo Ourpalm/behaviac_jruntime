@@ -3,6 +3,8 @@ package org.gof.behaviac;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.gof.behaviac.utils.Utils;
+
 public class BehaviorTreeTask extends SingeChildTask {
 	private Map<Long, IInstantiatedVariable> m_localVars = new HashMap<Long, IInstantiatedVariable>();
 	private BehaviorTreeTask m_excutingTreeTask = null;

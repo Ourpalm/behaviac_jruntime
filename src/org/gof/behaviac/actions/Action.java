@@ -12,9 +12,9 @@ import org.gof.behaviac.IMethod;
 import org.gof.behaviac.IValue;
 import org.gof.behaviac.LeafTask;
 import org.gof.behaviac.RegisterableNode;
-import org.gof.behaviac.TValue;
-import org.gof.behaviac.Utils;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.utils.TValue;
+import org.gof.behaviac.utils.Utils;
 
 @RegisterableNode
 public class Action extends BehaviorNode {

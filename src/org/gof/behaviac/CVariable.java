@@ -2,6 +2,8 @@ package org.gof.behaviac;
 
 import java.util.List;
 
+import org.gof.behaviac.utils.Utils;
+
 public class CVariable implements IInstantiatedVariable {
 	Object _value;
 	String _name;

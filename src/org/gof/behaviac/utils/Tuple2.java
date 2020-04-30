@@ -1,4 +1,4 @@
-package org.gof.behaviac;
+package org.gof.behaviac.utils;
 
 public class Tuple2<A, B> {
 	public final A value1;

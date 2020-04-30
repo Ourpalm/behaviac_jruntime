@@ -1,5 +1,7 @@
 package org.gof.behaviac;
 
+import org.gof.behaviac.utils.Utils;
+
 public class CInstanceConst extends CInstanceMember {
 	protected Object _value;
 

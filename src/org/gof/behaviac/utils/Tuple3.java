@@ -1,4 +1,4 @@
-package org.gof.behaviac;
+package org.gof.behaviac.utils;
 
 public class Tuple3<A, B, C> extends Tuple2<A, B> {
 

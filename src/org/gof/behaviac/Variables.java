@@ -3,6 +3,8 @@ package org.gof.behaviac;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.gof.behaviac.utils.Utils;
+
 public class Variables {
 	protected Map<Long, IInstantiatedVariable> m_variables;
 

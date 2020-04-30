@@ -13,8 +13,8 @@ import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.IMethod;
 import org.gof.behaviac.LeafTask;
 import org.gof.behaviac.RegisterableNode;
-import org.gof.behaviac.Tuple2;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.utils.Tuple2;
 
 @RegisterableNode
 public class State extends BehaviorNode {

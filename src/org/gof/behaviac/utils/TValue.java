@@ -1,4 +1,8 @@
-package org.gof.behaviac;
+package org.gof.behaviac.utils;
+
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.ClassInfo;
+import org.gof.behaviac.IValue;
 
 public class TValue implements IValue {
 
