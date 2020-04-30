@@ -25,7 +25,7 @@
         <Param Name="param0" Type="const char*" TypeFullName="System.String" DisplayName="param0" Desc="param0" />
       </Method>
     </agent>
-    <agent classfullname="org::gof::worldsrv::MyAgent" base="behaviac::Agent" OldName="MyAgent" DisplayName="org::gof::worldsrv::MyAgent" Desc="org::gof::worldsrv::MyAgent" IsRefType="true" IsCustomized="true">
+    <agent classfullname="org::gof::worldsrv::MyAgent" base="behaviac::Agent" DisplayName="org::gof::worldsrv::MyAgent" Desc="org::gof::worldsrv::MyAgent" IsRefType="true" IsCustomized="true">
       <Member Name="v1" DisplayName="v1" Desc="v1" Class="org::gof::worldsrv::MyAgent" Type="behaviac::EBTStatus" TypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" defaultvalue="BT_INVALID" Static="false" Public="false" Readonly="false" />
       <Member Name="v2" DisplayName="v2" Desc="v2" Class="org::gof::worldsrv::MyAgent" Type="bool" TypeFullName="System.Boolean" defaultvalue="false" Static="false" Public="false" Readonly="false" />
       <Member Name="v3" DisplayName="v3" Desc="v3" Class="org::gof::worldsrv::MyAgent" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
@@ -39,15 +39,20 @@
       <Member Name="v14" DisplayName="v14" Desc="v14" Class="org::gof::worldsrv::MyAgent" Type="float" TypeFullName="System.Single" defaultvalue="0" Static="false" Public="false" Readonly="false" />
       <Member Name="v15" DisplayName="v15" Desc="v15" Class="org::gof::worldsrv::MyAgent" Type="double" TypeFullName="System.Double" defaultvalue="0" Static="false" Public="false" Readonly="false" />
       <Member Name="v16" DisplayName="v16" Desc="v16" Class="org::gof::worldsrv::MyAgent" Type="string" TypeFullName="System.String" defaultvalue="" Static="false" Public="false" Readonly="false" />
+      <Member Name="s1" DisplayName="s1" Desc="s1" Class="org::gof::worldsrv::MyAgent" Type="ushort" TypeFullName="System.UInt16" defaultvalue="0" Static="true" Public="true" Readonly="false" />
+      <Member Name="s2" DisplayName="s2" Desc="s2" Class="org::gof::worldsrv::MyAgent" Type="long" TypeFullName="System.Int64" defaultvalue="0" Static="true" Public="false" Readonly="true" />
       <Method Name="m1" DisplayName="m1" Desc="m1" Class="org::gof::worldsrv::MyAgent" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
-        <Param Name="v1" Type="bool" TypeFullName="System.Boolean" DisplayName="v1" Desc="" />
-        <Param Name="v2" Type="uint" TypeFullName="System.UInt32" DisplayName="v2" Desc="" />
-        <Param Name="v3" Type="float" TypeFullName="System.Single" DisplayName="v3" Desc="" />
-        <Param Name="v4" Type="string" TypeFullName="System.String" DisplayName="v4" Desc="" />
-        <Param Name="v5" Type="long" TypeFullName="System.Int64" DisplayName="v5" Desc="" />
-        <Param Name="v11" Type="vector&lt;bool&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v11" Desc="" />
-        <Param Name="v12" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v12" Desc="" />
-        <Param Name="v13" Type="double" TypeFullName="System.Double" DisplayName="v13" Desc="" />
+        <Param Name="v1" Type="bool" TypeFullName="System.Boolean" DisplayName="v1" Desc="v1" />
+        <Param Name="v2" Type="uint" TypeFullName="System.UInt32" DisplayName="v2" Desc="v2" />
+        <Param Name="v3" Type="float" TypeFullName="System.Single" DisplayName="v3" Desc="v3" />
+        <Param Name="v4" Type="string" TypeFullName="System.String" DisplayName="v4" Desc="v4" />
+        <Param Name="v5" Type="long" TypeFullName="System.Int64" DisplayName="v5" Desc="v5" />
+        <Param Name="v11" Type="vector&lt;bool&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v11" Desc="v11" />
+        <Param Name="v12" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v12" Desc="v12" />
+        <Param Name="v13" Type="double" TypeFullName="System.Double" DisplayName="v13" Desc="v13" />
+      </Method>
+      <Method Name="task1" DisplayName="task1" Desc="task1" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="true">
+        <Param Name="v1" Type="vector&lt;short&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int16, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v1" Desc="v1" />
       </Method>
     </agent>
   </agents>

@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<workspace name="test" folder="behaviors" export="exported" language="java" version="3">
+<workspace name="test" folder="behaviors" export="exported" language="cs" version="3">
   <export>
     <java>
       <isexported>False</isexported>
       <exportfilecount>1</exportfilecount>
       <folder>../exported</folder>
     </java>
+    <cs>
+      <isexported>False</isexported>
+      <exportfilecount>1</exportfilecount>
+      <folder>../exported</folder>
+    </cs>
   </export>
 </workspace>
