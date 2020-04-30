@@ -288,7 +288,7 @@ public abstract class Agent implements Closeable {
 		return null;
 	}
 
-	<VariableType> boolean SetVarValue(long varId, VariableType value) {
+	public boolean SetVarValue(long varId, Object value) {
 		IInstantiatedVariable v = this.GetInstantiatedVariable(varId);
 
 		if (v != null) {
@@ -298,12 +298,17 @@ public abstract class Agent implements Closeable {
 		return false;
 	}
 
-	private <VariableType> boolean SetVarValue(long varId, int index, VariableType value) {
+	public boolean SetVarValue(long varId, int index, Object value) {
 		IInstantiatedVariable v = this.GetInstantiatedVariable(varId);
 
 		if (v != null) {
-			v.SetValue(this, value);
-			return true;
+			Debug.Check(v instanceof CArrayItemVariable);
+			CArrayItemVariable arrayItemVar = (CArrayItemVariable) v;
+
+			if (arrayItemVar != null) {
+				arrayItemVar.SetValue(this, value, index);
+				return true;
+			}
 		}
 
 		return false;
@@ -391,30 +396,29 @@ public abstract class Agent implements Closeable {
 				variableName));
 	}
 
-	public <VariableType> void SetVariable(String variableName, long variableId, VariableType value, int index)
-    {
-        if (variableId == 0)        {
-            variableId = Utils.MakeVariableId(variableName);
-        }
+	public <VariableType> void SetVariable(String variableName, long variableId, VariableType value, int index) {
+		if (variableId == 0) {
+			variableId = Utils.MakeVariableId(variableName);
+		}
 
-        // var
-        if (this.SetVarValue(variableId, index, value))        {
-            return;
-        }
+		// var
+		if (this.SetVarValue(variableId, index, value)) {
+			return;
+		}
 
-        // property
-        IProperty prop = this.GetProperty(variableId);
+		// property
+		IProperty prop = this.GetProperty(variableId);
 
-        if (prop != null)        {
-            CProperty p = (CProperty)prop;
-            if (p != null)            {
-                p.SetValue(this, value, index);
-                return;
-            }
-        }
+		if (prop != null) {
+			CProperty p = (CProperty) prop;
+			if (p != null) {
+				p.SetValue(this, value, index);
+				return;
+			}
+		}
 
-        Debug.Check(false, String.format("The variable \"%s\" with type \"{1}\" can not be found!", variableName));
-    }
+		Debug.Check(false, String.format("The variable \"%s\" with type \"{1}\" can not be found!", variableName));
+	}
 
 	void SetVariableFromString(String variableName, String valueStr) {
 		var variableId = Utils.MakeVariableId(variableName);
@@ -927,5 +931,6 @@ public abstract class Agent implements Closeable {
 	public abstract Object ExecuteMethod(String method, Object[] args);
 
 	public abstract long GetCurrentTime();
+
 	public abstract long GetFrameSinceStartup();
 }

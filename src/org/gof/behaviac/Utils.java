@@ -112,6 +112,16 @@ public class Utils {
 		return null;
 	}
 
+	public static ClassInfo GetTypeFromName2(String typeName) {
+		var elementType = Utils.GetElementTypeFromName(typeName);
+
+		if (elementType != null) {
+			return new ClassInfo(true, elementType);
+		}
+
+		return new ClassInfo(Utils.GetTypeFromName(typeName));
+	}
+
 	public static Class<?> GetTypeFromName(String typeName) {
 		if (typeName == "void*") {
 			return Void.class;
@@ -159,6 +169,8 @@ public class Utils {
 	public static Object ConvertFromString(Class<?> clazz, boolean isList, String valueStr) {
 		try {
 			if (!isList) {
+				if (IsNullOrEmpty(valueStr))
+					return GetDefaultValue2(clazz, isList);
 				if (IsIntegerClass(clazz)) {
 					return ConvertFromObject(clazz, false, Long.parseLong(valueStr));
 				}
@@ -226,7 +238,7 @@ public class Utils {
 	}
 
 	public static String GetNativeTypeName(ClassInfo clazz) {
-		//TODO::CBH
+		// TODO::CBH
 		return clazz.getElemClass().getName();
 	}
 
@@ -239,15 +251,41 @@ public class Utils {
 	}
 
 	public static TValue GetDefaultValue(ClassInfo _clazz) {
-		if (_clazz.isList()) {
-			return new TValue(_clazz, new ArrayList<Object>());
+		return GetDefaultValue(_clazz.getElemClass(), _clazz.isList());
+	}
+
+	public static TValue GetDefaultValue(Class<?> _clazz, boolean isList) {
+		if (isList) {
+			return new TValue(_clazz, isList, new ArrayList<Object>());
 		}
 		try {
-			return new TValue(_clazz, _clazz.getElemClass().newInstance());
+			return new TValue(_clazz, isList, _clazz.newInstance());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public static Object GetDefaultValue2(Class<?> _clazz, boolean isList) {
+		if (isList) {
+			return new ArrayList<Object>();
+		}
+		try {
+			return _clazz.newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+//	public static Object GetDefaultValue3(Class<?> _clazz, boolean isList) {
+//		if (isList) {
+//			return new ArrayList<Object>();
+//		}
+//		try {
+//			return _clazz.newInstance();
+//		} catch (Exception e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
 
 	public static Agent GetParentAgent(Agent self, String _instance) {
 		return self;

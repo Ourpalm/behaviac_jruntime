@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dom4j.DocumentHelper;
+import org.dom4j.QName;
 
 public class AgentMeta {
 	private static HashMap<Long, AgentMeta> _agentMetas = new HashMap<Long, AgentMeta>();
@@ -23,6 +24,10 @@ public class AgentMeta {
 
 	public static void SetBehaviorLoader(BehaviorLoader loader) {
 		_behaviorLoader = loader;
+	}
+
+	public static void SetTotalSignature(long signature) {
+		_totalSignature = signature;
 	}
 
 	// -----------------------------------------------------------------------
@@ -55,11 +60,11 @@ public class AgentMeta {
 				var loaderType = Class.forName(kLoaderClass);
 				_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
 				_behaviorLoader.Load();
-				LoadAllMetaFiles();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		}
+		LoadAllMetaFiles();
 	}
 
 	public static void UnRegister() {
@@ -385,7 +390,7 @@ public class AgentMeta {
 	}
 
 	private static boolean checkSignature(String signatureStr) {
-		if (signatureStr != Long.toString(AgentMeta._totalSignature)) {
+		if (!signatureStr.equals(Long.toString(AgentMeta._totalSignature))) {
 			String errorInfo = "[meta] The types/AgentProperties.cs should be exported from the behaviac designer, and then integrated into your project!\n";
 
 			Debug.LogWarning(errorInfo);
@@ -444,15 +449,24 @@ public class AgentMeta {
 		}
 	}
 
-	private static ICustomizedProperty CreateCustomizedArrayItemProperty(String typeName, long nameId,
-			String propName) {
-		// TODO Auto-generated method stub
+	private static ICustomizedProperty CreateCustomizedArrayItemProperty(String typeName, long id, String name) {
+		typeName = GetTypeName(typeName);
+		if (_Creators.containsKey(typeName)) {
+			TypeCreator creator = _Creators.get(typeName);
+			return creator.CreateCustomizedArrayItemProperty(id, name);
+		}
+		Debug.Check(false);
 		return null;
 	}
 
-	private static ICustomizedProperty CreateCustomizedProperty(String typeName, long nameId, String propName,
+	private static ICustomizedProperty CreateCustomizedProperty(String typeName, long id, String name,
 			String valueStr) {
-		// TODO Auto-generated method stub
+		typeName = GetTypeName(typeName);
+		if (_Creators.containsKey(typeName)) {
+			TypeCreator creator = _Creators.get(typeName);
+			return creator.CreateCustomizedProperty(id, name, valueStr);
+		}
+		Debug.Check(false);
 		return null;
 	}
 
@@ -485,7 +499,7 @@ public class AgentMeta {
 					}
 
 					String agentSignature = bbNode.attribute("signature").getValue();
-					if (agentSignature == Long.toString(meta.GetSignature())) {
+					if (agentSignature.equals(Long.toString(meta.GetSignature()))) {
 						continue;
 					}
 
@@ -499,7 +513,7 @@ public class AgentMeta {
 									if (!bIsMember) {
 										String propName = propertyNode.attribute("name").getValue();
 										String propType = propertyNode.attribute("type").getValue().replace("::", ".");
-										String valueStr = propertyNode.attribute("defaultvalue").getValue();
+										String valueStr = propertyNode.attributeValue("defaultvalue", "");
 										String isStatic = propertyNode.attribute("static").getValue();
 										boolean bIsStatic = (!Utils.IsNullOrEmpty(isStatic) && isStatic == "true");
 
@@ -714,5 +728,19 @@ public class AgentMeta {
 		// typeName = typeName.Replace("&lt;", "<");
 		// typeName = typeName.Replace("&gt;", ">");
 		return typeName;
+	}
+
+	public static Object ParseTypeValue(String typeName, String valueStr) {
+		var info = Utils.GetTypeFromName2(typeName);
+		Debug.Check(info != null);
+
+		if (info.isList() || info.getElemClass() == String.class) {
+			if (!Utils.IsNullOrEmpty(valueStr)) {
+				return Utils.ConvertFromString(info.getElemClass(), info.isList(), valueStr);
+			} else if (info.getElemClass() == String.class) {
+				return "";
+			}
+		}
+		return null;
 	}
 }

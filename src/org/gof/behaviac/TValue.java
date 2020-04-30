@@ -10,6 +10,11 @@ public class TValue implements IValue {
 		_clazz = clazz;
 	}
 
+	public TValue(Class<?> clazz, boolean isList, Object obj) {
+		value = Utils.Clone(clazz, isList, obj);
+		_clazz = new ClassInfo(isList, clazz);
+	}
+
 	public TValue(TValue rhs) {
 		_clazz = rhs._clazz;
 		value = Utils.Clone(_clazz.getElemClass(), _clazz.isList(), rhs.value);

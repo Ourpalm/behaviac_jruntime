@@ -31,12 +31,16 @@ public class TypeCreator {
 		ICustomizedProperty run(long id, String name);
 	}
 
-	PropertyCreator _propertyCreator;
-	ArrayItemPropertyCreator _arrayItemPropertyCreator;
-	InstancePropertyCreator _instancePropertyCreator;
-	InstanceConstCreator _instanceConstCreator;
-	CustomizedPropertyCreator _customizedPropertyCreator;
-	CustomizedArrayItemPropertyCreator _customizedArrayItemPropertyCreator;
+	protected PropertyCreator _propertyCreator;
+	protected ArrayItemPropertyCreator _arrayItemPropertyCreator;
+	protected InstancePropertyCreator _instancePropertyCreator;
+	protected InstanceConstCreator _instanceConstCreator;
+	protected CustomizedPropertyCreator _customizedPropertyCreator;
+	protected CustomizedArrayItemPropertyCreator _customizedArrayItemPropertyCreator;
+
+	public TypeCreator() {
+
+	}
 
 	public TypeCreator(PropertyCreator propCreator, ArrayItemPropertyCreator arrayItemPropCreator,
 			InstancePropertyCreator instancePropertyCreator, InstanceConstCreator instanceConstCreator,
@@ -75,12 +79,10 @@ public class TypeCreator {
 	}
 
 	public static TypeCreator Create(Class<?> clazz) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CommonTypeCreator(new ClassInfo(clazz));
 	}
 
 	public static TypeCreator CreateList(Class<?> clazz) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CommonTypeCreator(new ClassInfo(true, clazz));
 	}
 }

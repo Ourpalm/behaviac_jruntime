@@ -7,11 +7,12 @@ public class CInstanceMember implements IInstanceMember {
 	protected IInstanceMember _indexMember = null;
 	protected ClassInfo _clazz;
 
-	public CInstanceMember() {
+	public CInstanceMember(ClassInfo clazz) {
+		_clazz = clazz;
 		_indexMember = null;
 	}
 
-	public CInstanceMember(String instance, IInstanceMember indexMember, ClassInfo clazz) {
+	public CInstanceMember(ClassInfo clazz, String instance, IInstanceMember indexMember) {
 		_instance = instance;
 		_indexMember = indexMember;
 		_clazz = clazz;

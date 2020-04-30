@@ -4,7 +4,7 @@ public class CInstanceProperty extends CInstanceMember {
 	CProperty _property;
 
 	public CInstanceProperty(ClassInfo clazz, String instance, IInstanceMember indexMember, CProperty prop) {
-		super(instance, indexMember, clazz);
+		super(clazz, instance, indexMember);
 		_property = prop;
 	}
 

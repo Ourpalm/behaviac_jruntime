@@ -10,7 +10,8 @@ public class TestLoader {
 	@Test
 	public void Test1() {
 		try {
-			Workspace.Instance.SetFilePath("G:\\workspace\\behaviac_mt\\test\\demo_running\\behaviac\\exported");
+			AgentMeta.SetTotalSignature(2970163408L);
+			Workspace.Instance.SetFilePath("I:\\workspace\\behaviac_mt\\integration\\demo_running\\exported");
 			AgentMeta.SetBehaviorLoader(new BehaviorLoader() {
 			});
 			Workspace.Instance.Load("demo_running");
