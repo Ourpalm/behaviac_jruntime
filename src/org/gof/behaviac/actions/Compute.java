@@ -9,11 +9,11 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
 import org.gof.behaviac.EOperatorType;
-import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.LeafTask;
 import org.gof.behaviac.OperationUtils;
 import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.members.IInstanceMember;
 
 @RegisterableNode
 public class Compute extends BehaviorNode {

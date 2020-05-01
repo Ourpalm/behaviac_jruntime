@@ -1,5 +1,7 @@
-package org.gof.behaviac;
+package org.gof.behaviac.members;
 
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.utils.Utils;
 
 public class CInstanceConst extends CInstanceMember {

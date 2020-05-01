@@ -1,4 +1,7 @@
-package org.gof.behaviac;
+package org.gof.behaviac.members;
+
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.EOperatorType;
 
 public interface IInstanceMember {
 	int GetCount(Agent self);

@@ -3,6 +3,7 @@ package org.gof.behaviac;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.gof.behaviac.members.IInstantiatedVariable;
 import org.gof.behaviac.utils.Utils;
 
 public class Variables {

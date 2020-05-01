@@ -14,6 +14,11 @@ import java.util.Map;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.QName;
+import org.gof.behaviac.members.ICustomizedProperty;
+import org.gof.behaviac.members.IInstanceMember;
+import org.gof.behaviac.members.IInstantiatedVariable;
+import org.gof.behaviac.members.IMethod;
+import org.gof.behaviac.members.IProperty;
 import org.gof.behaviac.utils.StringUtils;
 import org.gof.behaviac.utils.Tuple2;
 import org.gof.behaviac.utils.Tuple4;
@@ -53,6 +58,10 @@ public class AgentMeta {
 
 	public AgentMeta(long _signature) {
 		this._signature = _signature;
+	}
+	
+	public static void RegisterMeta(long signature, AgentMeta meta) {
+		_agentMetas.put(signature, meta);
 	}
 
 	public static void Register() {

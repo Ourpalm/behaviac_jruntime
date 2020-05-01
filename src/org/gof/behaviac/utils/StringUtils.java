@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.Debug;
-import org.gof.behaviac.IInstanceMember;
+import org.gof.behaviac.members.IInstanceMember;
 
 public class StringUtils {
 

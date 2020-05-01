@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.gof.behaviac.conditions.ConditionBase;
+import org.gof.behaviac.members.IInstantiatedVariable;
+import org.gof.behaviac.members.IMethod;
 import org.gof.behaviac.utils.Utils;
 
+@RegisterableNode
 public class Event extends ConditionBase {
 	protected IMethod m_event;
 	protected String m_eventName;

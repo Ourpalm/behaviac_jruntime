@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.Debug;
-import org.gof.behaviac.IInstantiatedVariable;
 import org.gof.behaviac.RegisterableNode;
+import org.gof.behaviac.members.IInstantiatedVariable;
 import org.gof.behaviac.utils.Utils;
 
 @RegisterableNode

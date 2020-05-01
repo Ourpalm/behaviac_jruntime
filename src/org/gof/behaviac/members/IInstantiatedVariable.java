@@ -1,4 +1,6 @@
-package org.gof.behaviac;
+package org.gof.behaviac.members;
+
+import org.gof.behaviac.Agent;
 
 public interface IInstantiatedVariable {
 	Object GetValueObject(Agent self);

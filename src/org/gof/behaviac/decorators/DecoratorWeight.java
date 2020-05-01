@@ -5,14 +5,14 @@ import java.util.List;
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.BehaviorTask;
-import org.gof.behaviac.CInstanceMember;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.DecoratorNode;
 import org.gof.behaviac.DecoratorTask;
 import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.members.CInstanceMember;
+import org.gof.behaviac.members.IInstanceMember;
 
 @RegisterableNode
 public class DecoratorWeight extends DecoratorNode {

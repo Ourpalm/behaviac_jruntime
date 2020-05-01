@@ -10,10 +10,10 @@ import org.gof.behaviac.BehaviorNode;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IMethod;
 import org.gof.behaviac.LeafTask;
 import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.members.IMethod;
 import org.gof.behaviac.utils.Tuple2;
 
 @RegisterableNode

@@ -1,5 +1,12 @@
 package org.gof.behaviac;
 
+import org.gof.behaviac.members.CCustomizedArrayItemProperty;
+import org.gof.behaviac.members.CCustomizedProperty;
+import org.gof.behaviac.members.CInstanceConst;
+import org.gof.behaviac.members.CInstanceCustomizedProperty;
+import org.gof.behaviac.members.ICustomizedProperty;
+import org.gof.behaviac.members.IInstanceMember;
+
 public class CommonTypeCreator extends TypeCreator {
 	private ClassInfo _clazz;
 

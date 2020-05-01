@@ -1,7 +1,12 @@
-package org.gof.behaviac;
+package org.gof.behaviac.members;
 
 import java.util.List;
 
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.ClassInfo;
+import org.gof.behaviac.Debug;
+import org.gof.behaviac.EOperatorType;
+import org.gof.behaviac.OperationUtils;
 import org.gof.behaviac.utils.Utils;
 
 public class CInstanceMember implements IInstanceMember {

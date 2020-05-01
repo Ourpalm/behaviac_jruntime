@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dom4j.Element;
+import org.gof.behaviac.members.IInstantiatedVariable;
 import org.gof.behaviac.utils.Utils;
 
 public abstract class BehaviorNode {

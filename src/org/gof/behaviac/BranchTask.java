@@ -2,6 +2,8 @@ package org.gof.behaviac;
 
 import java.util.Map;
 
+import org.gof.behaviac.members.IInstantiatedVariable;
+
 public abstract class BranchTask extends BehaviorTask {
 	private BehaviorTask m_currentTask;
 

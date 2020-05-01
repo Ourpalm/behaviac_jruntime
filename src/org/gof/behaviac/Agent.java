@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.gof.behaviac.htn.Task;
+import org.gof.behaviac.members.CArrayItemVariable;
+import org.gof.behaviac.members.CProperty;
+import org.gof.behaviac.members.CVariable;
+import org.gof.behaviac.members.IInstantiatedVariable;
+import org.gof.behaviac.members.IMethod;
+import org.gof.behaviac.members.IProperty;
 import org.gof.behaviac.utils.StringUtils;
 import org.gof.behaviac.utils.Utils;
 
@@ -240,7 +246,7 @@ public abstract class Agent implements Closeable {
 		return null;
 	}
 
-	IInstantiatedVariable GetInstantiatedVariable(long varId) {
+	public IInstantiatedVariable GetInstantiatedVariable(long varId) {
 		// local var
 		var task = this.GetExcutingTreeTask();
 		if (task != null && task.GetLocalVars().containsKey(varId)) {
@@ -269,7 +275,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	@SuppressWarnings("unchecked")
-	<VariableType> VariableType GetVarValue(long varId) {
+	public <VariableType> VariableType GetVarValue(long varId) {
 		IInstantiatedVariable v = this.GetInstantiatedVariable(varId);
 
 		if (v != null) {
@@ -336,7 +342,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	@SuppressWarnings("unchecked")
-	<VariableType> VariableType GetVariable(long variableId) {
+	public <VariableType> VariableType GetVariable(long variableId) {
 		VariableType value = this.GetVarValue(variableId);
 		if (value != null)
 			return value;
@@ -352,7 +358,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	@SuppressWarnings("unchecked")
-	<VariableType> VariableType GetVariable(long variableId, int index) {
+	public <VariableType> VariableType GetVariable(long variableId, int index) {
 		VariableType value = this.GetVarValue(variableId, index);
 		if (value != null)
 			return value;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gof.behaviac.composites.ReferencedBehavior;
+import org.gof.behaviac.members.IInstantiatedVariable;
 
 public abstract class BehaviorTask {
 	public EBTStatus m_status;

@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <meta>
-  <types />
+  <types>
+    <enumtype Type="testbehaviac::EnumTest" Namespace="testbehaviac" IsCustomized="true" DisplayName="EnumTest" Desc="">
+      <enum NativeValue="testbehaviac::EV1" Value="EV1" DisplayName="EV1" Desc="" MemberValue="-1" />
+      <enum NativeValue="testbehaviac::EV2" Value="EV2" DisplayName="EV2" Desc="" MemberValue="-1" />
+      <enum NativeValue="testbehaviac::EV3" Value="EV3" DisplayName="EV3" Desc="" MemberValue="-1" />
+    </enumtype>
+    <struct Type="testbehaviac::StructTest" Namespace="testbehaviac" Base="" IsRefType="true" IsCustomized="true" DisplayName="StructTest" Desc="">
+      <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="testbehaviac::StructTest" Public="true" />
+      <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="testbehaviac::StructTest" Public="true" />
+      <Member Name="sv3" DisplayName="sv3" Desc="sv3" Type="long" TypeFullName="System.Int64" Class="testbehaviac::StructTest" Public="true" Readonly="true" />
+    </struct>
+  </types>
   <agents>
     <agent classfullname="behaviac::Agent" DisplayName="behaviac::Agent" Desc="behaviac::Agent" IsRefType="true" IsImplemented="true">
       <Method Name="VectorLength" DisplayName="VectorLength" Desc="VectorLength" Class="behaviac::Agent" ReturnType="int" ReturnTypeFullName="System.Int32" Static="true" Public="true" istask="false">

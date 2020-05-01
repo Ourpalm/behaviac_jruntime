@@ -9,10 +9,10 @@ import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.CompositeTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IMethod;
 import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
 import org.gof.behaviac.composites.Sequence;
+import org.gof.behaviac.members.IMethod;
 
 @RegisterableNode
 public class Task extends BehaviorNode {

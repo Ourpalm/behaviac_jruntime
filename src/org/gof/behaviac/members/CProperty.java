@@ -1,12 +1,15 @@
-package org.gof.behaviac;
+package org.gof.behaviac.members;
 
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.ClassInfo;
+import org.gof.behaviac.Debug;
 import org.gof.behaviac.utils.TValue;
 import org.gof.behaviac.utils.Utils;
 
 public class CProperty implements IProperty {
 
-	String _name;
-	ClassInfo _clazz;
+	protected String _name;
+	protected ClassInfo _clazz;
 
 	public CProperty(String name, ClassInfo clazz) {
 		_name = name;

@@ -1,5 +1,8 @@
 package org.gof.behaviac;
 
+import org.gof.behaviac.members.ICustomizedProperty;
+import org.gof.behaviac.members.IInstanceMember;
+
 public class TypeCreator {
 	@FunctionalInterface
 	public static interface PropertyCreator {

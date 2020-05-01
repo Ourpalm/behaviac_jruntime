@@ -7,9 +7,9 @@ import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.BehaviorTask;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EBTStatus;
-import org.gof.behaviac.IInstanceMember;
 import org.gof.behaviac.RegisterableNode;
 import org.gof.behaviac.property_t;
+import org.gof.behaviac.members.IInstanceMember;
 
 @RegisterableNode
 public class WaitState extends State {

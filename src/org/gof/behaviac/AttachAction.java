@@ -2,6 +2,8 @@ package org.gof.behaviac;
 
 import java.util.List;
 
+import org.gof.behaviac.members.IInstanceMember;
+import org.gof.behaviac.members.IMethod;
 import org.gof.behaviac.utils.StringUtils;
 
 public class AttachAction extends BehaviorNode {

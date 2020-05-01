@@ -2,7 +2,7 @@ package org.gof.behaviac.utils;
 
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.ClassInfo;
-import org.gof.behaviac.IValue;
+import org.gof.behaviac.members.IValue;
 
 public class TValue implements IValue {
 

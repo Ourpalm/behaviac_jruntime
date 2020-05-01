@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
-<agents version="1" signature="1864371017">
+<agents version="1" signature="4251550282">
   <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="799281323">
     <properties>
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />

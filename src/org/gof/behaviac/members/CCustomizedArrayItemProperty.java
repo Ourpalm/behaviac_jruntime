@@ -1,6 +1,10 @@
-package org.gof.behaviac;
+package org.gof.behaviac.members;
 
 import java.util.List;
+
+import org.gof.behaviac.Agent;
+import org.gof.behaviac.ClassInfo;
+import org.gof.behaviac.Debug;
 
 public class CCustomizedArrayItemProperty extends CProperty implements ICustomizedProperty {
 	long _parentId;

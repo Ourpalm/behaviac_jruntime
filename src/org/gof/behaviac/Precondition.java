@@ -2,6 +2,7 @@ package org.gof.behaviac;
 
 import java.util.List;
 
+@RegisterableNode
 public class Precondition extends AttachAction {
 	public static enum EPhase {
 		E_ENTER, E_UPDATE, E_BOTH,
