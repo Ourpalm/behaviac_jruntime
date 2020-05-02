@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.gof.behaviac.htn.Task;
+import org.gof.behaviac.members.CAgentStaticMethod1;
+import org.gof.behaviac.members.CAgentStaticMethod2;
+import org.gof.behaviac.members.CAgentStaticMethodVoid1;
+import org.gof.behaviac.members.CAgentStaticMethodVoid2;
 import org.gof.behaviac.members.CArrayItemVariable;
 import org.gof.behaviac.members.CProperty;
 import org.gof.behaviac.members.CVariable;
@@ -892,12 +896,17 @@ public abstract class Agent implements Closeable {
 //        behaviac.Debug.Log(string.Format("[{0}]{1}\n", frames, message));
 	}
 
-	public static int VectorLength(List vector) {
+	public static int VectorLength(List<Object> vector) {
 		if (vector != null) {
 			return vector.size();
 		}
-
 		return 0;
+	}
+
+	public static IMethod CreateMemberMethod_VECTORLENGTH() {
+		return new CAgentStaticMethod1<Integer, ArrayList<Object>>((ArrayList<Object> v1) -> {
+			return Agent.VectorLength(v1);
+		}, new ClassInfo(int.class));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -907,11 +916,23 @@ public abstract class Agent implements Closeable {
 		}
 	}
 
+	public static IMethod CreateMemberMethod_VECTORADD() {
+		return new CAgentStaticMethodVoid2<ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
+			Agent.VectorAdd(v1, element);
+		});
+	}
+
 	@SuppressWarnings("rawtypes")
 	public static void VectorRemove(List vector, Object element) {
 		if (vector != null) {
 			vector.remove(element);
 		}
+	}
+
+	public static IMethod CreateMemberMethod_VECTORREMOVE() {
+		return new CAgentStaticMethodVoid2<ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
+			Agent.VectorRemove(v1, element);
+		});
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -925,11 +946,23 @@ public abstract class Agent implements Closeable {
 		return false;
 	}
 
+	public static IMethod CreateMemberMethod_VECTORCONTAINS() {
+		return new CAgentStaticMethod2<Boolean, ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
+			return Agent.VectorContains(v1, element);
+		}, new ClassInfo(boolean.class));
+	}
+
 	@SuppressWarnings("rawtypes")
 	public static void VectorClear(List vector) {
 		if (vector != null) {
 			vector.clear();
 		}
+	}
+
+	public static IMethod CreateMemberMethod_VECTORCLEAR() {
+		return new CAgentStaticMethodVoid1<ArrayList<Object>>((ArrayList<Object> v1) -> {
+			Agent.VectorClear(v1);
+		});
 	}
 
 	public abstract Object GetProperty();

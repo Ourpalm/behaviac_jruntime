@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
-<agents version="1" signature="3208881645">
+<agents version="1" signature="3356213101">
   <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="804018510">
     <properties>
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
@@ -18,6 +18,26 @@
       <property name="v5" type="float" member="false" static="false" defaultvalue="0" />
       <property name="v6" type="double" member="false" static="false" defaultvalue="0" />
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
+    </properties>
+  </agent>
+  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="3614824930">
+    <properties>
+      <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
+      <property name="s2" type="long" member="false" static="true" defaultvalue="0" />
+      <property name="v1" type="behaviac::EBTStatus" member="false" static="false" defaultvalue="BT_INVALID" />
+      <property name="v11" type="vector&lt;behaviac::EBTStatus&gt;" member="false" static="false" defaultvalue="0:" />
+      <property name="v12" type="vector&lt;bool&gt;" member="false" static="false" defaultvalue="0:" />
+      <property name="v13" type="int" member="false" static="false" defaultvalue="0" />
+      <property name="v14" type="float" member="false" static="false" defaultvalue="0" />
+      <property name="v15" type="double" member="false" static="false" defaultvalue="0" />
+      <property name="v16" type="string" member="false" static="false" defaultvalue="" />
+      <property name="v2" type="bool" member="false" static="false" defaultvalue="false" />
+      <property name="v3" type="int" member="false" static="false" defaultvalue="0" />
+      <property name="v4" type="uint" member="false" static="false" defaultvalue="0" />
+      <property name="v5" type="float" member="false" static="false" defaultvalue="0" />
+      <property name="v6" type="double" member="false" static="false" defaultvalue="0" />
+      <property name="v7" type="string" member="false" static="false" defaultvalue="" />
+      <property name="xxx1" type="uint" member="false" static="false" defaultvalue="0" />
     </properties>
   </agent>
 </agents>

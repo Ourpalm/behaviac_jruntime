@@ -79,6 +79,12 @@
         <Param Name="z2" Type="double" TypeFullName="System.Double" DisplayName="z2" Desc="z2" />
       </Method>
     </agent>
+    <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
+      <Member Name="xxx1" DisplayName="xxx1" Desc="xxx1" Class="testbehaviac::x1::MyAgent2" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Method Name="zzz2" DisplayName="zzz2" Desc="zzz2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="x1" Type="int" TypeFullName="System.Int32" DisplayName="x1" Desc="x1" />
+      </Method>
+    </agent>
   </agents>
   <instances />
 </meta>
