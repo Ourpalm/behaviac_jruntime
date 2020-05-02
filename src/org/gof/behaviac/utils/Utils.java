@@ -260,11 +260,8 @@ public class Utils {
 	}
 
 	public static TValue GetDefaultValue(Class<?> _clazz, boolean isList) {
-		if (isList) {
-			return new TValue(_clazz, isList, new ArrayList<Object>());
-		}
 		try {
-			return new TValue(_clazz, isList, _clazz.newInstance());
+			return new TValue(_clazz, isList, GetDefaultValue2(_clazz, isList));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -275,6 +272,20 @@ public class Utils {
 			return new ArrayList<Object>();
 		}
 		try {
+			if(_clazz == int.class)
+				return Integer.valueOf(0);
+			else if(_clazz == byte.class)
+				return Byte.valueOf((byte)0);
+			else if(_clazz == short.class)
+				return Short.valueOf((short)0);
+			else if(_clazz == long.class)
+				return Long.valueOf(0L);
+			else if(_clazz == float.class)
+				return Float.valueOf(0.0f);
+			else if(_clazz == double.class)
+				return Double.valueOf(0);
+			else if(_clazz == String.class)
+				return "";
 			return _clazz.newInstance();
 		} catch (Exception e) {
 			throw new RuntimeException(e);

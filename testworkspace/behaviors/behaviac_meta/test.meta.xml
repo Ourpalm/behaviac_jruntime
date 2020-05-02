@@ -1,15 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <meta>
   <types>
-    <enumtype Type="testbehaviac::EnumTest" Namespace="testbehaviac" IsCustomized="true" DisplayName="EnumTest" Desc="">
+    <enumtype Type="org::gof::worldsrv::EnumTest" Namespace="org::gof::worldsrv" IsCustomized="true" DisplayName="EnumTest" Desc="">
       <enum NativeValue="testbehaviac::EV1" Value="EV1" DisplayName="EV1" Desc="" MemberValue="-1" />
       <enum NativeValue="testbehaviac::EV2" Value="EV2" DisplayName="EV2" Desc="" MemberValue="-1" />
       <enum NativeValue="testbehaviac::EV3" Value="EV3" DisplayName="EV3" Desc="" MemberValue="-1" />
     </enumtype>
-    <struct Type="testbehaviac::StructTest" Namespace="testbehaviac" Base="" IsRefType="true" IsCustomized="true" DisplayName="StructTest" Desc="">
-      <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="testbehaviac::StructTest" Public="true" />
-      <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="testbehaviac::StructTest" Public="true" />
-      <Member Name="sv3" DisplayName="sv3" Desc="sv3" Type="long" TypeFullName="System.Int64" Class="testbehaviac::StructTest" Public="true" Readonly="true" />
+    <struct Type="org::gof::worldsrv::StructTest" Namespace="org::gof::worldsrv" Base="" IsRefType="true" IsCustomized="true" DisplayName="StructTest" Desc="">
+      <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::StructTest" Public="true" />
+      <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::StructTest" Public="true" />
+      <Member Name="sv3" DisplayName="sv3" Desc="sv3" Type="long" TypeFullName="System.Int64" Class="org::gof::worldsrv::StructTest" Public="true" Readonly="true" />
+    </struct>
+    <struct Type="org::gof::worldsrv::Haha" Namespace="org::gof::worldsrv" Base="" IsRefType="true" IsCustomized="true" DisplayName="Haha" Desc="">
+      <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::Haha" Public="true" />
+      <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::Haha" Public="true" />
+      <Member Name="sv3" DisplayName="sv3" Desc="sv3" Type="long" TypeFullName="System.Int64" Class="org::gof::worldsrv::Haha" Public="true" Readonly="true" />
     </struct>
   </types>
   <agents>
@@ -64,6 +69,14 @@
       </Method>
       <Method Name="task1" DisplayName="task1" Desc="task1" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="true">
         <Param Name="v1" Type="vector&lt;short&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int16, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v1" Desc="v1" />
+      </Method>
+      <Method Name="testM2" DisplayName="testM2" Desc="testM2" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="z1" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="z1" Desc="z1" />
+        <Param Name="z2" Type="uint" TypeFullName="System.UInt32" DisplayName="z2" Desc="z2" />
+      </Method>
+      <Method Name="StaticMethod1" DisplayName="StaticMethod1" Desc="StaticMethod1" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="z1" Type="bool" TypeFullName="System.Boolean" DisplayName="z1" Desc="z1" />
+        <Param Name="z2" Type="double" TypeFullName="System.Double" DisplayName="z2" Desc="z2" />
       </Method>
     </agent>
   </agents>

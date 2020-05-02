@@ -9,232 +9,64 @@ import org.gof.behaviac.*;
 
 public class BehaviorLoaderImplement extends BehaviorLoader
 {
-		private class CMethod_behaviac_Agent_VectorAdd extends CAgentMethodVoidBase
-		{
-			IInstanceMember _param0;
-			IInstanceMember _param1;
-
-			public CMethod_behaviac_Agent_VectorAdd()
-			{
-			}
-
-			public CMethod_behaviac_Agent_VectorAdd(CMethod_behaviac_Agent_VectorAdd rhs) : base(rhs)
-			{
-			}
-
-			public override IMethod Clone()
-			{
-				return new CMethod_behaviac_Agent_VectorAdd(this);
-			}
-
-			public override void Load(string instance, string[] paramStrs)
-			{
-				Debug.Check(paramStrs.Length == 2);
-
-				_instance = instance;
-				_param0 = AgentMeta.ParseProperty<IList>(paramStrs[0]);
-				_param1 = AgentMeta.ParseProperty<System.Object>(paramStrs[1]);
-			}
-
-			public override void Run(Agent self)
-			{
-				Debug.Check(_param0 != null);
-				Debug.Check(_param1 != null);
-
-				behaviac.Agent.VectorAdd((IList)_param0.GetValueObject(self), (System.Object)_param1.GetValueObject(self));
-			}
-		}
-
-		private class CMethod_behaviac_Agent_VectorClear extends CAgentMethodVoidBase
-		{
-			IInstanceMember _param0;
-
-			public CMethod_behaviac_Agent_VectorClear()
-			{
-			}
-
-			public CMethod_behaviac_Agent_VectorClear(CMethod_behaviac_Agent_VectorClear rhs) : base(rhs)
-			{
-			}
-
-			public override IMethod Clone()
-			{
-				return new CMethod_behaviac_Agent_VectorClear(this);
-			}
-
-			public override void Load(string instance, string[] paramStrs)
-			{
-				Debug.Check(paramStrs.Length == 1);
-
-				_instance = instance;
-				_param0 = AgentMeta.ParseProperty<IList>(paramStrs[0]);
-			}
-
-			public override void Run(Agent self)
-			{
-				Debug.Check(_param0 != null);
-
-				behaviac.Agent.VectorClear((IList)_param0.GetValueObject(self));
-			}
-		}
-
-		private class CMethod_behaviac_Agent_VectorContains extends CAgentMethodBase<bool>
-		{
-			IInstanceMember _param0;
-			IInstanceMember _param1;
-
-			public CMethod_behaviac_Agent_VectorContains()
-			{
-			}
-
-			public CMethod_behaviac_Agent_VectorContains(CMethod_behaviac_Agent_VectorContains rhs) : base(rhs)
-			{
-			}
-
-			public override IMethod Clone()
-			{
-				return new CMethod_behaviac_Agent_VectorContains(this);
-			}
-
-			public override void Load(string instance, string[] paramStrs)
-			{
-				Debug.Check(paramStrs.Length == 2);
-
-				_instance = instance;
-				_param0 = AgentMeta.ParseProperty<IList>(paramStrs[0]);
-				_param1 = AgentMeta.ParseProperty<System.Object>(paramStrs[1]);
-			}
-
-			public override void Run(Agent self)
-			{
-				Debug.Check(_param0 != null);
-				Debug.Check(_param1 != null);
-
-				_returnValue.value = behaviac.Agent.VectorContains((IList)_param0.GetValueObject(self), (System.Object)_param1.GetValueObject(self));
-			}
-		}
-
-		private class CMethod_behaviac_Agent_VectorLength extends CAgentMethodBase<int>
-		{
-			IInstanceMember _param0;
-
-			public CMethod_behaviac_Agent_VectorLength()
-			{
-			}
-
-			public CMethod_behaviac_Agent_VectorLength(CMethod_behaviac_Agent_VectorLength rhs) : base(rhs)
-			{
-			}
-
-			public override IMethod Clone()
-			{
-				return new CMethod_behaviac_Agent_VectorLength(this);
-			}
-
-			public override void Load(string instance, string[] paramStrs)
-			{
-				Debug.Check(paramStrs.Length == 1);
-
-				_instance = instance;
-				_param0 = AgentMeta.ParseProperty<IList>(paramStrs[0]);
-			}
-
-			public override void Run(Agent self)
-			{
-				Debug.Check(_param0 != null);
-
-				_returnValue.value = behaviac.Agent.VectorLength((IList)_param0.GetValueObject(self));
-			}
-		}
-
-		private class CMethod_behaviac_Agent_VectorRemove extends CAgentMethodVoidBase
-		{
-			IInstanceMember _param0;
-			IInstanceMember _param1;
-
-			public CMethod_behaviac_Agent_VectorRemove()
-			{
-			}
-
-			public CMethod_behaviac_Agent_VectorRemove(CMethod_behaviac_Agent_VectorRemove rhs) : base(rhs)
-			{
-			}
-
-			public override IMethod Clone()
-			{
-				return new CMethod_behaviac_Agent_VectorRemove(this);
-			}
-
-			public override void Load(string instance, string[] paramStrs)
-			{
-				Debug.Check(paramStrs.Length == 2);
-
-				_instance = instance;
-				_param0 = AgentMeta.ParseProperty<IList>(paramStrs[0]);
-				_param1 = AgentMeta.ParseProperty<System.Object>(paramStrs[1]);
-			}
-
-			public override void Run(Agent self)
-			{
-				Debug.Check(_param0 != null);
-				Debug.Check(_param1 != null);
-
-				behaviac.Agent.VectorRemove((IList)_param0.GetValueObject(self), (System.Object)_param1.GetValueObject(self));
-			}
-		}
-
 
 	@Override
 	public boolean Load() {{
-			AgentMeta.SetTotalSignature(4251550282);
+		AgentMeta.SetTotalSignature(3208881645);
 
+		{
 			AgentMeta meta;
 
 			// behaviac.Agent
 			meta = new AgentMeta(24743406);
 			AgentMeta.RegisterMeta(2436498804, meta);
-			meta.RegisterMethod(1045109914, new CAgentStaticMethodVoid<string>(delegate(string param0) { behaviac.Agent.LogMessage(param0); }));
-			meta.RegisterMethod(2521019022, new CMethod_behaviac_Agent_VectorAdd());
-			meta.RegisterMethod(2306090221, new CMethod_behaviac_Agent_VectorClear());
-			meta.RegisterMethod(3483755530, new CMethod_behaviac_Agent_VectorContains());
-			meta.RegisterMethod(505785840, new CMethod_behaviac_Agent_VectorLength());
-			meta.RegisterMethod(502968959, new CMethod_behaviac_Agent_VectorRemove());
+			meta.RegisterStaticMethod(behaviac.Agent.CreateStaticMethod_LOGMESSAGE());
+			meta.RegisterStaticMethod(behaviac.Agent.CreateStaticMethod_VECTORADD());
+			meta.RegisterStaticMethod(behaviac.Agent.CreateStaticMethod_VECTORCLEAR());
+			meta.RegisterStaticMethod(behaviac.Agent.CreateStaticMethod_VECTORCONTAINS());
+			meta.RegisterStaticMethod(behaviac.Agent.CreateStaticMethod_VECTORLENGTH());
+			meta.RegisterStaticMethod(behaviac.Agent.CreateStaticMethod_VECTORREMOVE());
+		}
+		{
+			AgentMeta meta;
 
 			// org.gof.worldsrv.MyAgent
-			meta = new AgentMeta(799281323);
+			meta = new AgentMeta(804018510);
 			AgentMeta.RegisterMeta(467449450, meta);
-			meta.RegisterMemberProperty(2119865978, new CStaticMemberProperty("s1", new ClassInfo(false, ushort), (value)-> { org.gof.worldsrv.MyAgent.s1 = value; }, ()-> { return org.gof.worldsrv.MyAgent.s1; }));
-			meta.RegisterMemberProperty(1433912761, new CStaticMemberProperty("s2", new ClassInfo(false, long), (value)-> {  }, ()-> { return org.gof.worldsrv.MyAgent.gets2(); }));
-			meta.RegisterMemberProperty(2022790289, new CMemberProperty("v1", new ClassInfo(false, behaviac.EBTStatus), (Agent self, behaviac.EBTStatus value)-> { ((org.gof.worldsrv.MyAgent)self).setv1(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv1(); }));
-			meta.RegisterMemberProperty(3927049740, new CMemberProperty("v11", new ClassInfo(false, List<behaviac.EBTStatus>), (Agent self, List<behaviac.EBTStatus> value)-> { ((org.gof.worldsrv.MyAgent)self).setv11(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv11(); }));
-			meta.RegisterMemberProperty(1476831413, new CMemberArrayItemProperty("v11[]", new ClassInfo(true, behaviac.EBTStatus), (Agent self, behaviac.EBTStatus value, int index)-> { ((org.gof.worldsrv.MyAgent)self).getv11().set(index,value); }, (Agent self, int index)-> { return ((org.gof.worldsrv.MyAgent)self).getv11().get(index); }));
-			meta.RegisterMemberProperty(3242153423, new CMemberProperty("v12", new ClassInfo(false, List<bool>), (Agent self, List<bool> value)-> { ((org.gof.worldsrv.MyAgent)self).setv12(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv12(); }));
-			meta.RegisterMemberProperty(1253246811, new CMemberArrayItemProperty("v12[]", new ClassInfo(true, bool), (Agent self, bool value, int index)-> { ((org.gof.worldsrv.MyAgent)self).getv12().set(index,value); }, (Agent self, int index)-> { return ((org.gof.worldsrv.MyAgent)self).getv12().get(index); }));
-			meta.RegisterMemberProperty(3626263694, new CMemberProperty("v13", new ClassInfo(false, int), (Agent self, int value)-> { ((org.gof.worldsrv.MyAgent)self).setv13(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv13(); }));
-			meta.RegisterMemberProperty(2540040777, new CMemberProperty("v14", new ClassInfo(false, float), (Agent self, float value)-> { ((org.gof.worldsrv.MyAgent)self).setv14(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv14(); }));
-			meta.RegisterMemberProperty(2390672136, new CMemberProperty("v15", new ClassInfo(false, double), (Agent self, double value)-> { ((org.gof.worldsrv.MyAgent)self).setv15(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv15(); }));
-			meta.RegisterMemberProperty(2773717195, new CMemberProperty("v16", new ClassInfo(false, string), (Agent self, string value)-> { ((org.gof.worldsrv.MyAgent)self).setv16(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv16(); }));
-			meta.RegisterMemberProperty(1404831570, new CMemberProperty("v2", new ClassInfo(false, bool), (Agent self, bool value)-> { ((org.gof.worldsrv.MyAgent)self).setv2(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv2(); }));
-			meta.RegisterMemberProperty(1252472339, new CMemberProperty("v3", new ClassInfo(false, int), (Agent self, int value)-> { ((org.gof.worldsrv.MyAgent)self).setv3(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv3(); }));
-			meta.RegisterMemberProperty(99000532, new CMemberProperty("v4", new ClassInfo(false, uint), (Agent self, uint value)-> { ((org.gof.worldsrv.MyAgent)self).setv4(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv4(); }));
-			meta.RegisterMemberProperty(486379925, new CMemberProperty("v5", new ClassInfo(false, float), (Agent self, float value)-> { ((org.gof.worldsrv.MyAgent)self).setv5(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv5(); }));
-			meta.RegisterMemberProperty(936428118, new CMemberProperty("v6", new ClassInfo(false, double), (Agent self, double value)-> { ((org.gof.worldsrv.MyAgent)self).setv6(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv6(); }));
-			meta.RegisterMemberProperty(785117975, new CMemberProperty("v7", new ClassInfo(false, string), (Agent self, string value)-> { ((org.gof.worldsrv.MyAgent)self).setv7(value); }, (Agent self)-> { return ((org.gof.worldsrv.MyAgent)self).getv7(); }));
-			meta.RegisterMethod(1045109914, new CAgentStaticMethodVoid<string>(delegate(string param0) { org.gof.worldsrv.MyAgent.LogMessage(param0); }));
-			meta.RegisterMethod(1759647744, new CAgentMethod<behaviac.EBTStatus, bool, uint, float, string, long, List<bool>, List<int>, double>(delegate(Agent self, bool v1, uint v2, float v3, string v4, long v5, List<bool> v11, List<int> v12, double v13) { return ((org.gof.worldsrv.MyAgent)self).m1(v1, v2, v3, v4, v5, v11, v12, v13); }));
-			meta.RegisterMethod(4058224632, new CAgentMethodVoid<List<short>>(delegate(Agent self, List<short> v1) { }) /* task1 */);
-			meta.RegisterMethod(2521019022, new CMethod_behaviac_Agent_VectorAdd());
-			meta.RegisterMethod(2306090221, new CMethod_behaviac_Agent_VectorClear());
-			meta.RegisterMethod(3483755530, new CMethod_behaviac_Agent_VectorContains());
-			meta.RegisterMethod(505785840, new CMethod_behaviac_Agent_VectorLength());
-			meta.RegisterMethod(502968959, new CMethod_behaviac_Agent_VectorRemove());
+			meta.RegisterStaticProperty(org.gof.worldsrv.MyAgent.CreateStaticProperty_S1());
+			meta.RegisterStaticProperty(org.gof.worldsrv.MyAgent.CreateStaticProperty_S2());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V1());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V11());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V11());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V12());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V12());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V13());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V14());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V15());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V16());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V2());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V3());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V4());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V5());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V6());
+			meta.RegisterMemberProperty(org.gof.worldsrv.MyAgent.CreateMemberProperty_V7());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_LOGMESSAGE());
+			meta.RegisterMemberMethod(org.gof.worldsrv.MyAgent.CreateMemberMethod_M1());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_STATICMETHOD1());
+			meta.RegisterMethod(4058224632, new CAgentMethodVoid<ArrayList<Short>>(delegate(Agent self, ArrayList<Short> v1) { }) /* task1 */);
+			meta.RegisterMemberMethod(org.gof.worldsrv.MyAgent.CreateMemberMethod_TESTM2());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORADD());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCLEAR());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCONTAINS());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORLENGTH());
+			meta.RegisterStaticMethod(org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORREMOVE());
+		}
 
-		AgentMeta.Register<behaviac.Agent>("behaviac.Agent");
-		AgentMeta.Register<org.gof.worldsrv.MyAgent>("org.gof.worldsrv.MyAgent");
-		AgentMeta.Register<testbehaviac.EnumTest>("testbehaviac.EnumTest");
-		ComparerRegister.RegisterType<testbehaviac.EnumTest, CompareValue_testbehaviac_EnumTest>();
-		AgentMeta.Register<testbehaviac.StructTest>("testbehaviac.StructTest");
-		ComparerRegister.RegisterType<testbehaviac.StructTest, CompareValue_testbehaviac_StructTest>();
+		AgentMeta.Register("behaviac.Agent",behaviac.Agent.class);
+		AgentMeta.Register("org.gof.worldsrv.MyAgent",org.gof.worldsrv.MyAgent.class);
+		AgentMeta.Register("org.gof.worldsrv.EnumTest", org.gof.worldsrv.EnumTest.class);
+		AgentMeta.Register("org.gof.worldsrv.StructTest", org.gof.worldsrv.StructTest.class);
+		AgentMeta.Register("org.gof.worldsrv.Haha", org.gof.worldsrv.Haha.class);
 		return true;
 	}
 
@@ -243,8 +75,9 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 	{
 		AgentMeta.UnRegister("behaviac.Agent");
 		AgentMeta.UnRegister("org.gof.worldsrv.MyAgent");
-		AgentMeta.UnRegister("testbehaviac.EnumTest");
-		AgentMeta.UnRegister("testbehaviac.StructTest");
+		AgentMeta.UnRegister("org.gof.worldsrv.EnumTest");
+		AgentMeta.UnRegister("org.gof.worldsrv.StructTest");
+		AgentMeta.UnRegister("org.gof.worldsrv.Haha");
 		return true;
 	}
 }

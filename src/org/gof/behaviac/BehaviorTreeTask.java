@@ -3,7 +3,6 @@ package org.gof.behaviac;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.gof.behaviac.members.CVariable;
 import org.gof.behaviac.members.IInstantiatedVariable;
 import org.gof.behaviac.utils.Utils;
 
@@ -16,18 +15,13 @@ public class BehaviorTreeTask extends SingeChildTask {
 		return this.m_localVars;
 	}
 
-	<VariableType> void SetVariable(String variableName, VariableType value) {
+	public void SetVariable(String variableName, Object value) {
 		var variableId = Utils.MakeVariableId(variableName);
 
 		IInstantiatedVariable v = this.m_localVars.get(variableId);
 		if (v != null) {
-			@SuppressWarnings("unchecked")
-			CVariable var = (CVariable) v;
-
-			if (var != null) {
-				var.SetValue(null, value);
-				return;
-			}
+			v.SetValue(null, value);
+			return;
 		}
 
 		Debug.Check(false, String.format("The variable \"%s\" an not be found!", variableName));

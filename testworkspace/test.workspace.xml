@@ -2,7 +2,7 @@
 <workspace name="test" folder="behaviors" export="exported" language="java" version="3">
   <export>
     <java>
-      <isexported>False</isexported>
+      <isexported>True</isexported>
       <exportfilecount>1</exportfilecount>
       <folder>../exported</folder>
     </java>

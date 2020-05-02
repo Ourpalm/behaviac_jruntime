@@ -171,6 +171,18 @@ namespace org.gof.worldsrv
 ///<<< END WRITING YOUR CODE
 		}
 
+		public static void StaticMethod1(bool z1, double z2)
+		{
+///<<< BEGIN WRITING YOUR CODE StaticMethod1
+///<<< END WRITING YOUR CODE
+		}
+
+		public void testM2(List<float> z1, uint z2)
+		{
+///<<< BEGIN WRITING YOUR CODE testM2
+///<<< END WRITING YOUR CODE
+		}
+
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 
 ///<<< END WRITING YOUR CODE
