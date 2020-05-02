@@ -78,6 +78,13 @@ public class MyAgent extends behaviac.Agent
 		return prop;
 	}
 
+	public IProperty CreateMemberArrayProperty_V11() {
+		CMemberArrayItemProperty.Getter getter = (_agent, _index)-> { return ((org.gof.worldsrv.MyAgent)_agent).v11.get(_index); };
+		CMemberArrayItemProperty.Setter setter = (_agent,_obj, _index)-> { ((org.gof.worldsrv.MyAgent)_agent).v11.set(_index, (org.gof.behaviac.EBTStatus)_obj); };
+		CMemberArrayItemProperty prop = new CMemberProperty("v11[]", new ClassInfo(true,org.gof.behaviac.EBTStatus.class), getter, setter);
+		return prop;
+	}
+
 	private ArrayList<Boolean> v12 = new ArrayList<Boolean>();
 	public void _set_v12(ArrayList<Boolean> value)
 	{
@@ -91,6 +98,13 @@ public class MyAgent extends behaviac.Agent
 		CMemberProperty.Getter getter = (_agent)-> { return ((org.gof.worldsrv.MyAgent)_agent).v12; };
 		CMemberProperty.Setter setter = (_agent,_obj)-> { ((org.gof.worldsrv.MyAgent)_agent).v12 = (ArrayList<Boolean>)_obj; };
 		CMemberProperty prop = new CMemberProperty("v12", new ClassInfo(true,Boolean.class), getter, setter);
+		return prop;
+	}
+
+	public IProperty CreateMemberArrayProperty_V12() {
+		CMemberArrayItemProperty.Getter getter = (_agent, _index)-> { return ((org.gof.worldsrv.MyAgent)_agent).v12.get(_index); };
+		CMemberArrayItemProperty.Setter setter = (_agent,_obj, _index)-> { ((org.gof.worldsrv.MyAgent)_agent).v12.set(_index, (Boolean)_obj); };
+		CMemberArrayItemProperty prop = new CMemberProperty("v12[]", new ClassInfo(true,Boolean.class), getter, setter);
 		return prop;
 	}
 

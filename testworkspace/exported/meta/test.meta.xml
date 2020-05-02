@@ -20,8 +20,9 @@
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
     </properties>
   </agent>
-  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="3614824930">
+  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="2700585823">
     <properties>
+      <property name="haha_z2" type="vector&lt;int&gt;" member="false" static="true" defaultvalue="0:" />
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
       <property name="s2" type="long" member="false" static="true" defaultvalue="0" />
       <property name="v1" type="behaviac::EBTStatus" member="false" static="false" defaultvalue="BT_INVALID" />

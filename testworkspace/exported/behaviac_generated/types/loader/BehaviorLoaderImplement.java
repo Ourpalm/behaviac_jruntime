@@ -37,9 +37,9 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			meta.RegisterStaticProperty(1433912761,org.gof.worldsrv.MyAgent.CreateStaticProperty_S2());
 			meta.RegisterMemberProperty(2022790289,org.gof.worldsrv.MyAgent.CreateMemberProperty_V1());
 			meta.RegisterMemberProperty(3927049740,org.gof.worldsrv.MyAgent.CreateMemberProperty_V11());
-			meta.RegisterMemberProperty(1476831413,org.gof.worldsrv.MyAgent.CreateMemberProperty_V11());
+			meta.RegisterMemberProperty(1476831413,org.gof.worldsrv.MyAgent.CreateMemberArrayProperty_V11());
 			meta.RegisterMemberProperty(3242153423,org.gof.worldsrv.MyAgent.CreateMemberProperty_V12());
-			meta.RegisterMemberProperty(1253246811,org.gof.worldsrv.MyAgent.CreateMemberProperty_V12());
+			meta.RegisterMemberProperty(1253246811,org.gof.worldsrv.MyAgent.CreateMemberArrayProperty_V12());
 			meta.RegisterMemberProperty(3626263694,org.gof.worldsrv.MyAgent.CreateMemberProperty_V13());
 			meta.RegisterMemberProperty(2540040777,org.gof.worldsrv.MyAgent.CreateMemberProperty_V14());
 			meta.RegisterMemberProperty(2390672136,org.gof.worldsrv.MyAgent.CreateMemberProperty_V15());
@@ -65,15 +65,17 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			AgentMeta meta;
 
 			// testbehaviac.x1.MyAgent2
-			meta = new AgentMeta(3614824930);
+			meta = new AgentMeta(2700585823);
 			AgentMeta.RegisterMeta(330647292, meta);
+			meta.RegisterStaticProperty(1308310691,testbehaviac.x1.MyAgent2.CreateStaticProperty_HAHA_Z2());
+			meta.RegisterStaticProperty(3106574911,testbehaviac.x1.MyAgent2.CreateStaticArrayProperty_HAHA_Z2());
 			meta.RegisterStaticProperty(2119865978,testbehaviac.x1.MyAgent2.CreateStaticProperty_S1());
 			meta.RegisterStaticProperty(1433912761,testbehaviac.x1.MyAgent2.CreateStaticProperty_S2());
 			meta.RegisterMemberProperty(2022790289,testbehaviac.x1.MyAgent2.CreateMemberProperty_V1());
 			meta.RegisterMemberProperty(3927049740,testbehaviac.x1.MyAgent2.CreateMemberProperty_V11());
-			meta.RegisterMemberProperty(1476831413,testbehaviac.x1.MyAgent2.CreateMemberProperty_V11());
+			meta.RegisterMemberProperty(1476831413,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V11());
 			meta.RegisterMemberProperty(3242153423,testbehaviac.x1.MyAgent2.CreateMemberProperty_V12());
-			meta.RegisterMemberProperty(1253246811,testbehaviac.x1.MyAgent2.CreateMemberProperty_V12());
+			meta.RegisterMemberProperty(1253246811,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V12());
 			meta.RegisterMemberProperty(3626263694,testbehaviac.x1.MyAgent2.CreateMemberProperty_V13());
 			meta.RegisterMemberProperty(2540040777,testbehaviac.x1.MyAgent2.CreateMemberProperty_V14());
 			meta.RegisterMemberProperty(2390672136,testbehaviac.x1.MyAgent2.CreateMemberProperty_V15());
