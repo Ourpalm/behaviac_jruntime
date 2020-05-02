@@ -254,25 +254,34 @@ public class MyAgent extends behaviac.Agent
 		return prop;
 	}
 
-	public org.gof.behaviac.EBTStatus m1(boolean v1, int v2, float v3, String v4, long v5, ArrayList<Boolean> v11, ArrayList<Integer> v12, double v13)
+	public org.gof.behaviac.EBTStatus m1(Boolean v1, Integer v2, Float v3, String v4, Long v5, ArrayList<Boolean> v11, ArrayList<Integer> v12, Double v13)
 	{
 ///<<< BEGIN WRITING YOUR CODE m1
-			return behaviac.EBTStatus.BT_INVALID;
+		return org.gof.behaviac.EBTStatus.BT_INVALID;
 ///<<< END WRITING YOUR CODE
 	}
 
-	public static void StaticMethod1(boolean z1, double z2)
+	public IMethod CreateMemberMethod_M1() {
+		return new CAgentMethod8<org.gof.behaviac.EBTStatus,Boolean, Integer, Float, String, Long, ArrayList<Boolean>, ArrayList<Integer>, Double>((Agent _agent,Boolean v1, Integer v2, Float v3, String v4, Long v5, ArrayList<Boolean> v11, ArrayList<Integer> v12, Double v13)->{ return ((org.gof.worldsrv.MyAgent)_agent).m1(v1, v2, v3, v4, v5, v11, v12, v13);}, new ClassInfo(org.gof.behaviac.EBTStatus.class));
+	}
+	public static void StaticMethod1(Boolean z1, Double z2)
 	{
 ///<<< BEGIN WRITING YOUR CODE StaticMethod1
 ///<<< END WRITING YOUR CODE
 	}
 
-	public void testM2(ArrayList<Float> z1, int z2)
+	public IMethod CreateStaticMethod_STATICMETHOD1() {
+		return new CAgentStaticMethodVoid2<Boolean, Double>((Boolean z1, Double z2)->{ org.gof.worldsrv.MyAgent.StaticMethod1(z1, z2);});
+	}
+	public void testM2(ArrayList<Float> z1, Integer z2)
 	{
 ///<<< BEGIN WRITING YOUR CODE testM2
 ///<<< END WRITING YOUR CODE
 	}
 
+	public IMethod CreateMemberMethod_TESTM2() {
+		return new CAgentMethodVoid2<ArrayList<Float>, Integer>((Agent _agent,ArrayList<Float> z1, Integer z2)->{ ((org.gof.worldsrv.MyAgent)_agent).testM2(z1, z2);});
+	}
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 
 ///<<< END WRITING YOUR CODE

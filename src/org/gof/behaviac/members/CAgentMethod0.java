@@ -2,24 +2,26 @@ package org.gof.behaviac.members;
 
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.BehaviorTreeTask;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
-import org.gof.behaviac.utils.Proc0;
+import org.gof.behaviac.utils.Func1;
 
-public class CAgentStaticMethodVoid extends CAgentMethodVoidBase {
-	Proc0 _fp;
+public class CAgentMethod0<R> extends CAgentMethodBase {
+	Func1<R, Agent> _fp;
 
-	public CAgentStaticMethodVoid(Proc0 f) {
+	public CAgentMethod0(Func1<R, Agent> f, ClassInfo rclazz) {
+		super(rclazz);
 		_fp = f;
 	}
 
-	public CAgentStaticMethodVoid(CAgentStaticMethodVoid rhs) {
-		super(rhs);
+	public CAgentMethod0(CAgentMethod0<R> rhs) {
+		super(rhs._returnValue._clazz);
 		_fp = rhs._fp;
 	}
 
 	@Override
 	public IMethod Clone() {
-		return new CAgentStaticMethodVoid(this);
+		return new CAgentMethod0<R>(this);
 	}
 
 	@Override
@@ -30,7 +32,8 @@ public class CAgentStaticMethodVoid extends CAgentMethodVoidBase {
 
 	@Override
 	public void Run(Agent self) {
-		_fp.run();
+
+		_returnValue.value = _fp.run(self);
 	}
 
 	@Override

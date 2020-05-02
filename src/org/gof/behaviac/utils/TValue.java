@@ -7,7 +7,7 @@ import org.gof.behaviac.members.IValue;
 public class TValue implements IValue {
 
 	public Object value;
-	private ClassInfo _clazz;
+	public ClassInfo _clazz;
 
 	public TValue(ClassInfo clazz, Object obj) {
 		value = Utils.Clone(clazz.getElemClass(), clazz.isList(), obj);
