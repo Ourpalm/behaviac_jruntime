@@ -896,6 +896,12 @@ public abstract class Agent implements Closeable {
 //        behaviac.Debug.Log(string.Format("[{0}]{1}\n", frames, message));
 	}
 
+	public static IMethod CreateStaticMethod_LOGMESSAGE() {
+		return new CAgentStaticMethodVoid1<String>((String v1) -> {
+			Agent.LogMessage(v1);
+		});
+	}
+
 	public static int VectorLength(List<Object> vector) {
 		if (vector != null) {
 			return vector.size();
@@ -903,7 +909,7 @@ public abstract class Agent implements Closeable {
 		return 0;
 	}
 
-	public static IMethod CreateMemberMethod_VECTORLENGTH() {
+	public static IMethod CreateStaticMethod_VECTORLENGTH() {
 		return new CAgentStaticMethod1<Integer, ArrayList<Object>>((ArrayList<Object> v1) -> {
 			return Agent.VectorLength(v1);
 		}, new ClassInfo(int.class));
@@ -916,7 +922,7 @@ public abstract class Agent implements Closeable {
 		}
 	}
 
-	public static IMethod CreateMemberMethod_VECTORADD() {
+	public static IMethod CreateStaticMethod_VECTORADD() {
 		return new CAgentStaticMethodVoid2<ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
 			Agent.VectorAdd(v1, element);
 		});
@@ -929,7 +935,7 @@ public abstract class Agent implements Closeable {
 		}
 	}
 
-	public static IMethod CreateMemberMethod_VECTORREMOVE() {
+	public static IMethod CreateStaticMethod_VECTORREMOVE() {
 		return new CAgentStaticMethodVoid2<ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
 			Agent.VectorRemove(v1, element);
 		});
@@ -946,7 +952,7 @@ public abstract class Agent implements Closeable {
 		return false;
 	}
 
-	public static IMethod CreateMemberMethod_VECTORCONTAINS() {
+	public static IMethod CreateStaticMethod_VECTORCONTAINS() {
 		return new CAgentStaticMethod2<Boolean, ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
 			return Agent.VectorContains(v1, element);
 		}, new ClassInfo(boolean.class));
@@ -959,17 +965,11 @@ public abstract class Agent implements Closeable {
 		}
 	}
 
-	public static IMethod CreateMemberMethod_VECTORCLEAR() {
+	public static IMethod CreateStaticMethod_VECTORCLEAR() {
 		return new CAgentStaticMethodVoid1<ArrayList<Object>>((ArrayList<Object> v1) -> {
 			Agent.VectorClear(v1);
 		});
 	}
-
-	public abstract Object GetProperty();
-
-	public abstract void SetProperty(String property, Object value);
-
-	public abstract Object ExecuteMethod(String method, Object[] args);
 
 	public abstract long GetCurrentTime();
 

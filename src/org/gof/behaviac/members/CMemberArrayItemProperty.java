@@ -5,19 +5,19 @@ import org.gof.behaviac.ClassInfo;
 
 public class CMemberArrayItemProperty extends CProperty {
 	@FunctionalInterface
-	public static interface PropertyGetter {
+	public static interface Getter {
 		Object get(Agent self, int index);
 	}
 
 	@FunctionalInterface
-	public static interface PropertySetter {
+	public static interface Setter {
 		void set(Agent self, Object value, int index);
 	}
 
-	PropertyGetter _getter;
-	PropertySetter _setter;
+	Getter _getter;
+	Setter _setter;
 
-	public CMemberArrayItemProperty(String name, ClassInfo clazz, PropertyGetter getter, PropertySetter setter) {
+	public CMemberArrayItemProperty(String name, ClassInfo clazz, Getter getter, Setter setter) {
 		super(name, clazz);
 		_getter = getter;
 		_setter = setter;

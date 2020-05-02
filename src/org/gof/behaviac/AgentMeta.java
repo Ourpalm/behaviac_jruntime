@@ -617,6 +617,11 @@ public class AgentMeta {
 	public void RegisterMemberProperty(long propId, IProperty property) {
 		_memberProperties.put(propId, property);
 	}
+	
+	public void RegisterStaticProperty(long propId, IProperty property) {
+		_memberProperties.put(propId, property);
+	}
+	
 
 	public void RegisterCustomizedProperty(long propId, ICustomizedProperty property) {
 		_customizedProperties.put(propId, property);
@@ -629,7 +634,14 @@ public class AgentMeta {
 	public void RegisterMethod(long methodId, IMethod method) {
 		_methods.put(methodId, method);
 	}
+	
+	public void RegisterMemberMethod(long methodId, IMethod method) {
+		_methods.put(methodId, method);
+	}
 
+	public void RegisterStaticMethod(long methodId, IMethod method) {
+		_methods.put(methodId, method);
+	}
 	public static boolean Register(String typeName, Class<?> clazz) {
 		typeName = typeName.replace("::", ".");
 
