@@ -15,13 +15,13 @@ public class CAgentStaticMethod4<R, P1, P2, P3, P4> extends CAgentMethodBase {
 	IInstanceMember _p3;
 	IInstanceMember _p4;
 
-	public CAgentStaticMethod4(Func4<R, P1, P2, P3, P4> f, ClassInfo rclazz) {
-		super(rclazz);
+	public CAgentStaticMethod4(Func4<R, P1, P2, P3, P4> f, ClassInfo rclazz, ClassInfo[] pclazzs) {
+		super(rclazz, pclazzs);
 		_fp = f;
 	}
 
 	public CAgentStaticMethod4(CAgentStaticMethod4<R, P1, P2, P3, P4> rhs) {
-		super(rhs._returnValue._clazz);
+		super(rhs);
 		_fp = rhs._fp;
 		_p1 = rhs._p1;
 		_p2 = rhs._p2;
@@ -38,10 +38,10 @@ public class CAgentStaticMethod4<R, P1, P2, P3, P4> extends CAgentMethodBase {
 	public void Load(String instance, String[] paramStrs) {
 		Debug.Check(paramStrs.length == 4);
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
-		_p2 = AgentMeta.ParseProperty(paramStrs[1]);
-		_p3 = AgentMeta.ParseProperty(paramStrs[2]);
-		_p4 = AgentMeta.ParseProperty(paramStrs[3]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
+		_p2 = AgentMeta.ParseProperty(paramStrs[1], _pclazzs[1]);
+		_p3 = AgentMeta.ParseProperty(paramStrs[2], _pclazzs[2]);
+		_p4 = AgentMeta.ParseProperty(paramStrs[3], _pclazzs[3]);
 	}
 
 	@SuppressWarnings("unchecked")

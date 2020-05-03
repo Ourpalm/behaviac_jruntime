@@ -19,13 +19,13 @@ public class CAgentMethod8<R, P1, P2, P3, P4, P5, P6, P7, P8> extends CAgentMeth
 	IInstanceMember _p7;
 	IInstanceMember _p8;
 
-	public CAgentMethod8(Func9<R, Agent, P1, P2, P3, P4, P5, P6, P7, P8> f, ClassInfo rclazz) {
-		super(rclazz);
+	public CAgentMethod8(Func9<R, Agent, P1, P2, P3, P4, P5, P6, P7, P8> f, ClassInfo rclazz, ClassInfo[] pclazzs) {
+		super(rclazz, pclazzs);
 		_fp = f;
 	}
 
 	public CAgentMethod8(CAgentMethod8<R, P1, P2, P3, P4, P5, P6, P7, P8> rhs) {
-		super(rhs._returnValue._clazz);
+		super(rhs);
 		_fp = rhs._fp;
 		_p1 = rhs._p1;
 		_p2 = rhs._p2;
@@ -46,14 +46,14 @@ public class CAgentMethod8<R, P1, P2, P3, P4, P5, P6, P7, P8> extends CAgentMeth
 	public void Load(String instance, String[] paramStrs) {
 		Debug.Check(paramStrs.length == 8);
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
-		_p2 = AgentMeta.ParseProperty(paramStrs[1]);
-		_p3 = AgentMeta.ParseProperty(paramStrs[2]);
-		_p4 = AgentMeta.ParseProperty(paramStrs[3]);
-		_p5 = AgentMeta.ParseProperty(paramStrs[4]);
-		_p6 = AgentMeta.ParseProperty(paramStrs[5]);
-		_p7 = AgentMeta.ParseProperty(paramStrs[6]);
-		_p8 = AgentMeta.ParseProperty(paramStrs[7]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
+		_p2 = AgentMeta.ParseProperty(paramStrs[1], _pclazzs[1]);
+		_p3 = AgentMeta.ParseProperty(paramStrs[2], _pclazzs[2]);
+		_p4 = AgentMeta.ParseProperty(paramStrs[3], _pclazzs[3]);
+		_p5 = AgentMeta.ParseProperty(paramStrs[4], _pclazzs[4]);
+		_p6 = AgentMeta.ParseProperty(paramStrs[5], _pclazzs[5]);
+		_p7 = AgentMeta.ParseProperty(paramStrs[6], _pclazzs[6]);
+		_p8 = AgentMeta.ParseProperty(paramStrs[7], _pclazzs[7]);
 	}
 
 	@SuppressWarnings("unchecked")

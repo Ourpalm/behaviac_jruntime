@@ -2,13 +2,15 @@ package org.gof.behaviac.members;
 
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.BehaviorTreeTask;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.utils.Proc1;
 
 public class CAgentMethodVoid0 extends CAgentMethodVoidBase {
 	Proc1<Agent> _fp;
 
-	public CAgentMethodVoid0(Proc1<Agent> f) {
+	public CAgentMethodVoid0(Proc1<Agent> f, ClassInfo[] pclazzs) {
+		super(pclazzs);
 		_fp = f;
 	}
 

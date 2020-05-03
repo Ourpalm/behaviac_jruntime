@@ -9,13 +9,13 @@ import org.gof.behaviac.utils.Func0;
 public class CAgentStaticMethod0<R> extends CAgentMethodBase {
 	Func0<R> _fp;
 
-	public CAgentStaticMethod0(Func0<R> f, ClassInfo rclazz) {
-		super(rclazz);
+	public CAgentStaticMethod0(Func0<R> f, ClassInfo rclazz, ClassInfo[] pclazzs) {
+		super(rclazz, pclazzs);
 		_fp = f;
 	}
 
 	public CAgentStaticMethod0(CAgentStaticMethod0<R> rhs) {
-		super(rhs._returnValue._clazz);
+		super(rhs);
 		_fp = rhs._fp;
 	}
 

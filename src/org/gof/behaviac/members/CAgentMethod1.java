@@ -12,13 +12,13 @@ public class CAgentMethod1<R, P1> extends CAgentMethodBase {
 	Func2<R, Agent, P1> _fp;
 	IInstanceMember _p1;
 
-	public CAgentMethod1(Func2<R, Agent, P1> f, ClassInfo rclazz) {
-		super(rclazz);
+	public CAgentMethod1(Func2<R, Agent, P1> f, ClassInfo rclazz, ClassInfo[] pclazzs) {
+		super(rclazz, pclazzs);
 		_fp = f;
 	}
 
 	public CAgentMethod1(CAgentMethod1<R, P1> rhs) {
-		super(rhs._returnValue._clazz);
+		super(rhs);
 		_fp = rhs._fp;
 		_p1 = rhs._p1;
 	}
@@ -32,7 +32,7 @@ public class CAgentMethod1<R, P1> extends CAgentMethodBase {
 	public void Load(String instance, String[] paramStrs) {
 		Debug.Check(paramStrs.length == 1);
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
 	}
 
 	@SuppressWarnings("unchecked")

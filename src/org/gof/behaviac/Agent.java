@@ -890,6 +890,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	public static void LogMessage(String message) {
+		System.out.print("Agent.LogMessage:");
 		System.out.println(message);
 //        int frames = behaviac.Workspace.Instance.FrameSinceStartup;
 //
@@ -899,7 +900,7 @@ public abstract class Agent implements Closeable {
 	public static IMethod CreateStaticMethod_LOGMESSAGE() {
 		return new CAgentStaticMethodVoid1<String>((String v1) -> {
 			Agent.LogMessage(v1);
-		});
+		}, new ClassInfo[] { new ClassInfo(false, String.class) });
 	}
 
 	public static int VectorLength(List<Object> vector) {
@@ -912,7 +913,7 @@ public abstract class Agent implements Closeable {
 	public static IMethod CreateStaticMethod_VECTORLENGTH() {
 		return new CAgentStaticMethod1<Integer, ArrayList<Object>>((ArrayList<Object> v1) -> {
 			return Agent.VectorLength(v1);
-		}, new ClassInfo(int.class));
+		}, new ClassInfo(int.class), new ClassInfo[] {});
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -925,7 +926,7 @@ public abstract class Agent implements Closeable {
 	public static IMethod CreateStaticMethod_VECTORADD() {
 		return new CAgentStaticMethodVoid2<ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
 			Agent.VectorAdd(v1, element);
-		});
+		}, new ClassInfo[] { new ClassInfo(true, Object.class), new ClassInfo(false, Object.class) });
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -938,7 +939,7 @@ public abstract class Agent implements Closeable {
 	public static IMethod CreateStaticMethod_VECTORREMOVE() {
 		return new CAgentStaticMethodVoid2<ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
 			Agent.VectorRemove(v1, element);
-		});
+		}, new ClassInfo[] { new ClassInfo(true, Object.class), new ClassInfo(false, Object.class) });
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -955,7 +956,8 @@ public abstract class Agent implements Closeable {
 	public static IMethod CreateStaticMethod_VECTORCONTAINS() {
 		return new CAgentStaticMethod2<Boolean, ArrayList<Object>, Object>((ArrayList<Object> v1, Object element) -> {
 			return Agent.VectorContains(v1, element);
-		}, new ClassInfo(boolean.class));
+		}, new ClassInfo(boolean.class),
+				new ClassInfo[] { new ClassInfo(true, Object.class), new ClassInfo(false, Object.class) });
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -968,10 +970,14 @@ public abstract class Agent implements Closeable {
 	public static IMethod CreateStaticMethod_VECTORCLEAR() {
 		return new CAgentStaticMethodVoid1<ArrayList<Object>>((ArrayList<Object> v1) -> {
 			Agent.VectorClear(v1);
-		});
+		}, new ClassInfo[] { new ClassInfo(true, Object.class) });
 	}
 
-	public abstract long GetCurrentTime();
+	public long GetCurrentTime() {
+		return System.currentTimeMillis();
+	}
 
-	public abstract long GetFrameSinceStartup();
+	public long GetFrameSinceStartup() {
+		return System.currentTimeMillis();
+	}
 }

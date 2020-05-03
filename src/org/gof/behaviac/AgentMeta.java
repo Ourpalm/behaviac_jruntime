@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.dom4j.DocumentHelper;
-import org.dom4j.QName;
 import org.gof.behaviac.members.ICustomizedProperty;
 import org.gof.behaviac.members.IInstanceMember;
 import org.gof.behaviac.members.IInstantiatedVariable;
@@ -59,7 +58,7 @@ public class AgentMeta {
 	public AgentMeta(long _signature) {
 		this._signature = _signature;
 	}
-	
+
 	public static void RegisterMeta(long signature, AgentMeta meta) {
 		_agentMetas.put(signature, meta);
 	}
@@ -72,11 +71,11 @@ public class AgentMeta {
 			try {
 				var loaderType = Class.forName(kLoaderClass);
 				_behaviorLoader = (BehaviorLoader) loaderType.newInstance();
-				_behaviorLoader.Load();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		}
+		_behaviorLoader.Load();
 		LoadAllMetaFiles();
 	}
 
@@ -123,7 +122,7 @@ public class AgentMeta {
 
 			return ParseProperty(value);
 		} catch (Exception e) {
-			Debug.Check(false, e.getMessage());
+			Debug.Check(false, e);
 		}
 
 		return null;
@@ -238,7 +237,7 @@ public class AgentMeta {
 				return AgentMeta.CreateInstanceProperty(typeName, instantceName, indexMember, propId);
 			}
 		} catch (Exception e) {
-			Debug.Check(false, e.getMessage());
+			Debug.Check(false, e);
 		}
 
 		return null;
@@ -274,7 +273,7 @@ public class AgentMeta {
 		int pos = pBeginMethod - 2 - pBeginAgentClass;
 
 		agentClassName = fullName.substring(pBeginAgentClass, pos + pBeginAgentClass).replace("::", ".");
-
+		agentClassName = convertAgentName(agentClassName);
 		return new Tuple4<>(pBeginP, agentIntanceName, agentClassName, methodName);
 	}
 
@@ -287,7 +286,6 @@ public class AgentMeta {
 		String agentIntanceName = null;
 		String agentClassName = null;
 		var r0 = ParseMethodNames(valueStr, agentIntanceName, agentClassName, methodName);
-		;
 
 		int pBeginP = r0.value1;
 		agentIntanceName = r0.value2;
@@ -541,7 +539,7 @@ public class AgentMeta {
 
 			return true;
 		} catch (Exception e) {
-			Debug.Check(false, e.getMessage());
+			Debug.Check(false, e);
 		}
 
 		Debug.Check(false);
@@ -617,11 +615,10 @@ public class AgentMeta {
 	public void RegisterMemberProperty(long propId, IProperty property) {
 		_memberProperties.put(propId, property);
 	}
-	
+
 	public void RegisterStaticProperty(long propId, IProperty property) {
 		_memberProperties.put(propId, property);
 	}
-	
 
 	public void RegisterCustomizedProperty(long propId, ICustomizedProperty property) {
 		_customizedProperties.put(propId, property);
@@ -634,7 +631,7 @@ public class AgentMeta {
 	public void RegisterMethod(long methodId, IMethod method) {
 		_methods.put(methodId, method);
 	}
-	
+
 	public void RegisterMemberMethod(long methodId, IMethod method) {
 		_methods.put(methodId, method);
 	}
@@ -642,18 +639,23 @@ public class AgentMeta {
 	public void RegisterStaticMethod(long methodId, IMethod method) {
 		_methods.put(methodId, method);
 	}
+
 	public static boolean Register(String typeName, Class<?> clazz) {
 		typeName = typeName.replace("::", ".");
 
 		TypeCreator tc = TypeCreator.Create(clazz);
 		_Creators.put(typeName, tc);
+		_Creators.put(clazz.getName(), tc);
 
-		String vectorTypeName = String.format("vector<%s>", typeName);
+		String vectorTypeName1 = String.format("vector<%s>", typeName);
+		String vectorTypeName2 = String.format("vector<%s>", clazz.getName());
 		TypeCreator tcl = TypeCreator.CreateList(clazz);
-		_Creators.put(vectorTypeName, tcl);
+		_Creators.put(vectorTypeName1, tcl);
+		_Creators.put(vectorTypeName2, tcl);
 
 		_typesRegistered.put(typeName, clazz);
-		_typesRegistered.put(vectorTypeName, ArrayList.class);
+		_typesRegistered.put(vectorTypeName1, ArrayList.class);
+		_typesRegistered.put(vectorTypeName2, ArrayList.class);
 
 		return true;
 	}
@@ -680,33 +682,34 @@ public class AgentMeta {
 		Register("Char", Byte.class);
 		Register("decimal", BigDecimal.class);
 		Register("Decimal", BigDecimal.class);
-		Register("double", double.class);
-		Register("Double", double.class);
-		Register("float", float.class);
-		Register("int", int.class);
-		Register("Int16", short.class);
-		Register("Int32", int.class);
-		Register("Int64", long.class);
-		Register("long", long.class);
-		Register("llong", long.class);
+		Register("double", Double.class);
+		Register("Double", Double.class);
+		Register("float", Float.class);
+		Register("int", Integer.class);
+		Register("Int16", Short.class);
+		Register("Int32", Integer.class);
+		Register("Int64", Long.class);
+		Register("long", Long.class);
+		Register("llong", Long.class);
 
 		Register("sbyte", Byte.class);
 		Register("SByte", Byte.class);
-		Register("short", short.class);
-		Register("ushort", short.class);
+		Register("short", Short.class);
+		Register("ushort", Short.class);
 
-		Register("uint", int.class);
-		Register("UInt16", int.class);
-		Register("UInt32", int.class);
-		Register("UInt64", long.class);
-		Register("ulong", long.class);
-		Register("ullong", long.class);
-		Register("Single", float.class);
+		Register("uint", Integer.class);
+		Register("UInt16", Integer.class);
+		Register("UInt32", Integer.class);
+		Register("UInt64", Long.class);
+		Register("ulong", Long.class);
+		Register("ullong", Long.class);
+		Register("Single", Float.class);
 		Register("string", String.class);
 		Register("String", String.class);
 		Register("object", Object.class);
 		Register("behaviac.Agent", Agent.class);
 		Register("behaviac.EBTStatus", EBTStatus.class);
+
 	}
 
 	private static void UnRegisterBasicTypes() {
@@ -767,5 +770,13 @@ public class AgentMeta {
 			}
 		}
 		return null;
+	}
+
+	public static String convertAgentName(String name) {
+		name = name.replace("::", ".");
+		if (name.equals("behaviac.Agent"))
+			name = "org.gof.behaviac.Agent";
+		return name;
+
 	}
 }

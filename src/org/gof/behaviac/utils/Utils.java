@@ -14,10 +14,26 @@ public class Utils {
 		return s == null || s.length() == 0;
 	}
 
+	static public long bkdr_hash_and_sum(String str) {
+		long sum = 0;
+		long seed = 131; // 31 131 1313 13131 131313 etc..
+		long hash = 0;
+
+		for (var i = 0; i < str.length(); ++i) {
+			int c = (int) str.charAt(i);
+			sum += c;
+			hash = hash * seed + c;
+		}
+
+		return Math.abs((sum << 32) + (hash & 0x7FFFFFFF));
+
+	}
+
 	public static long MakeVariableId(String idstring) {
-		var c = new CRC32();
-		c.update(idstring.getBytes());
-		return c.getValue();
+		return (int) bkdr_hash_and_sum(idstring);
+//		var c = new CRC32();
+//		c.update(idstring.getBytes());
+//		return c.getValue();
 	}
 
 	public static Class<?> GetPrimitiveTypeFromName(String typeName) {
@@ -160,11 +176,12 @@ public class Utils {
 	}
 
 	public static boolean IsIntegerClass(Class<?> clazz) {
-		return clazz == int.class || clazz == byte.class || clazz == short.class || clazz == long.class;
+		return clazz == int.class || clazz == Integer.class || clazz == byte.class || clazz == Byte.class
+				|| clazz == short.class || clazz == Short.class || clazz == long.class || clazz == Long.class;
 	}
 
 	public static boolean IsFloatClass(Class<?> clazz) {
-		return clazz == float.class || clazz == double.class;
+		return clazz == float.class || clazz == Float.class || clazz == double.class || clazz == Double.class;
 	}
 
 	public static Object Clone(Class<?> clazz, boolean isList, Object value) {
@@ -173,6 +190,9 @@ public class Utils {
 
 	public static Object ConvertFromString(Class<?> clazz, boolean isList, String valueStr) {
 		try {
+			if (valueStr.startsWith("\"") && valueStr.endsWith("\"")) {
+				valueStr = valueStr.substring(1, valueStr.length() - 2);
+			}
 			if (!isList) {
 				if (IsNullOrEmpty(valueStr))
 					return GetDefaultValue2(clazz, isList);
@@ -204,22 +224,22 @@ public class Utils {
 		if (!isList) {
 			if (IsIntegerClass(clazz)) {
 				var longValue = ((Number) value).longValue();
-				if (clazz == int.class)
+				if (clazz == int.class || clazz == Integer.class)
 					return (int) longValue;
-				else if (clazz == byte.class)
+				else if (clazz == byte.class || clazz == Byte.class)
 					return (byte) longValue;
-				else if (clazz == short.class)
+				else if (clazz == short.class || clazz == Short.class)
 					return (short) longValue;
-				else if (clazz == long.class)
+				else if (clazz == long.class || clazz == Long.class)
 					return (long) longValue;
 			} else if (IsFloatClass(clazz)) {
 				var doubleValue = ((Number) value).doubleValue();
-				if (clazz == float.class)
+				if (clazz == float.class || clazz == Float.class)
 					return (float) doubleValue;
-				else if (clazz == double.class)
+				else if (clazz == double.class || clazz == Double.class)
 					return (double) doubleValue;
-			} else if (clazz == Boolean.class) {
-				if (value.getClass() == Boolean.class)
+			} else if (clazz == Boolean.class || clazz == boolean.class) {
+				if (value.getClass() == Boolean.class || value.getClass() == boolean.class)
 					return ((Boolean) value).booleanValue();
 				else if (value.getClass() == String.class)
 					return Boolean.parseBoolean((String) value);
@@ -227,6 +247,10 @@ public class Utils {
 				if (value.getClass() == String.class)
 					return ((String) value);
 				return value.toString();
+			} else if (clazz.isEnum()) {
+				return value;
+			} else {
+				throw new RuntimeException("无法克隆对象:" + clazz.getName());
 			}
 		} else {
 			if (value instanceof List) {
@@ -244,7 +268,10 @@ public class Utils {
 
 	public static String GetNativeTypeName(ClassInfo clazz) {
 		// TODO::CBH
-		return clazz.getElemClass().getName();
+		if(!clazz.isList())
+			return clazz.getElemClass().getName();
+		
+		return "vector<" + clazz.getElemClass().getName() + ">";
 	}
 
 	public static String ChangeExtension(String file, String newExt) {
@@ -266,32 +293,37 @@ public class Utils {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public static Object GetDefaultValue2(Class<?> _clazz, boolean isList) {
 		if (isList) {
 			return new ArrayList<Object>();
 		}
 		try {
-			if(_clazz == int.class)
+			if (_clazz == int.class || _clazz == Integer.class)
 				return Integer.valueOf(0);
-			else if(_clazz == byte.class)
-				return Byte.valueOf((byte)0);
-			else if(_clazz == short.class)
-				return Short.valueOf((short)0);
-			else if(_clazz == long.class)
+			else if (_clazz == byte.class || _clazz == Byte.class)
+				return Byte.valueOf((byte) 0);
+			else if (_clazz == short.class || _clazz == Short.class)
+				return Short.valueOf((short) 0);
+			else if (_clazz == long.class || _clazz == Long.class)
 				return Long.valueOf(0L);
-			else if(_clazz == float.class)
+			else if (_clazz == float.class || _clazz == Float.class)
 				return Float.valueOf(0.0f);
-			else if(_clazz == double.class)
+			else if (_clazz == double.class || _clazz == Double.class)
 				return Double.valueOf(0);
-			else if(_clazz == String.class)
+			else if (_clazz == String.class)
 				return "";
+			else if (_clazz == boolean.class || _clazz == Boolean.class)
+				return false;
+			else if (_clazz.isEnum()) {
+				return _clazz.getEnumConstants()[0];
+			}
 			return _clazz.newInstance();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 //	public static Object GetDefaultValue3(Class<?> _clazz, boolean isList) {
 //		if (isList) {
 //			return new ArrayList<Object>();

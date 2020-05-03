@@ -14,13 +14,13 @@ public class CAgentStaticMethod3<R, P1, P2, P3> extends CAgentMethodBase {
 	IInstanceMember _p2;
 	IInstanceMember _p3;
 
-	public CAgentStaticMethod3(Func3<R, P1, P2, P3> f, ClassInfo rclazz) {
-		super(rclazz);
+	public CAgentStaticMethod3(Func3<R, P1, P2, P3> f, ClassInfo rclazz, ClassInfo[] pclazzs) {
+		super(rclazz, pclazzs);
 		_fp = f;
 	}
 
 	public CAgentStaticMethod3(CAgentStaticMethod3<R, P1, P2, P3> rhs) {
-		super(rhs._returnValue._clazz);
+		super(rhs);
 		_fp = rhs._fp;
 		_p1 = rhs._p1;
 		_p2 = rhs._p2;
@@ -36,9 +36,9 @@ public class CAgentStaticMethod3<R, P1, P2, P3> extends CAgentMethodBase {
 	public void Load(String instance, String[] paramStrs) {
 		Debug.Check(paramStrs.length == 3);
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
-		_p2 = AgentMeta.ParseProperty(paramStrs[1]);
-		_p3 = AgentMeta.ParseProperty(paramStrs[2]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
+		_p2 = AgentMeta.ParseProperty(paramStrs[1], _pclazzs[1]);
+		_p3 = AgentMeta.ParseProperty(paramStrs[2], _pclazzs[2]);
 	}
 
 	@SuppressWarnings("unchecked")

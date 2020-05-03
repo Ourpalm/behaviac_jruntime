@@ -2,18 +2,21 @@ package org.gof.behaviac.members;
 
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.BehaviorTreeTask;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.EOperatorType;
 
 public class CAgentMethodVoidBase implements IMethod {
 	protected String _instance = "Self";
+	protected ClassInfo[] _pclazzs;
 
-	public CAgentMethodVoidBase() {
-
+	public CAgentMethodVoidBase(ClassInfo[] pclazzs) {
+		_pclazzs = pclazzs;
 	}
 
 	public CAgentMethodVoidBase(CAgentMethodVoidBase rhs) {
 		_instance = rhs._instance;
+		_pclazzs = rhs._pclazzs;
 	}
 
 	@Override
@@ -79,8 +82,8 @@ public class CAgentMethodVoidBase implements IMethod {
 
 	@Override
 	public IValue GetIValue(Agent self) {
-		 Debug.Check(false);
-         return null;
+		Debug.Check(false);
+		return null;
 	}
 
 	@Override

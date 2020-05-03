@@ -97,7 +97,7 @@ public class BehaviorTree extends BehaviorNode {
 			this.load_properties_pars_attachments_children(true, version, agentType, behaviorNode);
 
 		} catch (Exception e) {
-			Debug.Check(false, e.getMessage());
+			Debug.Check(false, e);
 			return false;
 		}
 		return true;

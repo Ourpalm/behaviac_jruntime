@@ -3,6 +3,7 @@ package org.gof.behaviac.members;
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.BehaviorTreeTask;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.htn.Task;
 import org.gof.behaviac.utils.Proc3;
@@ -12,7 +13,8 @@ public class CAgentMethodVoid2<P1, P2> extends CAgentMethodVoidBase {
 	IInstanceMember _p1;
 	IInstanceMember _p2;
 
-	public CAgentMethodVoid2(Proc3<Agent, P1, P2> f) {
+	public CAgentMethodVoid2(Proc3<Agent, P1, P2> f, ClassInfo[] pclazzs) {
+		super(pclazzs);
 		_fp = f;
 	}
 
@@ -32,8 +34,8 @@ public class CAgentMethodVoid2<P1, P2> extends CAgentMethodVoidBase {
 	public void Load(String instance, String[] paramStrs) {
 		Debug.Check(paramStrs.length == 2);
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
-		_p2 = AgentMeta.ParseProperty(paramStrs[1]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
+		_p2 = AgentMeta.ParseProperty(paramStrs[1], _pclazzs[1]);
 	}
 
 	@SuppressWarnings("unchecked")

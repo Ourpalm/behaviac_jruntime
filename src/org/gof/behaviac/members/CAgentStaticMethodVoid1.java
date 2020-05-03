@@ -3,6 +3,7 @@ package org.gof.behaviac.members;
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.BehaviorTreeTask;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.htn.Task;
 import org.gof.behaviac.utils.Proc1;
@@ -11,8 +12,8 @@ public class CAgentStaticMethodVoid1<P1> extends CAgentMethodVoidBase {
 	Proc1<P1> _fp;
 	IInstanceMember _p1;
 
-	public CAgentStaticMethodVoid1(Proc1<P1> f) {
-		_fp = f;
+	public CAgentStaticMethodVoid1(Proc1<P1> f, ClassInfo[] pclazzs) {
+		super(pclazzs);_fp = f;
 	}
 
 	public CAgentStaticMethodVoid1(CAgentStaticMethodVoid1<P1> rhs) {
@@ -31,7 +32,7 @@ public class CAgentStaticMethodVoid1<P1> extends CAgentMethodVoidBase {
 		Debug.Check(paramStrs.length == 1);
 
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
 	}
 
 	@SuppressWarnings("unchecked")

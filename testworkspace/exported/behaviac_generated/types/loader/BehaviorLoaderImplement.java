@@ -12,92 +12,92 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 
 	@Override
 	public boolean Load() {
-		AgentMeta.SetTotalSignature(3356213101L);
+		AgentMeta.SetTotalSignature(217717556L);
 
 		{
 			AgentMeta meta;
 
 			// behaviac.Agent
-			meta = new AgentMeta(24743406L);
-			AgentMeta.RegisterMeta(2436498804L, meta);
-			meta.RegisterStaticMethod(1045109914L,org.gof.behaviac.Agent.CreateStaticMethod_LOGMESSAGE());
-			meta.RegisterStaticMethod(2521019022L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORADD());
-			meta.RegisterStaticMethod(2306090221L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORCLEAR());
-			meta.RegisterStaticMethod(3483755530L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORCONTAINS());
-			meta.RegisterStaticMethod(505785840L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORLENGTH());
-			meta.RegisterStaticMethod(502968959L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORREMOVE());
+			meta = new AgentMeta(1044849142L);
+			AgentMeta.RegisterMeta(750752878L, meta);//org.gof.behaviac.Agent
+			meta.RegisterStaticMethod(1396400587L,org.gof.behaviac.Agent.CreateStaticMethod_LOGMESSAGE());
+			meta.RegisterStaticMethod(197161586L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORADD());
+			meta.RegisterStaticMethod(1810246298L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORCLEAR());
+			meta.RegisterStaticMethod(2025304058L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORCONTAINS());
+			meta.RegisterStaticMethod(348439993L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORLENGTH());
+			meta.RegisterStaticMethod(2042517019L,org.gof.behaviac.Agent.CreateStaticMethod_VECTORREMOVE());
 		}
 		{
 			AgentMeta meta;
 
 			// org.gof.worldsrv.MyAgent
-			meta = new AgentMeta(804018510L);
-			AgentMeta.RegisterMeta(467449450L, meta);
-			meta.RegisterStaticProperty(2119865978L,org.gof.worldsrv.MyAgent.CreateStaticProperty_S1());
-			meta.RegisterStaticProperty(1433912761L,org.gof.worldsrv.MyAgent.CreateStaticProperty_S2());
-			meta.RegisterMemberProperty(2022790289L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V1());
-			meta.RegisterMemberProperty(3927049740L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V11());
-			meta.RegisterMemberProperty(1476831413L,org.gof.worldsrv.MyAgent.CreateMemberArrayProperty_V11());
-			meta.RegisterMemberProperty(3242153423L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V12());
-			meta.RegisterMemberProperty(1253246811L,org.gof.worldsrv.MyAgent.CreateMemberArrayProperty_V12());
-			meta.RegisterMemberProperty(3626263694L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V13());
-			meta.RegisterMemberProperty(2540040777L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V14());
-			meta.RegisterMemberProperty(2390672136L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V15());
-			meta.RegisterMemberProperty(2773717195L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V16());
-			meta.RegisterMemberProperty(1404831570L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V2());
-			meta.RegisterMemberProperty(1252472339L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V3());
-			meta.RegisterMemberProperty(99000532L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V4());
-			meta.RegisterMemberProperty(486379925L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V5());
-			meta.RegisterMemberProperty(936428118L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V6());
-			meta.RegisterMemberProperty(785117975L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V7());
-			meta.RegisterStaticMethod(1045109914L,org.gof.worldsrv.MyAgent.CreateStaticMethod_LOGMESSAGE());
-			meta.RegisterMemberMethod(1759647744L,org.gof.worldsrv.MyAgent.CreateMemberMethod_M1());
-			meta.RegisterStaticMethod(2095306018L,org.gof.worldsrv.MyAgent.CreateStaticMethod_STATICMETHOD1());
-			meta.RegisterMemberMethod(4058224632L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TASK1());
-			meta.RegisterMemberMethod(83036243L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TESTM2());
-			meta.RegisterStaticMethod(2521019022L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORADD());
-			meta.RegisterStaticMethod(2306090221L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCLEAR());
-			meta.RegisterStaticMethod(3483755530L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCONTAINS());
-			meta.RegisterStaticMethod(505785840L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORLENGTH());
-			meta.RegisterStaticMethod(502968959L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORREMOVE());
+			meta = new AgentMeta(833939648L);
+			AgentMeta.RegisterMeta(646043850L, meta);//org.gof.worldsrv.MyAgent
+			meta.RegisterStaticProperty(15114L,org.gof.worldsrv.MyAgent.CreateStaticProperty_S1());
+			meta.RegisterStaticProperty(15115L,org.gof.worldsrv.MyAgent.CreateStaticProperty_S2());
+			meta.RegisterMemberProperty(15507L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V1());
+			meta.RegisterMemberProperty(2031466L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V11());
+			meta.RegisterMemberProperty(502261672L,org.gof.worldsrv.MyAgent.CreateMemberArrayProperty_V11());
+			meta.RegisterMemberProperty(2031467L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V12());
+			meta.RegisterMemberProperty(502278833L,org.gof.worldsrv.MyAgent.CreateMemberArrayProperty_V12());
+			meta.RegisterMemberProperty(2031468L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V13());
+			meta.RegisterMemberProperty(2031469L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V14());
+			meta.RegisterMemberProperty(2031470L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V15());
+			meta.RegisterMemberProperty(2031471L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V16());
+			meta.RegisterMemberProperty(15508L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V2());
+			meta.RegisterMemberProperty(15509L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V3());
+			meta.RegisterMemberProperty(15510L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V4());
+			meta.RegisterMemberProperty(15511L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V5());
+			meta.RegisterMemberProperty(15512L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V6());
+			meta.RegisterMemberProperty(15513L,org.gof.worldsrv.MyAgent.CreateMemberProperty_V7());
+			meta.RegisterStaticMethod(1396400587L,org.gof.worldsrv.MyAgent.CreateStaticMethod_LOGMESSAGE());
+			meta.RegisterMemberMethod(14328L,org.gof.worldsrv.MyAgent.CreateMemberMethod_M1());
+			meta.RegisterStaticMethod(1738753698L,org.gof.worldsrv.MyAgent.CreateStaticMethod_STATICMETHOD1());
+			meta.RegisterMemberMethod(22304876L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TASK1());
+			meta.RegisterMemberMethod(1952612959L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TESTM2());
+			meta.RegisterStaticMethod(197161586L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORADD());
+			meta.RegisterStaticMethod(1810246298L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCLEAR());
+			meta.RegisterStaticMethod(2025304058L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCONTAINS());
+			meta.RegisterStaticMethod(348439993L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORLENGTH());
+			meta.RegisterStaticMethod(2042517019L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORREMOVE());
 		}
 		{
 			AgentMeta meta;
 
 			// testbehaviac.x1.MyAgent2
-			meta = new AgentMeta(2700585823L);
-			AgentMeta.RegisterMeta(330647292L, meta);
-			meta.RegisterStaticProperty(1308310691L,testbehaviac.x1.MyAgent2.CreateStaticProperty_HAHA_Z2());
-			meta.RegisterStaticProperty(3106574911L,testbehaviac.x1.MyAgent2.CreateStaticArrayProperty_HAHA_Z2());
-			meta.RegisterStaticProperty(2119865978L,testbehaviac.x1.MyAgent2.CreateStaticProperty_S1());
-			meta.RegisterStaticProperty(1433912761L,testbehaviac.x1.MyAgent2.CreateStaticProperty_S2());
-			meta.RegisterMemberProperty(2022790289L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V1());
-			meta.RegisterMemberProperty(3927049740L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V11());
-			meta.RegisterMemberProperty(1476831413L,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V11());
-			meta.RegisterMemberProperty(3242153423L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V12());
-			meta.RegisterMemberProperty(1253246811L,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V12());
-			meta.RegisterMemberProperty(3626263694L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V13());
-			meta.RegisterMemberProperty(2540040777L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V14());
-			meta.RegisterMemberProperty(2390672136L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V15());
-			meta.RegisterMemberProperty(2773717195L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V16());
-			meta.RegisterMemberProperty(1404831570L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V2());
-			meta.RegisterMemberProperty(1252472339L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V3());
-			meta.RegisterMemberProperty(99000532L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V4());
-			meta.RegisterMemberProperty(486379925L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V5());
-			meta.RegisterMemberProperty(936428118L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V6());
-			meta.RegisterMemberProperty(785117975L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V7());
-			meta.RegisterMemberProperty(3307655644L,testbehaviac.x1.MyAgent2.CreateMemberProperty_XXX1());
-			meta.RegisterStaticMethod(1045109914L,testbehaviac.x1.MyAgent2.CreateStaticMethod_LOGMESSAGE());
-			meta.RegisterMemberMethod(1759647744L,testbehaviac.x1.MyAgent2.CreateMemberMethod_M1());
-			meta.RegisterStaticMethod(2095306018L,testbehaviac.x1.MyAgent2.CreateStaticMethod_STATICMETHOD1());
-			meta.RegisterMemberMethod(4058224632L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TASK1());
-			meta.RegisterMemberMethod(83036243L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTM2());
-			meta.RegisterStaticMethod(2521019022L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORADD());
-			meta.RegisterStaticMethod(2306090221L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORCLEAR());
-			meta.RegisterStaticMethod(3483755530L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORCONTAINS());
-			meta.RegisterStaticMethod(505785840L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORLENGTH());
-			meta.RegisterStaticMethod(502968959L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORREMOVE());
-			meta.RegisterMemberMethod(1028050330L,testbehaviac.x1.MyAgent2.CreateMemberMethod_ZZZ2());
+			meta = new AgentMeta(1551754557L);
+			AgentMeta.RegisterMeta(1464643067L, meta);//testbehaviac.x1.MyAgent2
+			meta.RegisterStaticProperty(1683652181L,testbehaviac.x1.MyAgent2.CreateStaticProperty_HAHA_Z2());
+			meta.RegisterStaticProperty(910089963L,testbehaviac.x1.MyAgent2.CreateStaticArrayProperty_HAHA_Z2());
+			meta.RegisterStaticProperty(15114L,testbehaviac.x1.MyAgent2.CreateStaticProperty_S1());
+			meta.RegisterStaticProperty(15115L,testbehaviac.x1.MyAgent2.CreateStaticProperty_S2());
+			meta.RegisterMemberProperty(15507L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V1());
+			meta.RegisterMemberProperty(2031466L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V11());
+			meta.RegisterMemberProperty(502261672L,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V11());
+			meta.RegisterMemberProperty(2031467L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V12());
+			meta.RegisterMemberProperty(502278833L,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V12());
+			meta.RegisterMemberProperty(2031468L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V13());
+			meta.RegisterMemberProperty(2031469L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V14());
+			meta.RegisterMemberProperty(2031470L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V15());
+			meta.RegisterMemberProperty(2031471L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V16());
+			meta.RegisterMemberProperty(15508L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V2());
+			meta.RegisterMemberProperty(15509L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V3());
+			meta.RegisterMemberProperty(15510L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V4());
+			meta.RegisterMemberProperty(15511L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V5());
+			meta.RegisterMemberProperty(15512L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V6());
+			meta.RegisterMemberProperty(15513L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V7());
+			meta.RegisterMemberProperty(271846009L,testbehaviac.x1.MyAgent2.CreateMemberProperty_XXX1());
+			meta.RegisterStaticMethod(1396400587L,testbehaviac.x1.MyAgent2.CreateStaticMethod_LOGMESSAGE());
+			meta.RegisterMemberMethod(14328L,testbehaviac.x1.MyAgent2.CreateMemberMethod_M1());
+			meta.RegisterStaticMethod(1738753698L,testbehaviac.x1.MyAgent2.CreateStaticMethod_STATICMETHOD1());
+			meta.RegisterMemberMethod(22304876L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TASK1());
+			meta.RegisterMemberMethod(1952612959L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTM2());
+			meta.RegisterStaticMethod(197161586L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORADD());
+			meta.RegisterStaticMethod(1810246298L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORCLEAR());
+			meta.RegisterStaticMethod(2025304058L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORCONTAINS());
+			meta.RegisterStaticMethod(348439993L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORLENGTH());
+			meta.RegisterStaticMethod(2042517019L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORREMOVE());
+			meta.RegisterMemberMethod(276376776L,testbehaviac.x1.MyAgent2.CreateMemberMethod_ZZZ2());
 		}
 
 		AgentMeta.Register("org.gof.behaviac.Agent",org.gof.behaviac.Agent.class);

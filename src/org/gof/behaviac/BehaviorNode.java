@@ -151,23 +151,25 @@ public abstract class BehaviorNode {
 		List<property_t> properties = new ArrayList<property_t>();
 
 		for (var c : node.elements()) {
-			if (bNode) {
-				if (c.getName() == "attachment") {
-					bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
-				} else if (c.getName() == "custom") {
-					Debug.Check(c.elements().size() == 1);
-					var customNode = c.elements().get(0);
-					BehaviorNode pChildNode = BehaviorNode.load(agentType, customNode, version);
-					this.m_customCondition = pChildNode;
-				} else if (c.getName() == "node") {
-					BehaviorNode pChildNode = BehaviorNode.load(agentType, c, version);
-					bHasEvents |= pChildNode.m_bHasEvents;
+			if (!load_property_pars(properties, c, version, agentType)) {
+				if (bNode) {
+					if (c.getName() == "attachment") {
+						bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
+					} else if (c.getName() == "custom") {
+						Debug.Check(c.elements().size() == 1);
+						var customNode = c.elements().get(0);
+						BehaviorNode pChildNode = BehaviorNode.load(agentType, customNode, version);
+						this.m_customCondition = pChildNode;
+					} else if (c.getName() == "node") {
+						BehaviorNode pChildNode = BehaviorNode.load(agentType, c, version);
+						bHasEvents |= pChildNode.m_bHasEvents;
 
-					this.addChild(pChildNode);
-				}
-			} else {
-				if (c.getName() == "attachment") {
-					bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
+						this.addChild(pChildNode);
+					}
+				} else {
+					if (c.getName() == "attachment") {
+						bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
+					}
 				}
 			}
 		}

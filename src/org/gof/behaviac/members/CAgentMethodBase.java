@@ -10,10 +10,20 @@ import org.gof.behaviac.utils.Utils;
 public class CAgentMethodBase extends CInstanceMember implements IMethod {
 
 	protected TValue _returnValue;
+	protected ClassInfo[] _pclazzs;
 
-	protected CAgentMethodBase(ClassInfo rclazz)
+	protected CAgentMethodBase(ClassInfo rclazz, ClassInfo[] pclazzs)
     {
 		super(rclazz);
+		_pclazzs = pclazzs;
+        _returnValue = new TValue(rclazz, Utils.GetDefaultValue2(rclazz.getElemClass(), rclazz.isList()));
+    }
+	
+	protected CAgentMethodBase(CAgentMethodBase rhs)
+    {
+		super(rhs._returnValue._clazz);
+		var rclazz = rhs._returnValue._clazz;
+		_pclazzs = rhs._pclazzs;
         _returnValue = new TValue(rclazz, Utils.GetDefaultValue2(rclazz.getElemClass(), rclazz.isList()));
     }
 

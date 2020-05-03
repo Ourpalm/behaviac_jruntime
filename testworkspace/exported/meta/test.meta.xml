@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
-<agents version="1" signature="3356213101">
-  <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="804018510">
+<agents version="1" signature="217717556">
+  <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="833939648">
     <properties>
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
       <property name="s2" type="long" member="false" static="true" defaultvalue="0" />
@@ -20,7 +20,7 @@
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
     </properties>
   </agent>
-  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="2700585823">
+  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="1551754557">
     <properties>
       <property name="haha_z2" type="vector&lt;int&gt;" member="false" static="true" defaultvalue="0:" />
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />

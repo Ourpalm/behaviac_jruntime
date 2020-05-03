@@ -277,7 +277,7 @@ public class MyAgent extends org.gof.behaviac.Agent
 	}
 
 	public static IMethod CreateMemberMethod_M1() {
-		return new CAgentMethod8<org.gof.behaviac.EBTStatus,Boolean, Integer, Float, String, Long, ArrayList<Boolean>, ArrayList<Integer>, Double>((Agent _agent,Boolean v1, Integer v2, Float v3, String v4, Long v5, ArrayList<Boolean> v11, ArrayList<Integer> v12, Double v13)->{ return ((org.gof.worldsrv.MyAgent)_agent).m1(v1, v2, v3, v4, v5, v11, v12, v13);}, new ClassInfo(org.gof.behaviac.EBTStatus.class));
+		return new CAgentMethod8<org.gof.behaviac.EBTStatus,Boolean, Integer, Float, String, Long, ArrayList<Boolean>, ArrayList<Integer>, Double>((Agent _agent,Boolean v1, Integer v2, Float v3, String v4, Long v5, ArrayList<Boolean> v11, ArrayList<Integer> v12, Double v13)->{ return ((org.gof.worldsrv.MyAgent)_agent).m1(v1, v2, v3, v4, v5, v11, v12, v13);}, new ClassInfo(org.gof.behaviac.EBTStatus.class), new ClassInfo[]{ new ClassInfo(Boolean.class), new ClassInfo(Integer.class), new ClassInfo(Float.class), new ClassInfo(String.class), new ClassInfo(Long.class), new ClassInfo(true,Boolean.class), new ClassInfo(true,Integer.class), new ClassInfo(Double.class) });
 	}
 	public static void StaticMethod1(Boolean z1, Double z2)
 	{
@@ -286,7 +286,7 @@ public class MyAgent extends org.gof.behaviac.Agent
 	}
 
 	public static IMethod CreateStaticMethod_STATICMETHOD1() {
-		return new CAgentStaticMethodVoid2<Boolean, Double>((Boolean z1, Double z2)->{ org.gof.worldsrv.MyAgent.StaticMethod1(z1, z2);});
+		return new CAgentStaticMethodVoid2<Boolean, Double>((Boolean z1, Double z2)->{ org.gof.worldsrv.MyAgent.StaticMethod1(z1, z2);},new ClassInfo[]{ new ClassInfo(Boolean.class), new ClassInfo(Double.class) });
 	}
 	public void task1(ArrayList<Short> v1)
 	{
@@ -295,7 +295,7 @@ public class MyAgent extends org.gof.behaviac.Agent
 	}
 
 	public static IMethod CreateMemberMethod_TASK1() {
-		return new CAgentMethodVoid1<ArrayList<Short>>((Agent _agent,ArrayList<Short> v1)->{ /*NamedEvent*/ });
+		return new CAgentMethodVoid1<ArrayList<Short>>((Agent _agent,ArrayList<Short> v1)->{ /*NamedEvent*/ }, new ClassInfo[]{ new ClassInfo(true,Short.class) });
 	}
 	public void testM2(ArrayList<Float> z1, Integer z2)
 	{
@@ -304,7 +304,7 @@ public class MyAgent extends org.gof.behaviac.Agent
 	}
 
 	public static IMethod CreateMemberMethod_TESTM2() {
-		return new CAgentMethodVoid2<ArrayList<Float>, Integer>((Agent _agent,ArrayList<Float> z1, Integer z2)->{ ((org.gof.worldsrv.MyAgent)_agent).testM2(z1, z2);});
+		return new CAgentMethodVoid2<ArrayList<Float>, Integer>((Agent _agent,ArrayList<Float> z1, Integer z2)->{ ((org.gof.worldsrv.MyAgent)_agent).testM2(z1, z2);}, new ClassInfo[]{ new ClassInfo(true,Float.class), new ClassInfo(Integer.class) });
 	}
 ///<<< BEGIN WRITING YOUR CODE CLASS_PART
 

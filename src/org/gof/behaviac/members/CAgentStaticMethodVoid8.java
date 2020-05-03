@@ -3,6 +3,7 @@ package org.gof.behaviac.members;
 import org.gof.behaviac.Agent;
 import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.BehaviorTreeTask;
+import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
 import org.gof.behaviac.htn.Task;
 import org.gof.behaviac.members.CAgentMethodVoidBase;
@@ -21,8 +22,8 @@ public class CAgentStaticMethodVoid8<P1, P2, P3, P4, P5, P6, P7, P8> extends CAg
 	IInstanceMember _p7;
 	IInstanceMember _p8;
 
-	public CAgentStaticMethodVoid8(Proc8<P1, P2, P3, P4, P5, P6, P7, P8> f) {
-		_fp = f;
+	public CAgentStaticMethodVoid8(Proc8<P1, P2, P3, P4, P5, P6, P7, P8> f, ClassInfo[] pclazzs) {
+		super(pclazzs);_fp = f;
 	}
 
 	public CAgentStaticMethodVoid8(CAgentStaticMethodVoid8<P1, P2, P3, P4, P5, P6, P7, P8> rhs) {
@@ -48,14 +49,14 @@ public class CAgentStaticMethodVoid8<P1, P2, P3, P4, P5, P6, P7, P8> extends CAg
 		Debug.Check(paramStrs.length == 8);
 
 		_instance = instance;
-		_p1 = AgentMeta.ParseProperty(paramStrs[0]);
-		_p2 = AgentMeta.ParseProperty(paramStrs[1]);
-		_p3 = AgentMeta.ParseProperty(paramStrs[2]);
-		_p4 = AgentMeta.ParseProperty(paramStrs[3]);
-		_p5 = AgentMeta.ParseProperty(paramStrs[4]);
-		_p6 = AgentMeta.ParseProperty(paramStrs[5]);
-		_p7 = AgentMeta.ParseProperty(paramStrs[6]);
-		_p8 = AgentMeta.ParseProperty(paramStrs[7]);
+		_p1 = AgentMeta.ParseProperty(paramStrs[0], _pclazzs[0]);
+		_p2 = AgentMeta.ParseProperty(paramStrs[1], _pclazzs[1]);
+		_p3 = AgentMeta.ParseProperty(paramStrs[2], _pclazzs[2]);
+		_p4 = AgentMeta.ParseProperty(paramStrs[3], _pclazzs[3]);
+		_p5 = AgentMeta.ParseProperty(paramStrs[4], _pclazzs[4]);
+		_p6 = AgentMeta.ParseProperty(paramStrs[5], _pclazzs[5]);
+		_p7 = AgentMeta.ParseProperty(paramStrs[6], _pclazzs[6]);
+		_p8 = AgentMeta.ParseProperty(paramStrs[7], _pclazzs[7]);
 	}
 
 	@SuppressWarnings("unchecked")
