@@ -8,5 +8,5 @@ public class StructTest
 {
 	public int sv1;
 	public double sv2;
-	public long sv3;
+	public boolean sv3;
 }

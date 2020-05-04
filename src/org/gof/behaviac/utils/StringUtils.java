@@ -168,7 +168,7 @@ public class StringUtils {
 					typeStr += str.charAt(p++);
 				}
 
-				// bool bStatic = false;
+				// boolean bStatic = false;
 
 				if (typeStr.equals("static")) {
 					// skip ' '
@@ -204,5 +204,119 @@ public class StringUtils {
 		}
 
 		return new Tuple2<>(true, strT);
+	}
+
+	public static boolean isDigit(char c) {
+		return c >= '0' && c <= '9';
+	}
+
+	static Tuple2<Boolean, Integer> IsArrayString(String str, int posStart, /* ref */int posEnd) {
+		// begin of the count of an array?
+		// int posStartOld = posStart;
+
+		boolean bIsDigit = false;
+
+		int strLen = (int) str.length();
+		;
+
+		while (posStart < strLen) {
+			char c = str.charAt(posStart++);
+
+			if (isDigit(c)) {
+				bIsDigit = true;
+			} else if (c == ':' && bIsDigit) {
+				// transit_points = 3:{coordX = 0; coordY = 0; } | {coordX = 0; coordY = 0; } |
+				// {coordX = 0; coordY = 0; };
+				// skip array item which is possible a struct
+				int depth = 0;
+
+				for (int posStart2 = posStart; posStart2 < strLen; posStart2++) {
+					char c1 = str.charAt(posStart2);
+
+					if (c1 == ';' && depth == 0) {
+						// the last ';'
+						posEnd = posStart2;
+						break;
+					} else if (c1 == '{') {
+						Debug.Check(depth < 10);
+						depth++;
+					} else if (c1 == '}') {
+						Debug.Check(depth > 0);
+						depth--;
+					}
+				}
+
+				return new Tuple2<>(true, posEnd);
+			} else {
+				break;
+			}
+		}
+
+		return new Tuple2<>(false, posEnd);
+	}
+
+	public static List<String> SplitTokensForStruct(String src) {
+		List<String> ret = new ArrayList<String>();
+
+		if (Utils.IsNullOrEmpty(src)) {
+			return ret;
+		}
+
+		// {color=0;id=;type={bLive=false;name=0;weight=0;};}
+		// the first char is '{'
+		// the last char is '}'
+		int posCloseBrackets = Utils.SkipPairedBrackets(src, 0);
+		Debug.Check(posCloseBrackets != -1);
+
+		// {color=0;id=;type={bLive=false;name=0;weight=0;};}
+		// {color=0;id=;type={bLive=false;name=0;weight=0;};transit_points=3:{coordX=0;coordY=0;}|{coordX=0;coordY=0;}|{coordX=0;coordY=0;};}
+		int posBegin = 1;
+		int posEnd = src.indexOf(';', posBegin);
+
+		while (posEnd != -1) {
+			Debug.Check(src.charAt(posEnd) == ';');
+
+			// the last one might be empty
+			if (posEnd > posBegin) {
+				int posEqual = src.indexOf('=', posBegin);
+				Debug.Check(posEqual > posBegin);
+
+				int length = posEqual - posBegin;
+				String memmberName = src.substring(posBegin, posEqual);
+				String memberValueStr;
+				char c = src.charAt(posEqual + 1);
+
+				if (c != '{') {
+					length = posEnd - posEqual - 1;
+
+					// to check if it is an array
+					var rr = IsArrayString(src, posEqual + 1, posEnd);
+					posEnd = rr.value2;
+
+					memberValueStr = src.substring(posEqual + 1, posEnd - 1);
+				} else {
+					int pStructBegin = 0;
+					pStructBegin += posEqual + 1;
+					int posCloseBrackets_ = Utils.SkipPairedBrackets(src, pStructBegin);
+					memberValueStr = src.substring(posEqual + 1, posCloseBrackets_ + 1);
+
+					posEnd = posEqual + 1 + length;
+				}
+
+				ret.add(memberValueStr);
+			}
+
+			// skip ';'
+			posBegin = posEnd + 1;
+
+			// {color=0;id=;type={bLive=false;name=0;weight=0;};transit_points=3:{coordX=0;coordY=0;}|{coordX=0;coordY=0;}|{coordX=0;coordY=0;};}
+			posEnd = src.indexOf(';', posBegin);
+
+			if (posEnd > posCloseBrackets) {
+				break;
+			}
+		}
+
+		return ret;
 	}
 }

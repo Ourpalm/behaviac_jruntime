@@ -14,5 +14,10 @@
     <xml>
       <isexported>True</isexported>
     </xml>
+    <cpp>
+      <isexported>False</isexported>
+      <exportfilecount>1</exportfilecount>
+      <folder>../exported</folder>
+    </cpp>
   </export>
 </workspace>

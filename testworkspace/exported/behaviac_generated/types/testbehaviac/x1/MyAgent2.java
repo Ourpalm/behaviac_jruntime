@@ -46,6 +46,22 @@ public class MyAgent2 extends org.gof.worldsrv.MyAgent
 		return prop;
 	}
 
+	private org.gof.worldsrv.StructTest vstruct = new org.gof.worldsrv.StructTest();
+	public void _set_vstruct(org.gof.worldsrv.StructTest value)
+	{
+		vstruct = value;
+	}
+	public org.gof.worldsrv.StructTest _get_vstruct()
+	{
+		return vstruct;
+	}
+	public static IProperty CreateMemberProperty_VSTRUCT() {
+		CMemberProperty.Getter getter = (_agent)-> { return ((testbehaviac.x1.MyAgent2)_agent).vstruct; };
+		CMemberProperty.Setter setter = (_agent,_obj)-> { ((testbehaviac.x1.MyAgent2)_agent).vstruct = (org.gof.worldsrv.StructTest)_obj; };
+		CMemberProperty prop = new CMemberProperty("vstruct", new ClassInfo(org.gof.worldsrv.StructTest.class), getter, setter);
+		return prop;
+	}
+
 	private int xxx1 = 0;
 	public void _set_xxx1(int value)
 	{
@@ -71,6 +87,15 @@ public class MyAgent2 extends org.gof.worldsrv.MyAgent
 
 	public static IMethod CreateMemberMethod_METHODHAHA() {
 		return new CAgentMethod1<org.gof.worldsrv.Haha,org.gof.worldsrv.StructTest>((Agent _agent,org.gof.worldsrv.StructTest t1)->{ return ((testbehaviac.x1.MyAgent2)_agent).methodHaha(t1);}, new ClassInfo(org.gof.worldsrv.Haha.class), new ClassInfo[]{ new ClassInfo(org.gof.worldsrv.StructTest.class) });
+	}
+	public void methodHaha2(ArrayList<org.gof.worldsrv.Haha> arr)
+	{
+///<<< BEGIN WRITING YOUR CODE methodHaha2
+///<<< END WRITING YOUR CODE
+	}
+
+	public static IMethod CreateMemberMethod_METHODHAHA2() {
+		return new CAgentMethodVoid1<ArrayList<org.gof.worldsrv.Haha>>((Agent _agent,ArrayList<org.gof.worldsrv.Haha> arr)->{ ((testbehaviac.x1.MyAgent2)_agent).methodHaha2(arr);}, new ClassInfo[]{ new ClassInfo(true,org.gof.worldsrv.Haha.class) });
 	}
 	public void zzz2(Integer x1)
 	{

@@ -5,14 +5,68 @@
 package loader;
 import org.gof.behaviac.BehaviorLoader;
 import org.gof.behaviac.*;
+import org.gof.behaviac.members.*;
+import org.gof.behaviac.utils.StringUtils;
 
 
 public class BehaviorLoaderImplement extends BehaviorLoader
 {
+		public class CInstanceConst_org_gof_worldsrv_StructTest extends CInstanceConst
+		{
+			IInstanceMember _sv1;
+			IInstanceMember _sv2;
+
+			public CInstanceConst_org_gof_worldsrv_StructTest(String typeName, String valueStr)
+			{
+				super(new ClassInfo(org.gof.worldsrv.StructTest.class),typeName,valueStr);
+				var paramStrs = StringUtils.SplitTokensForStruct(valueStr);
+				Debug.Check(paramStrs != null && paramStrs.size() == 2);
+
+				_sv1 = AgentMeta.ParseProperty(paramStrs.get(0),new ClassInfo(Integer.class));
+				_sv2 = AgentMeta.ParseProperty(paramStrs.get(1),new ClassInfo(Double.class));
+			}
+
+			@Override
+			public void Run(Agent self)
+			{
+				Debug.Check(_sv1 != null);
+				Debug.Check(_sv2 != null);
+
+				((org.gof.worldsrv.StructTest)_value).sv1 = (Integer)_sv1.GetValueObject(self);
+				((org.gof.worldsrv.StructTest)_value).sv2 = (Double)_sv2.GetValueObject(self);
+			}
+		};
+
+		public class CInstanceConst_org_gof_worldsrv_Haha extends CInstanceConst
+		{
+			IInstanceMember _sv1;
+			IInstanceMember _sv2;
+
+			public CInstanceConst_org_gof_worldsrv_Haha(String typeName, String valueStr)
+			{
+				super(new ClassInfo(org.gof.worldsrv.Haha.class),typeName,valueStr);
+				var paramStrs = StringUtils.SplitTokensForStruct(valueStr);
+				Debug.Check(paramStrs != null && paramStrs.size() == 2);
+
+				_sv1 = AgentMeta.ParseProperty(paramStrs.get(0),new ClassInfo(Integer.class));
+				_sv2 = AgentMeta.ParseProperty(paramStrs.get(1),new ClassInfo(Double.class));
+			}
+
+			@Override
+			public void Run(Agent self)
+			{
+				Debug.Check(_sv1 != null);
+				Debug.Check(_sv2 != null);
+
+				((org.gof.worldsrv.Haha)_value).sv1 = (Integer)_sv1.GetValueObject(self);
+				((org.gof.worldsrv.Haha)_value).sv2 = (Double)_sv2.GetValueObject(self);
+			}
+		};
+
 
 	@Override
 	public boolean Load() {
-		AgentMeta.SetTotalSignature(1386799913L);
+		AgentMeta.SetTotalSignature(655711021L);
 
 		{
 			AgentMeta meta;
@@ -65,7 +119,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			AgentMeta meta;
 
 			// testbehaviac.x1.MyAgent2
-			meta = new AgentMeta(1851251272L);
+			meta = new AgentMeta(1805492632L);
 			AgentMeta.RegisterMeta(1464643067L, meta);//testbehaviac.x1.MyAgent2
 			meta.RegisterStaticProperty(1683652181L,testbehaviac.x1.MyAgent2.CreateStaticProperty_HAHA_Z2());
 			meta.RegisterStaticProperty(910089963L,testbehaviac.x1.MyAgent2.CreateStaticArrayProperty_HAHA_Z2());
@@ -87,10 +141,12 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			meta.RegisterMemberProperty(15511L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V5());
 			meta.RegisterMemberProperty(15512L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V6());
 			meta.RegisterMemberProperty(15513L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V7());
+			meta.RegisterMemberProperty(1247657123L,testbehaviac.x1.MyAgent2.CreateMemberProperty_VSTRUCT());
 			meta.RegisterMemberProperty(271846009L,testbehaviac.x1.MyAgent2.CreateMemberProperty_XXX1());
 			meta.RegisterStaticMethod(1396400587L,testbehaviac.x1.MyAgent2.CreateStaticMethod_LOGMESSAGE());
 			meta.RegisterMemberMethod(14328L,testbehaviac.x1.MyAgent2.CreateMemberMethod_M1());
 			meta.RegisterMemberMethod(206889707L,testbehaviac.x1.MyAgent2.CreateMemberMethod_METHODHAHA());
+			meta.RegisterMemberMethod(1332747891L,testbehaviac.x1.MyAgent2.CreateMemberMethod_METHODHAHA2());
 			meta.RegisterStaticMethod(1738753698L,testbehaviac.x1.MyAgent2.CreateStaticMethod_STATICMETHOD1());
 			meta.RegisterMemberMethod(22304876L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TASK1());
 			meta.RegisterMemberMethod(1952612959L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTM2());

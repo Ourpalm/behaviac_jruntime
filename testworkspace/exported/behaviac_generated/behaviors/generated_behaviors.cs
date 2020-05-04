@@ -27,6 +27,24 @@ namespace behaviac
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
+	class Assignment_bt_b1_node6 : behaviac.Assignment
+	{
+		public Assignment_bt_b1_node6()
+		{
+			opr = new org.gof.worldsrv.StructTest();
+			opr.sv1 = 234;
+			opr.sv2 = 24234.4453125;
+		}
+		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
+		{
+			EBTStatus result = EBTStatus.BT_SUCCESS;
+			pAgent.SetVariable<org.gof.worldsrv.StructTest>("vstruct", 1247657123u, opr);
+			return result;
+		}
+		org.gof.worldsrv.StructTest opr;
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
 	class Assignment_bt_b1_node5 : behaviac.Assignment
 	{
 		public Assignment_bt_b1_node5()
@@ -56,14 +74,41 @@ namespace behaviac
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
+	class Action_bt_b1_node7 : behaviac.Action
+	{
+		public Action_bt_b1_node7()
+		{
+			this.m_resultOption = EBTStatus.BT_SUCCESS;
+			method_p0 = new List<org.gof.worldsrv.Haha>();
+			method_p0.Capacity = 2;
+			org.gof.worldsrv.Haha method_p0_item0;
+			method_p0_item0 = new org.gof.worldsrv.Haha();
+			method_p0_item0.sv1 = 1;
+			method_p0_item0.sv2 = 2;
+			method_p0.Add(method_p0_item0);
+			org.gof.worldsrv.Haha method_p0_item1;
+			method_p0_item1 = new org.gof.worldsrv.Haha();
+			method_p0_item1.sv1 = 3;
+			method_p0_item1.sv2 = 4;
+			method_p0.Add(method_p0_item1);
+		}
+		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
+		{
+			((testbehaviac.x1.MyAgent2)pAgent).methodHaha2(method_p0);
+			return EBTStatus.BT_SUCCESS;
+		}
+		List<org.gof.worldsrv.Haha> method_p0;
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
 	class Action_bt_b1_node2 : behaviac.Action
 	{
 		public Action_bt_b1_node2()
 		{
 			this.m_resultOption = EBTStatus.BT_SUCCESS;
-			method_p0 = null;
-			method_p0.sv1 = 12;
-			method_p0.sv2 = 333;
+			method_p0 = new org.gof.worldsrv.StructTest();
+			method_p0.sv1 = 345;
+			method_p0.sv2 = 345345;
 		}
 		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
 		{
@@ -114,6 +159,16 @@ namespace behaviac
 #endif
 					node4.AddChild(node0);
 					{
+						Assignment_bt_b1_node6 node6 = new Assignment_bt_b1_node6();
+						node6.SetClassNameString("Assignment");
+						node6.SetId(6);
+#if !BEHAVIAC_RELEASE
+						node6.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+						node0.AddChild(node6);
+						node0.SetHasEvents(node0.HasEvents() | node6.HasEvents());
+					}
+					{
 						Assignment_bt_b1_node5 node5 = new Assignment_bt_b1_node5();
 						node5.SetClassNameString("Assignment");
 						node5.SetId(5);
@@ -132,6 +187,16 @@ namespace behaviac
 #endif
 						node0.AddChild(node1);
 						node0.SetHasEvents(node0.HasEvents() | node1.HasEvents());
+					}
+					{
+						Action_bt_b1_node7 node7 = new Action_bt_b1_node7();
+						node7.SetClassNameString("Action");
+						node7.SetId(7);
+#if !BEHAVIAC_RELEASE
+						node7.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+						node0.AddChild(node7);
+						node0.SetHasEvents(node0.HasEvents() | node7.HasEvents());
 					}
 					{
 						Action_bt_b1_node2 node2 = new Action_bt_b1_node2();

@@ -30,7 +30,7 @@ namespace org.gof.worldsrv
 	{
 		public int sv1;
 		public double sv2;
-		public long sv3;
+		public bool sv3;
 	}
 }
 

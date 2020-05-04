@@ -1,6 +1,8 @@
 package org.gof.behaviac.utils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.zip.CRC32;
 
@@ -95,8 +97,8 @@ public class Utils {
 		case "Double":
 			return double.class;
 
-		case "string":
 		case "String":
+		case "string":
 			return String.class;
 		}
 
@@ -220,11 +222,12 @@ public class Utils {
 				if (clazz == Boolean.class) {
 					return Boolean.parseBoolean(valueStr);
 				}
-				Debug.Check(false, String.format("unsupported convert from '%s' to <%s>", valueStr, clazz.toString()));
+				return FromStringStruct(clazz, valueStr);
+				// Debug.Check(false, String.format("unsupported convert from '%s' to <%s>",
+				// valueStr, clazz.toString()));
 			} else {
 				return FromStringVector(clazz, valueStr);
 			}
-			return null;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -353,7 +356,7 @@ public class Utils {
 		// TODO:CBH 命名agent
 	}
 
-	private static int SkipPairedBrackets(String src, int indexBracketBegin) {
+	static int SkipPairedBrackets(String src, int indexBracketBegin) {
 		if (!IsNullOrEmpty(src) && src.charAt(indexBracketBegin) == '{') {
 			int depth = 0;
 			int pos = indexBracketBegin;
@@ -433,5 +436,87 @@ public class Utils {
 
 	public static boolean isLinux() {
 		return OS.startsWith("linux");
+	}
+
+	private static Object FromStringStruct(Class<?> type, String src) {
+		try {
+			Object objValue = type.newInstance();
+			HashMap<String, Field> structMembers = new HashMap<String, Field>();
+			var fields = type.getDeclaredFields();
+
+			for (int i = 0; i < fields.length; ++i) {
+				var f = fields[i];
+				structMembers.put(f.getName(), f);
+			}
+
+			if (IsNullOrEmpty(src)) {
+				return objValue;
+			}
+
+			// {color=0;id=;type={bLive=false;name=0;weight=0;};}
+			// the first char is '{'
+			// the last char is '}'
+			int posCloseBrackets = SkipPairedBrackets(src, 0);
+			Debug.Check(posCloseBrackets != -1);
+
+			// {color=0;id=;type={bLive=false;name=0;weight=0;};}
+			// {color=0;id=;type={bLive=false;name=0;weight=0;};transit_points=3:{coordX=0;coordY=0;}|{coordX=0;coordY=0;}|{coordX=0;coordY=0;};}
+			int posBegin = 1;
+			int posEnd = src.indexOf(';', posBegin);
+
+			while (posEnd != -1) {
+				Debug.Check(src.charAt(posEnd) == ';');
+
+				// the last one might be empty
+				if (posEnd > posBegin) {
+					int posEqual = src.indexOf('=', posBegin);
+					Debug.Check(posEqual > posBegin);
+
+					int length = posEqual - posBegin;
+					String memmberName = src.substring(posBegin, posEqual);
+					String memberValueStr;
+					char c = src.charAt(posEqual + 1);
+
+					if (c != '{') {
+						length = posEnd - posEqual - 1;
+
+						// to check if it is an array
+						var rr = StringUtils.IsArrayString(src, posEqual + 1, posEnd);
+						posEnd = rr.value2;
+
+						memberValueStr = src.substring(posEqual + 1, posEnd - 1);
+					} else {
+						int pStructBegin = 0;
+						pStructBegin += posEqual + 1;
+						int posCloseBrackets_ = SkipPairedBrackets(src, pStructBegin);
+						length = posCloseBrackets_ - pStructBegin + 1;
+
+						memberValueStr = src.substring(posEqual + 1, posCloseBrackets_ + 1);
+
+						posEnd = posEqual + 1 + length;
+					}
+
+					var memberType = structMembers.get(memmberName);
+					if (memberType != null) {
+						Object memberValue = ConvertFromString(memberType.getType(), false, memberValueStr);
+						memberType.set(objValue, memberValue);
+					}
+				}
+
+				// skip ';'
+				posBegin = posEnd + 1;
+
+				// {color=0;id=;type={bLive=false;name=0;weight=0;};transit_points=3:{coordX=0;coordY=0;}|{coordX=0;coordY=0;}|{coordX=0;coordY=0;};}
+				posEnd = src.indexOf(';', posBegin);
+
+				if (posEnd > posCloseBrackets) {
+					break;
+				}
+			}
+
+			return objValue;
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 }
