@@ -1,7 +1,9 @@
 package org.gof.behaviac;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.gof.behaviac.members.IInstantiatedVariable;
 import org.gof.behaviac.utils.Utils;
@@ -9,6 +11,7 @@ import org.gof.behaviac.utils.Utils;
 public class BehaviorTreeTask extends SingeChildTask {
 	private Map<Long, IInstantiatedVariable> m_localVars = new HashMap<Long, IInstantiatedVariable>();
 	private BehaviorTreeTask m_excutingTreeTask = null;
+	private Set<String> m_ignoreEvents = new HashSet<>();
 	private EBTStatus m_endStatus = EBTStatus.BT_INVALID;
 
 	public Map<Long, IInstantiatedVariable> GetLocalVars() {
@@ -142,5 +145,13 @@ public class BehaviorTreeTask extends SingeChildTask {
 		}
 
 		return status;
+	}
+
+	public void addIgnoreEvent(String btEvent) {
+		m_ignoreEvents.add(btEvent);
+	}
+
+	public boolean isIgnoreEvent(String btEvent) {
+		return m_ignoreEvents.contains(btEvent);
 	}
 }

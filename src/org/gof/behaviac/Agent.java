@@ -403,7 +403,6 @@ public abstract class Agent implements Closeable {
 			return;
 		}
 
-		
 		Debug.Check(false, String.format(
 				"The variable \"%s\" can not be found! please check the variable name or be after loading type info(btload)!",
 				variableName));
@@ -867,7 +866,11 @@ public abstract class Agent implements Closeable {
 				IMethod e = meta.GetMethod(eventId);
 
 				if (e != null) {
-					this.m_currentBT.onevent(this, btEvent, eventParams);
+					if (!this.m_currentBT.isIgnoreEvent(btEvent)) {
+						if (!this.m_currentBT.onevent(this, btEvent, eventParams)) {
+							this.m_currentBT.addIgnoreEvent(btEvent);
+						}
+					}
 				} else {
 					Debug.Check(false, String.format("unregistered event %s", btEvent));
 				}

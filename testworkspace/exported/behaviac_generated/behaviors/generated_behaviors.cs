@@ -17,7 +17,7 @@ namespace behaviac
 	{
 		public Event_bt_b1_attach8()
 		{
-			this.Initialize("Self.testbehaviac::x1::MyAgent2::task2(0)", "b2", TriggerMode.TM_Transfer, false);
+			this.Initialize("Self.testbehaviac::x1::MyAgent2::task2(0)", "b2", TriggerMode.TM_Return, true);
 		}
 		public void Initialize(string eventName, string referencedBehavior, TriggerMode mode, bool once)
 		{

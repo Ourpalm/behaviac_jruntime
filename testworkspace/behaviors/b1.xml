@@ -6,7 +6,7 @@
     <Connector Identifier="GenericChildren">
       <Node Class="PluginBehaviac.Nodes.Sequence" Enable="true" HasOwnPrefabData="false" Id="0" PrefabName="" PrefabNodeId="-1">
         <Comment Background="NoColor" Text="" />
-        <Attachment Class="Behaviac.Design.Attachments.Event" Enable="true" Id="8" PrefabAttachmentId="-1" ReferenceFilename="b2" TriggeredOnce="false" TriggerMode="Return" />
+        <Attachment Class="Behaviac.Design.Attachments.Event" Enable="true" Id="8" PrefabAttachmentId="-1" ReferenceFilename="b2" TriggeredOnce="true" TriggerMode="Return" />
         <Connector Identifier="GenericChildren">
           <Node Class="PluginBehaviac.Nodes.DecoratorLoop" Count="const int 5" DecorateWhenChildEnds="true" DoneWithinFrame="false" Enable="true" HasOwnPrefabData="false" Id="4" PrefabName="" PrefabNodeId="-1">
             <Comment Background="NoColor" Text="" />

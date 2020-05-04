@@ -6,8 +6,8 @@
     <attachment class="Event" id="8" flag="event">
       <property ReferenceFilename="b2" />
       <property Task="Self.testbehaviac::x1::MyAgent2::task2(0)" />
-      <property TriggeredOnce="false" />
-      <property TriggerMode="Transfer" />
+      <property TriggeredOnce="true" />
+      <property TriggerMode="Return" />
     </attachment>
     <node class="DecoratorLoop" id="4">
       <property Count="const int 5" />
