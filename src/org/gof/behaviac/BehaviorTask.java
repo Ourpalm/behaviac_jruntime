@@ -1,6 +1,5 @@
 package org.gof.behaviac;
 
-import java.util.List;
 import java.util.Map;
 
 import org.gof.behaviac.composites.ReferencedBehavior;

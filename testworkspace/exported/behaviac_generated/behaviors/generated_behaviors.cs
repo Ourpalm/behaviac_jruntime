@@ -13,6 +13,22 @@ namespace behaviac
 	// Source file: b1
 
 	[behaviac.GeneratedTypeMetaInfo()]
+	class Event_bt_b1_attach8 : behaviac.Event
+	{
+		public Event_bt_b1_attach8()
+		{
+			this.Initialize("Self.testbehaviac::x1::MyAgent2::task2(0)", "b2", TriggerMode.TM_Transfer, false);
+		}
+		public void Initialize(string eventName, string referencedBehavior, TriggerMode mode, bool once)
+		{
+			this.m_event = AgentMeta.ParseMethod(eventName, ref this.m_eventName);
+			this.m_referencedBehaviorPath = referencedBehavior;
+			this.m_triggerMode = mode;
+			this.m_bTriggeredOnce = once;
+		}
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
 	class DecoratorLoop_bt_b1_node4 : behaviac.DecoratorLoop
 	{
 		public DecoratorLoop_bt_b1_node4()
@@ -23,22 +39,6 @@ namespace behaviac
 		protected override int GetCount(Agent pAgent)
 		{
 			return 5;
-		}
-	}
-
-	[behaviac.GeneratedTypeMetaInfo()]
-	class Event_bt_b1_attach8 : behaviac.Event
-	{
-		public Event_bt_b1_attach8()
-		{
-			this.Initialize("Self.testbehaviac::x1::MyAgent2::task2(0)", "b2", TriggerMode.TM_Return, false);
-		}
-		public void Initialize(string eventName, string referencedBehavior, TriggerMode mode, bool once)
-		{
-			this.m_event = AgentMeta.ParseMethod(eventName, ref this.m_eventName);
-			this.m_referencedBehaviorPath = referencedBehavior;
-			this.m_triggerMode = mode;
-			this.m_bTriggeredOnce = once;
 		}
 	}
 
@@ -157,11 +157,11 @@ namespace behaviac
 #endif
 			// children
 			{
-				DecoratorLoop_bt_b1_node4 node4 = new DecoratorLoop_bt_b1_node4();
-				node4.SetClassNameString("DecoratorLoop");
-				node4.SetId(4);
+				Sequence node0 = new Sequence();
+				node0.SetClassNameString("Sequence");
+				node0.SetId(0);
 #if !BEHAVIAC_RELEASE
-				node4.SetAgentType("testbehaviac.x1.MyAgent2");
+				node0.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
 				// attachments
 				{
@@ -171,81 +171,91 @@ namespace behaviac
 #if !BEHAVIAC_RELEASE
 					attach8.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-					node4.Attach(attach8, false, false, false);
-					node4.SetHasEvents(node4.HasEvents() | (attach8 is Event));
+					node0.Attach(attach8, false, false, false);
+					node0.SetHasEvents(node0.HasEvents() | (attach8 is Event));
 				}
-				bt.AddChild(node4);
+				bt.AddChild(node0);
 				{
-					Sequence node0 = new Sequence();
-					node0.SetClassNameString("Sequence");
-					node0.SetId(0);
+					DecoratorLoop_bt_b1_node4 node4 = new DecoratorLoop_bt_b1_node4();
+					node4.SetClassNameString("DecoratorLoop");
+					node4.SetId(4);
 #if !BEHAVIAC_RELEASE
-					node0.SetAgentType("testbehaviac.x1.MyAgent2");
+					node4.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-					node4.AddChild(node0);
+					node0.AddChild(node4);
 					{
-						Assignment_bt_b1_node6 node6 = new Assignment_bt_b1_node6();
-						node6.SetClassNameString("Assignment");
-						node6.SetId(6);
+						Sequence node9 = new Sequence();
+						node9.SetClassNameString("Sequence");
+						node9.SetId(9);
 #if !BEHAVIAC_RELEASE
-						node6.SetAgentType("testbehaviac.x1.MyAgent2");
+						node9.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-						node0.AddChild(node6);
-						node0.SetHasEvents(node0.HasEvents() | node6.HasEvents());
-					}
-					{
-						Assignment_bt_b1_node5 node5 = new Assignment_bt_b1_node5();
-						node5.SetClassNameString("Assignment");
-						node5.SetId(5);
+						node4.AddChild(node9);
+						{
+							Assignment_bt_b1_node6 node6 = new Assignment_bt_b1_node6();
+							node6.SetClassNameString("Assignment");
+							node6.SetId(6);
 #if !BEHAVIAC_RELEASE
-						node5.SetAgentType("testbehaviac.x1.MyAgent2");
+							node6.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-						node0.AddChild(node5);
-						node0.SetHasEvents(node0.HasEvents() | node5.HasEvents());
-					}
-					{
-						Action_bt_b1_node1 node1 = new Action_bt_b1_node1();
-						node1.SetClassNameString("Action");
-						node1.SetId(1);
+							node9.AddChild(node6);
+							node9.SetHasEvents(node9.HasEvents() | node6.HasEvents());
+						}
+						{
+							Assignment_bt_b1_node5 node5 = new Assignment_bt_b1_node5();
+							node5.SetClassNameString("Assignment");
+							node5.SetId(5);
 #if !BEHAVIAC_RELEASE
-						node1.SetAgentType("testbehaviac.x1.MyAgent2");
+							node5.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-						node0.AddChild(node1);
-						node0.SetHasEvents(node0.HasEvents() | node1.HasEvents());
-					}
-					{
-						Action_bt_b1_node7 node7 = new Action_bt_b1_node7();
-						node7.SetClassNameString("Action");
-						node7.SetId(7);
+							node9.AddChild(node5);
+							node9.SetHasEvents(node9.HasEvents() | node5.HasEvents());
+						}
+						{
+							Action_bt_b1_node1 node1 = new Action_bt_b1_node1();
+							node1.SetClassNameString("Action");
+							node1.SetId(1);
 #if !BEHAVIAC_RELEASE
-						node7.SetAgentType("testbehaviac.x1.MyAgent2");
+							node1.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-						node0.AddChild(node7);
-						node0.SetHasEvents(node0.HasEvents() | node7.HasEvents());
-					}
-					{
-						Action_bt_b1_node2 node2 = new Action_bt_b1_node2();
-						node2.SetClassNameString("Action");
-						node2.SetId(2);
+							node9.AddChild(node1);
+							node9.SetHasEvents(node9.HasEvents() | node1.HasEvents());
+						}
+						{
+							Action_bt_b1_node7 node7 = new Action_bt_b1_node7();
+							node7.SetClassNameString("Action");
+							node7.SetId(7);
 #if !BEHAVIAC_RELEASE
-						node2.SetAgentType("testbehaviac.x1.MyAgent2");
+							node7.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-						node0.AddChild(node2);
-						node0.SetHasEvents(node0.HasEvents() | node2.HasEvents());
-					}
-					{
-						Wait_bt_b1_node3 node3 = new Wait_bt_b1_node3();
-						node3.SetClassNameString("Wait");
-						node3.SetId(3);
+							node9.AddChild(node7);
+							node9.SetHasEvents(node9.HasEvents() | node7.HasEvents());
+						}
+						{
+							Action_bt_b1_node2 node2 = new Action_bt_b1_node2();
+							node2.SetClassNameString("Action");
+							node2.SetId(2);
 #if !BEHAVIAC_RELEASE
-						node3.SetAgentType("testbehaviac.x1.MyAgent2");
+							node2.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-						node0.AddChild(node3);
-						node0.SetHasEvents(node0.HasEvents() | node3.HasEvents());
+							node9.AddChild(node2);
+							node9.SetHasEvents(node9.HasEvents() | node2.HasEvents());
+						}
+						{
+							Wait_bt_b1_node3 node3 = new Wait_bt_b1_node3();
+							node3.SetClassNameString("Wait");
+							node3.SetId(3);
+#if !BEHAVIAC_RELEASE
+							node3.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+							node9.AddChild(node3);
+							node9.SetHasEvents(node9.HasEvents() | node3.HasEvents());
+						}
+						node4.SetHasEvents(node4.HasEvents() | node9.HasEvents());
 					}
-					node4.SetHasEvents(node4.HasEvents() | node0.HasEvents());
+					node0.SetHasEvents(node0.HasEvents() | node4.HasEvents());
 				}
-				bt.SetHasEvents(bt.HasEvents() | node4.HasEvents());
+				bt.SetHasEvents(bt.HasEvents() | node0.HasEvents());
 			}
 			return true;
 		}
