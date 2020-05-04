@@ -91,7 +91,7 @@ public class BehaviorTree extends BehaviorNode {
 			}
 			this.setClassName("BehaviorTree");
 			this.setId(-1);
-			if (fsm != null && fsm == "true") {
+			if (fsm != null && fsm .equals("true")) {
 				this.m_bIsFSM = true;
 			}
 			this.load_properties_pars_attachments_children(true, version, agentType, behaviorNode);

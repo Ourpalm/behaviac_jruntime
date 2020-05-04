@@ -25,7 +25,7 @@ public class DecoratorIterator extends DecoratorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Opl") {
+			if (p.name.equals("Opl")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {
@@ -33,7 +33,7 @@ public class DecoratorIterator extends DecoratorNode {
 				} else {
 					Debug.Check(false);
 				}
-			} else if (p.name == "Opr") {
+			} else if (p.name.equals("Opr")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {
@@ -72,7 +72,7 @@ public class DecoratorIterator extends DecoratorNode {
 	@Override
 	protected BehaviorTask createTask() {
 		Debug.Check(false);
-        return null;
+		return null;
 	}
 
 }

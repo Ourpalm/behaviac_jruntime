@@ -66,34 +66,34 @@ public class Parallel extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "FailurePolicy") {
-				if (p.value == "FAIL_ON_ONE") {
+			if (p.name.equals("FailurePolicy")) {
+				if (p.value.equals("FAIL_ON_ONE")) {
 					this.m_failPolicy = FAILURE_POLICY.FAIL_ON_ONE;
-				} else if (p.value == "FAIL_ON_ALL") {
+				} else if (p.value.equals("FAIL_ON_ALL")) {
 					this.m_failPolicy = FAILURE_POLICY.FAIL_ON_ALL;
 				} else {
 					Debug.Check(false);
 				}
-			} else if (p.name == "SuccessPolicy") {
-				if (p.value == "SUCCEED_ON_ONE") {
+			} else if (p.name.equals("SuccessPolicy")) {
+				if (p.value.equals("SUCCEED_ON_ONE")) {
 					this.m_succeedPolicy = SUCCESS_POLICY.SUCCEED_ON_ONE;
-				} else if (p.value == "SUCCEED_ON_ALL") {
+				} else if (p.value.equals("SUCCEED_ON_ALL")) {
 					this.m_succeedPolicy = SUCCESS_POLICY.SUCCEED_ON_ALL;
 				} else {
 					Debug.Check(false);
 				}
-			} else if (p.name == "ExitPolicy") {
-				if (p.value == "EXIT_NONE") {
+			} else if (p.name.equals("ExitPolicy")) {
+				if (p.value.equals("EXIT_NONE")) {
 					this.m_exitPolicy = EXIT_POLICY.EXIT_NONE;
-				} else if (p.value == "EXIT_ABORT_RUNNINGSIBLINGS") {
+				} else if (p.value.equals("EXIT_ABORT_RUNNINGSIBLINGS")) {
 					this.m_exitPolicy = EXIT_POLICY.EXIT_ABORT_RUNNINGSIBLINGS;
 				} else {
 					Debug.Check(false);
 				}
-			} else if (p.name == "ChildFinishPolicy") {
-				if (p.value == "CHILDFINISH_ONCE") {
+			} else if (p.name.equals("ChildFinishPolicy")) {
+				if (p.value.equals("CHILDFINISH_ONCE")) {
 					this.m_childFinishPolicy = CHILDFINISH_POLICY.CHILDFINISH_ONCE;
-				} else if (p.value == "CHILDFINISH_LOOP") {
+				} else if (p.value.equals("CHILDFINISH_LOOP")) {
 					this.m_childFinishPolicy = CHILDFINISH_POLICY.CHILDFINISH_LOOP;
 				} else {
 					Debug.Check(false);

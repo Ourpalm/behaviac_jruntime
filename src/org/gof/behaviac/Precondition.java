@@ -20,20 +20,20 @@ public class Precondition extends AttachAction {
 				for (int i = 0; i < properties.size(); ++i) {
 					property_t p = properties.get(i);
 
-					if (p.name == "BinaryOperator") {
-						if (p.value == "Or") {
+					if (p.name.equals("BinaryOperator")) {
+						if (p.value.equals("Or")) {
 							this.m_bAnd = false;
-						} else if (p.value == "And") {
+						} else if (p.value.equals("And")) {
 							this.m_bAnd = true;
 						} else {
 							Debug.Check(false);
 						}
-					} else if (p.name == "Phase") {
-						if (p.value == "Enter") {
+					} else if (p.name.equals("Phase")) {
+						if (p.value.equals("Enter")) {
 							this.m_phase = EPhase.E_ENTER;
-						} else if (p.value == "Update") {
+						} else if (p.value.equals("Update")) {
 							this.m_phase = EPhase.E_UPDATE;
-						} else if (p.value == "Both") {
+						} else if (p.value.equals("Both")) {
 							this.m_phase = EPhase.E_BOTH;
 						} else {
 							Debug.Check(false);

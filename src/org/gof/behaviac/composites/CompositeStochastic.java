@@ -25,7 +25,7 @@ public class CompositeStochastic extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "RandomGenerator") {
+			if (p.name.equals("RandomGenerator")) {
 				this.m_method = AgentMeta.ParseMethod(p.value);
 			}
 		}

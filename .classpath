@@ -8,5 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="I:/workspace/behaviac_jruntime/libs/dom4j-2.1.3.jar"/>
+	<classpathentry kind="lib" path="I:/workspace/behaviac_jruntime/libs/cloning.jar"/>
+	<classpathentry kind="lib" path="I:/workspace/behaviac_jruntime/libs/objenesis-3.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

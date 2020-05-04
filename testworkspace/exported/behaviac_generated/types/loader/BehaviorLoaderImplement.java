@@ -12,7 +12,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 
 	@Override
 	public boolean Load() {
-		AgentMeta.SetTotalSignature(217717556L);
+		AgentMeta.SetTotalSignature(1386799913L);
 
 		{
 			AgentMeta meta;
@@ -65,12 +65,13 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			AgentMeta meta;
 
 			// testbehaviac.x1.MyAgent2
-			meta = new AgentMeta(1551754557L);
+			meta = new AgentMeta(1851251272L);
 			AgentMeta.RegisterMeta(1464643067L, meta);//testbehaviac.x1.MyAgent2
 			meta.RegisterStaticProperty(1683652181L,testbehaviac.x1.MyAgent2.CreateStaticProperty_HAHA_Z2());
 			meta.RegisterStaticProperty(910089963L,testbehaviac.x1.MyAgent2.CreateStaticArrayProperty_HAHA_Z2());
 			meta.RegisterStaticProperty(15114L,testbehaviac.x1.MyAgent2.CreateStaticProperty_S1());
 			meta.RegisterStaticProperty(15115L,testbehaviac.x1.MyAgent2.CreateStaticProperty_S2());
+			meta.RegisterMemberProperty(1593209488L,testbehaviac.x1.MyAgent2.CreateMemberProperty_TESTHAHA());
 			meta.RegisterMemberProperty(15507L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V1());
 			meta.RegisterMemberProperty(2031466L,testbehaviac.x1.MyAgent2.CreateMemberProperty_V11());
 			meta.RegisterMemberProperty(502261672L,testbehaviac.x1.MyAgent2.CreateMemberArrayProperty_V11());
@@ -89,6 +90,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			meta.RegisterMemberProperty(271846009L,testbehaviac.x1.MyAgent2.CreateMemberProperty_XXX1());
 			meta.RegisterStaticMethod(1396400587L,testbehaviac.x1.MyAgent2.CreateStaticMethod_LOGMESSAGE());
 			meta.RegisterMemberMethod(14328L,testbehaviac.x1.MyAgent2.CreateMemberMethod_M1());
+			meta.RegisterMemberMethod(206889707L,testbehaviac.x1.MyAgent2.CreateMemberMethod_METHODHAHA());
 			meta.RegisterStaticMethod(1738753698L,testbehaviac.x1.MyAgent2.CreateStaticMethod_STATICMETHOD1());
 			meta.RegisterMemberMethod(22304876L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TASK1());
 			meta.RegisterMemberMethod(1952612959L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTM2());

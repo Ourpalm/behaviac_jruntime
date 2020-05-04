@@ -9,6 +9,8 @@ import org.gof.behaviac.AgentMeta;
 import org.gof.behaviac.ClassInfo;
 import org.gof.behaviac.Debug;
 
+import com.rits.cloning.Cloner;
+
 public class Utils {
 	public static boolean IsNullOrEmpty(String s) {
 		return s == null || s.length() == 0;
@@ -144,7 +146,7 @@ public class Utils {
 	}
 
 	public static Class<?> GetTypeFromName(String typeName) {
-		if (typeName == "void*") {
+		if (typeName.equals("void*")) {
 			return Void.class;
 		}
 
@@ -184,8 +186,16 @@ public class Utils {
 		return clazz == float.class || clazz == Float.class || clazz == double.class || clazz == Double.class;
 	}
 
+	private static Cloner cloner = new Cloner();
+
 	public static Object Clone(Class<?> clazz, boolean isList, Object value) {
-		return ConvertFromObject(clazz, isList, value);
+		try {
+			return cloner.deepClone(value);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		// return ConvertFromObject(clazz, isList, value);
 	}
 
 	public static Object ConvertFromString(Class<?> clazz, boolean isList, String valueStr) {
@@ -193,6 +203,8 @@ public class Utils {
 			if (valueStr.startsWith("\"") && valueStr.endsWith("\"")) {
 				valueStr = valueStr.substring(1, valueStr.length() - 2);
 			}
+			if (valueStr.equals("null"))
+				return null;
 			if (!isList) {
 				if (IsNullOrEmpty(valueStr))
 					return GetDefaultValue2(clazz, isList);
@@ -268,9 +280,9 @@ public class Utils {
 
 	public static String GetNativeTypeName(ClassInfo clazz) {
 		// TODO::CBH
-		if(!clazz.isList())
+		if (!clazz.isList())
 			return clazz.getElemClass().getName();
-		
+
 		return "vector<" + clazz.getElemClass().getName() + ">";
 	}
 

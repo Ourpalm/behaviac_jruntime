@@ -30,21 +30,21 @@ public class Action extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Method") {
+			if (p.name.equals("Method")) {
 				if (!Utils.IsNullOrEmpty(p.value)) {
 					this.m_method = AgentMeta.ParseMethod(p.value);
 				}
-			} else if (p.name == "ResultOption") {
-				if (p.value == "BT_INVALID") {
+			} else if (p.name.equals("ResultOption")) {
+				if (p.value.equals("BT_INVALID")) {
 					m_resultOption = EBTStatus.BT_INVALID;
-				} else if (p.value == "BT_FAILURE") {
+				} else if (p.value.equals("BT_FAILURE")) {
 					m_resultOption = EBTStatus.BT_FAILURE;
-				} else if (p.value == "BT_RUNNING") {
+				} else if (p.value.equals("BT_RUNNING")) {
 					m_resultOption = EBTStatus.BT_RUNNING;
 				} else {
 					m_resultOption = EBTStatus.BT_SUCCESS;
 				}
-			} else if (p.name == "ResultFunctor") {
+			} else if (p.name.equals("ResultFunctor")) {
 				if (!Utils.IsNullOrEmpty(p.value)) {
 					this.m_resultFunctor = AgentMeta.ParseMethod(p.value);
 					;

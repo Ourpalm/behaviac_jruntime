@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
-<agents version="1" signature="217717556">
+<agents version="1" signature="1386799913">
   <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="833939648">
     <properties>
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
@@ -20,11 +20,12 @@
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
     </properties>
   </agent>
-  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="1551754557">
+  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="1851251272">
     <properties>
       <property name="haha_z2" type="vector&lt;int&gt;" member="false" static="true" defaultvalue="0:" />
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
       <property name="s2" type="long" member="false" static="true" defaultvalue="0" />
+      <property name="testHaha" type="org::gof::worldsrv::Haha*" member="false" static="false" defaultvalue="null" />
       <property name="v1" type="behaviac::EBTStatus" member="false" static="false" defaultvalue="BT_INVALID" />
       <property name="v11" type="vector&lt;behaviac::EBTStatus&gt;" member="false" static="false" defaultvalue="0:" />
       <property name="v12" type="vector&lt;bool&gt;" member="false" static="false" defaultvalue="0:" />

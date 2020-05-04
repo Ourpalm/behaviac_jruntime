@@ -15,8 +15,8 @@ public abstract class DecoratorNode extends BehaviorNode {
 		super.load(version, agentType, properties);
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
-			if (p.name == "DecorateWhenChildEnds") {
-				if (p.value == "true") {
+			if (p.name.equals("DecorateWhenChildEnds")) {
+				if (p.value.equals("true")) {
 					this.m_bDecorateWhenChildEnds = true;
 				}
 			}

@@ -29,10 +29,10 @@ public class State extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Method") {
+			if (p.name.equals("Method")) {
 				this.m_method = AgentMeta.ParseMethod(p.value);
-			} else if (p.name == "IsEndState") {
-				this.m_bIsEndState = (p.value == "true");
+			} else if (p.name.equals("IsEndState")) {
+				this.m_bIsEndState = (p.value.equals("true"));
 			}
 		}
 	}

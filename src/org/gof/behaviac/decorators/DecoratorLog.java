@@ -24,7 +24,7 @@ public class DecoratorLog extends DecoratorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Log") {
+			if (p.name.equals("Log")) {
 				this.m_message = p.value;
 			}
 		}

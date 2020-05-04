@@ -18,12 +18,12 @@ public class Effector extends AttachAction {
 				for (int i = 0; i < properties.size(); ++i) {
 					property_t p = properties.get(i);
 
-					if (p.name == "Phase") {
-						if (p.value == "Success") {
+					if (p.name.equals("Phase")) {
+						if (p.value.equals("Success")) {
 							this.m_phase = EPhase.E_SUCCESS;
-						} else if (p.value == "Failure") {
+						} else if (p.value.equals("Failure")) {
 							this.m_phase = EPhase.E_FAILURE;
-						} else if (p.value == "Both") {
+						} else if (p.value.equals("Both")) {
 							this.m_phase = EPhase.E_BOTH;
 						} else {
 							Debug.Check(false);

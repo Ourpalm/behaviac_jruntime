@@ -153,21 +153,21 @@ public abstract class BehaviorNode {
 		for (var c : node.elements()) {
 			if (!load_property_pars(properties, c, version, agentType)) {
 				if (bNode) {
-					if (c.getName() == "attachment") {
+					if (c.getName().equals("attachment")) {
 						bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
-					} else if (c.getName() == "custom") {
+					} else if (c.getName().equals("custom")) {
 						Debug.Check(c.elements().size() == 1);
 						var customNode = c.elements().get(0);
 						BehaviorNode pChildNode = BehaviorNode.load(agentType, customNode, version);
 						this.m_customCondition = pChildNode;
-					} else if (c.getName() == "node") {
+					} else if (c.getName().equals("node")) {
 						BehaviorNode pChildNode = BehaviorNode.load(agentType, c, version);
 						bHasEvents |= pChildNode.m_bHasEvents;
 
 						this.addChild(pChildNode);
 					}
 				} else {
-					if (c.getName() == "attachment") {
+					if (c.getName().equals("attachment")) {
 						bHasEvents = this.load_attachment(version, agentType, bHasEvents, c);
 					}
 				}
@@ -209,11 +209,11 @@ public abstract class BehaviorNode {
 				var bIsTransition = false;
 				var flagStr = c.attribute("flag").getValue();
 
-				if (flagStr == "precondition") {
+				if (flagStr.equals("precondition")) {
 					bIsPrecondition = true;
-				} else if (flagStr == "effector") {
+				} else if (flagStr.equals("effector")) {
 					bIsEffector = true;
-				} else if (flagStr == "transition") {
+				} else if (flagStr.equals("transition")) {
 					bIsTransition = true;
 				}
 
@@ -234,7 +234,7 @@ public abstract class BehaviorNode {
 
 	private boolean load_property_pars(List<property_t> properties, Element c, int version, String agentType) {
 		try {
-			if (c.getName() == "property") {
+			if (c.getName().equals("property")) {
 				Debug.Check(c.attributeCount() == 1);
 
 				for (var prop : c.attributes()) {
@@ -244,10 +244,10 @@ public abstract class BehaviorNode {
 				}
 
 				return true;
-			} else if (c.getName() == "pars") {
+			} else if (c.getName().equals("pars")) {
 				if (c.elements() != null) {
 					for (var parNode : c.elements()) {
-						if (parNode.getName() == "par") {
+						if (parNode.getName().equals("par")) {
 							this.load_local(version, agentType, parNode);
 						}
 					}
@@ -263,7 +263,7 @@ public abstract class BehaviorNode {
 	}
 
 	protected static BehaviorNode load(String agentType, Element node, int version) {
-		Debug.Check(node.getName() == "node");
+		Debug.Check(node.getName().equals("node"));
 		var pClassName = node.attribute("class").getValue();
 		BehaviorNode pNode = BehaviorNode.Create(pClassName);
 		Debug.Check(pNode != null, "unsupported class " + pClassName);

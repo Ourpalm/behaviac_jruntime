@@ -25,7 +25,7 @@ public class WaitFramesState extends State {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Frames") {
+			if (p.name.equals("Frames")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {

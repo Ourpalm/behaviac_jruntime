@@ -82,8 +82,12 @@
     <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
       <Member Name="xxx1" DisplayName="xxx1" Desc="xxx1" Class="testbehaviac::x1::MyAgent2" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
       <Member Name="haha_z2" DisplayName="haha_z2" Desc="haha_z2" Class="testbehaviac::x1::MyAgent2" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="true" Public="true" Readonly="false" />
+      <Member Name="testHaha" DisplayName="testHaha" Desc="testHaha" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::Haha*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_Haha" defaultvalue="null" Static="false" Public="true" Readonly="false" />
       <Method Name="zzz2" DisplayName="zzz2" Desc="zzz2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
         <Param Name="x1" Type="int" TypeFullName="System.Int32" DisplayName="x1" Desc="x1" />
+      </Method>
+      <Method Name="methodHaha" DisplayName="methodHaha" Desc="methodHaha" Class="testbehaviac::x1::MyAgent2" ReturnType="org::gof::worldsrv::Haha" ReturnTypeFullName="XMLPluginBehaviac.org_gof_worldsrv_Haha" Static="false" Public="true" istask="false">
+        <Param Name="t1" Type="org::gof::worldsrv::StructTest*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" DisplayName="t1" Desc="t1" />
       </Method>
     </agent>
   </agents>

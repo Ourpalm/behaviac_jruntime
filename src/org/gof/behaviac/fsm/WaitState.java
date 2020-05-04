@@ -22,7 +22,7 @@ public class WaitState extends State {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Time") {
+			if (p.name.equals("Time")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {

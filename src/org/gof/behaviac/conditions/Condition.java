@@ -27,7 +27,7 @@ public class Condition extends ConditionBase {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Opl") {
+			if (p.name.equals("Opl")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {
@@ -35,9 +35,9 @@ public class Condition extends ConditionBase {
 				} else {
 					this.m_opl = AgentMeta.ParseMethod(p.value);
 				}
-			} else if (p.name == "Operator") {
+			} else if (p.name.equals("Operator")) {
 				this.m_operator = OperationUtils.ParseOperatorType(p.value);
-			} else if (p.name == "Opr") {
+			} else if (p.name.equals("Opr")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {

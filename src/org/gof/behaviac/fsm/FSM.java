@@ -31,7 +31,7 @@ public class FSM extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "initialid") {
+			if (p.name .equals("initialid")) {
 				this.m_initialid = Integer.parseInt(p.value);
 			}
 		}

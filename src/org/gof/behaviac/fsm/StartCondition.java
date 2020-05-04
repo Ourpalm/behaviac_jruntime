@@ -57,7 +57,7 @@ public class StartCondition extends Precondition {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "TargetFSMNodeId") {
+			if (p.name.equals("TargetFSMNodeId")) {
 				this.m_targetId = Integer.parseInt(p.value);
 			} else {
 				// Debug.Check(0, "unrecognised property %s", p.name);

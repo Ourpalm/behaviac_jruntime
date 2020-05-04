@@ -403,6 +403,7 @@ public abstract class Agent implements Closeable {
 			return;
 		}
 
+		
 		Debug.Check(false, String.format(
 				"The variable \"%s\" can not be found! please check the variable name or be after loading type info(btload)!",
 				variableName));

@@ -170,7 +170,7 @@ public class StringUtils {
 
 				// bool bStatic = false;
 
-				if (typeStr == "static") {
+				if (typeStr.equals("static")) {
 					// skip ' '
 					Debug.Check(str.charAt(p) == ' ');
 					p++;

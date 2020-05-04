@@ -25,7 +25,7 @@ public class DecoratorWeight extends DecoratorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Weight") {
+			if (p.name .equals("Weight")) {
 				this.m_weight = AgentMeta.ParseProperty(p.value);
 			}
 		}

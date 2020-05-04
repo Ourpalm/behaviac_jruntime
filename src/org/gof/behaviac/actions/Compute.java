@@ -30,13 +30,14 @@ public class Compute extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Opl") {
+			if (p.name.equals("Opl")) {
 				this.m_opl = AgentMeta.ParseProperty(p.value);
-			} else if (p.name == "Operator") {
-				Debug.Check(p.value == "Add" || p.value == "Sub" || p.value == "Mul" || p.value == "Div");
+			} else if (p.name.equals("Operator")) {
+				Debug.Check(p.value.equals("Add") || p.value.equals("Sub") || p.value.equals("Mul")
+						|| p.value.equals("Div"));
 
 				this.m_operator = OperationUtils.ParseOperatorType(p.value);
-			} else if (p.name == "Opr1") {
+			} else if (p.name.equals("Opr1")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {
@@ -44,7 +45,7 @@ public class Compute extends BehaviorNode {
 				} else {
 					this.m_opr1 = AgentMeta.ParseMethod(p.value);
 				}
-			} else if (p.name == "Opr2") {
+			} else if (p.name.equals("Opr2")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {

@@ -23,8 +23,8 @@ public class SelectorLoop extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "ResetChildren") {
-				this.m_bResetChildren = (p.value == "true");
+			if (p.name.equals("ResetChildren")) {
+				this.m_bResetChildren = (p.value.equals("true"));
 				break;
 			}
 		}

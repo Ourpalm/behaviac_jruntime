@@ -147,7 +147,7 @@ public class AgentMeta {
 
 			String typeName = "";
 
-			if (tokens.get(0) == "const") {
+			if (tokens.get(0).equals("const")) {
 				// const Int32 0
 				Debug.Check(tokens.size() == 3);
 
@@ -167,7 +167,7 @@ public class AgentMeta {
 				String propStr = "";
 				String indexPropStr = "";
 
-				if (tokens.get(0) == "static") {
+				if (tokens.get(0).equals("static")) {
 					// static float Self.AgentNodeTest::s_float_type_0
 					// static float Self.AgentNodeTest::s_float_type_0[int
 					// Self.AgentNodeTest::par_int_type_2]
@@ -206,7 +206,7 @@ public class AgentMeta {
 				typeName = typeName.replace("::", ".");
 				propStr = propStr.replace("::", ".");
 
-				String[] props = propStr.split(".");
+				String[] props = propStr.split("\\.");
 				Debug.Check(props.length >= 3);
 
 				String instantceName = props[0];
@@ -499,7 +499,7 @@ public class AgentMeta {
 			checkSignature(signatureStr);
 
 			for (var bbNode : rootNode.elements()) {
-				if (bbNode.getName() == "agent" && bbNode.elements() != null) {
+				if (bbNode.getName().equals("agent") && bbNode.elements() != null) {
 					String agentType = bbNode.attribute("type").getValue().replace("::", ".");
 					var classId = Utils.MakeVariableId(agentType);
 					AgentMeta meta = AgentMeta.GetMeta(classId);
@@ -515,18 +515,18 @@ public class AgentMeta {
 					}
 
 					for (var propertiesNode : bbNode.elements()) {
-						if (propertiesNode.getName() == "properties" && propertiesNode.elements() != null) {
+						if (propertiesNode.getName().equals("properties") && propertiesNode.elements() != null) {
 							for (var propertyNode : propertiesNode.elements()) {
-								if (propertyNode.getName() == "property") {
+								if (propertyNode.getName().equals("property")) {
 									String memberStr = propertyNode.attribute("member").getValue();
-									boolean bIsMember = (!Utils.IsNullOrEmpty(memberStr) && memberStr == "true");
+									boolean bIsMember = (!Utils.IsNullOrEmpty(memberStr) && memberStr.equals("true"));
 
 									if (!bIsMember) {
 										String propName = propertyNode.attribute("name").getValue();
 										String propType = propertyNode.attribute("type").getValue().replace("::", ".");
 										String valueStr = propertyNode.attributeValue("defaultvalue", "");
 										String isStatic = propertyNode.attribute("static").getValue();
-										boolean bIsStatic = (!Utils.IsNullOrEmpty(isStatic) && isStatic == "true");
+										boolean bIsStatic = (!Utils.IsNullOrEmpty(isStatic) && isStatic.equals("true"));
 
 										registerCustomizedProperty(meta, propName, propType, valueStr, bIsStatic);
 									}
@@ -574,11 +574,11 @@ public class AgentMeta {
 	}
 
 	public IProperty GetProperty(long propId) {
-		var r = _customizedStaticProperties.get(propId);
+		IProperty r = _customizedStaticProperties.get(propId);
 		if (r == null)
 			r = _customizedProperties.get(propId);
 		if (r == null)
-			_memberProperties.get(propId);
+			r = _memberProperties.get(propId);
 
 		return r;
 	}
@@ -597,6 +597,8 @@ public class AgentMeta {
 
 	public Map<Long, IInstantiatedVariable> InstantiateCustomizedProperties() {
 		Map<Long, IInstantiatedVariable> vars = new HashMap<Long, IInstantiatedVariable>();
+		if (_customizedStaticVars == null)
+			_customizedStaticVars = new HashMap<Long, IInstantiatedVariable>();
 
 		// instance customzied properties
 		for (var it : _customizedProperties.entrySet()) {

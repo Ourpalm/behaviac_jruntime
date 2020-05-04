@@ -30,23 +30,23 @@ public class Event extends ConditionBase {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Task") {
+			if (p.name.equals("Task")) {
 				var r = AgentMeta.ParseMethod(p.value, m_eventName);
 				this.m_event = r.value1;
 				this.m_eventName = r.value2;
-			} else if (p.name == "ReferenceFilename") {
+			} else if (p.name.equals("ReferenceFilename")) {
 				this.m_referencedBehaviorPath = p.value;
 
 				if (Config.PreloadBehaviors) {
 					BehaviorTree behaviorTree = Workspace.Instance.LoadBehaviorTree(this.m_referencedBehaviorPath);
 					Debug.Check(behaviorTree != null);
 				}
-			} else if (p.name == "TriggeredOnce") {
-				this.m_bTriggeredOnce = (p.value == "true");
-			} else if (p.name == "TriggerMode") {
-				if (p.value == "Transfer") {
+			} else if (p.name.equals("TriggeredOnce")) {
+				this.m_bTriggeredOnce = (p.value.equals("true"));
+			} else if (p.name.equals("TriggerMode")) {
+				if (p.value.equals("Transfer")) {
 					this.m_triggerMode = TriggerMode.TM_Transfer;
-				} else if (p.value == "Return") {
+				} else if (p.value.equals("Return")) {
 					this.m_triggerMode = TriggerMode.TM_Return;
 				} else {
 					Debug.Check(false, String.format("unrecognised trigger mode %s", p.value));

@@ -23,7 +23,7 @@ public class DecoratorCount extends DecoratorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Count") {
+			if (p.name .equals( "Count")){
 				this.m_count = AgentMeta.ParseProperty(p.value);
 			}
 		}

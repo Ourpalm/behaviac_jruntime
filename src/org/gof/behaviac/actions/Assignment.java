@@ -27,11 +27,11 @@ public class Assignment extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "CastRight") {
-				this.m_bCast = (p.value == "true");
-			} else if (p.name == "Opl") {
+			if (p.name.equals("CastRight")) {
+				this.m_bCast = (p.value .equals( "true"));
+			} else if (p.name.equals("Opl")) {
 				this.m_opl = AgentMeta.ParseProperty(p.value);
-			} else if (p.name == "Opr") {
+			} else if (p.name.equals("Opr")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {

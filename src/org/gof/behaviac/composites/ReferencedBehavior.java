@@ -39,7 +39,7 @@ public class ReferencedBehavior extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "ReferenceBehavior") {
+			if (p.name .equals( "ReferenceBehavior")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {
@@ -66,7 +66,7 @@ public class ReferencedBehavior extends BehaviorNode {
 
 					this.m_bHasEvents |= bHasEvents;
 				}
-			} else if (p.name == "Task") {
+			} else if (p.name .equals( "Task")) {
 				this.m_taskMethod = AgentMeta.ParseMethod(p.value);
 			}
 		}

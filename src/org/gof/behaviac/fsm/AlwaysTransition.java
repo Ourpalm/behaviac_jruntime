@@ -40,14 +40,14 @@ public class AlwaysTransition extends Transition {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "TransitionPhase") {
-				if (p.value == "ETP_Exit") {
+			if (p.name.equals("TransitionPhase")) {
+				if (p.value.equals("ETP_Exit")) {
 					this.m_transitionPhase = ETransitionPhase.ETP_Exit;
-				} else if (p.value == "ETP_Success") {
+				} else if (p.value.equals("ETP_Success")) {
 					this.m_transitionPhase = ETransitionPhase.ETP_Success;
-				} else if (p.value == "ETP_Failure") {
+				} else if (p.value.equals("ETP_Failure")) {
 					this.m_transitionPhase = ETransitionPhase.ETP_Failure;
-				} else if (p.value == "ETP_Always") {
+				} else if (p.value.equals("ETP_Always")) {
 					this.m_transitionPhase = ETransitionPhase.ETP_Always;
 				} else {
 					Debug.Check(false);

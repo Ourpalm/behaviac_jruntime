@@ -10,4 +10,155 @@ using System.Reflection;
 
 namespace behaviac
 {
+	// Source file: b1
+
+	[behaviac.GeneratedTypeMetaInfo()]
+	class DecoratorLoop_bt_b1_node4 : behaviac.DecoratorLoop
+	{
+		public DecoratorLoop_bt_b1_node4()
+		{
+			m_bDecorateWhenChildEnds = true;
+			m_bDoneWithinFrame = false;
+		}
+		protected override int GetCount(Agent pAgent)
+		{
+			return 5;
+		}
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
+	class Assignment_bt_b1_node5 : behaviac.Assignment
+	{
+		public Assignment_bt_b1_node5()
+		{
+		}
+		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
+		{
+			EBTStatus result = EBTStatus.BT_SUCCESS;
+			string opr = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+			pAgent.SetVariable<string>("v16", 2031471u, opr);
+			return result;
+		}
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
+	class Action_bt_b1_node1 : behaviac.Action
+	{
+		public Action_bt_b1_node1()
+		{
+			this.m_resultOption = EBTStatus.BT_SUCCESS;
+		}
+		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
+		{
+			behaviac.Agent.LogMessage((string)AgentMetaVisitor.GetProperty(pAgent, "v16"));
+			return EBTStatus.BT_SUCCESS;
+		}
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
+	class Action_bt_b1_node2 : behaviac.Action
+	{
+		public Action_bt_b1_node2()
+		{
+			this.m_resultOption = EBTStatus.BT_SUCCESS;
+			method_p0 = null;
+			method_p0.sv1 = 12;
+			method_p0.sv2 = 333;
+		}
+		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
+		{
+			((testbehaviac.x1.MyAgent2)pAgent).methodHaha(method_p0);
+			return EBTStatus.BT_SUCCESS;
+		}
+		org.gof.worldsrv.StructTest method_p0;
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
+	class Wait_bt_b1_node3 : behaviac.Wait
+	{
+		public Wait_bt_b1_node3()
+		{
+		}
+		protected override double GetTime(Agent pAgent)
+		{
+			return 1000f;
+		}
+	}
+
+	public static class bt_b1
+	{
+		public static bool build_behavior_tree(BehaviorTree bt)
+		{
+			bt.SetClassNameString("BehaviorTree");
+			bt.SetId(-1);
+			bt.SetName("b1");
+			bt.IsFSM = false;
+#if !BEHAVIAC_RELEASE
+			bt.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+			// children
+			{
+				DecoratorLoop_bt_b1_node4 node4 = new DecoratorLoop_bt_b1_node4();
+				node4.SetClassNameString("DecoratorLoop");
+				node4.SetId(4);
+#if !BEHAVIAC_RELEASE
+				node4.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+				bt.AddChild(node4);
+				{
+					Sequence node0 = new Sequence();
+					node0.SetClassNameString("Sequence");
+					node0.SetId(0);
+#if !BEHAVIAC_RELEASE
+					node0.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+					node4.AddChild(node0);
+					{
+						Assignment_bt_b1_node5 node5 = new Assignment_bt_b1_node5();
+						node5.SetClassNameString("Assignment");
+						node5.SetId(5);
+#if !BEHAVIAC_RELEASE
+						node5.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+						node0.AddChild(node5);
+						node0.SetHasEvents(node0.HasEvents() | node5.HasEvents());
+					}
+					{
+						Action_bt_b1_node1 node1 = new Action_bt_b1_node1();
+						node1.SetClassNameString("Action");
+						node1.SetId(1);
+#if !BEHAVIAC_RELEASE
+						node1.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+						node0.AddChild(node1);
+						node0.SetHasEvents(node0.HasEvents() | node1.HasEvents());
+					}
+					{
+						Action_bt_b1_node2 node2 = new Action_bt_b1_node2();
+						node2.SetClassNameString("Action");
+						node2.SetId(2);
+#if !BEHAVIAC_RELEASE
+						node2.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+						node0.AddChild(node2);
+						node0.SetHasEvents(node0.HasEvents() | node2.HasEvents());
+					}
+					{
+						Wait_bt_b1_node3 node3 = new Wait_bt_b1_node3();
+						node3.SetClassNameString("Wait");
+						node3.SetId(3);
+#if !BEHAVIAC_RELEASE
+						node3.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+						node0.AddChild(node3);
+						node0.SetHasEvents(node0.HasEvents() | node3.HasEvents());
+					}
+					node4.SetHasEvents(node4.HasEvents() | node0.HasEvents());
+				}
+				bt.SetHasEvents(bt.HasEvents() | node4.HasEvents());
+			}
+			return true;
+		}
+	}
+
 }

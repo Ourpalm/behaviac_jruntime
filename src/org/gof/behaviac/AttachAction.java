@@ -21,7 +21,7 @@ public class AttachAction extends BehaviorNode {
 			for (int i = 0; i < properties.size(); ++i) {
 				property_t p = properties.get(i);
 
-				if (p.name == "Opl") {
+				if (p.name.equals("Opl")) {
 					if (StringUtils.IsValidString(p.value)) {
 						int pParenthesis = p.value.indexOf('(');
 
@@ -31,7 +31,7 @@ public class AttachAction extends BehaviorNode {
 							this.m_opl = AgentMeta.ParseMethod(p.value);
 						}
 					}
-				} else if (p.name == "Opr1") {
+				} else if (p.name.equals("Opr1")) {
 					if (StringUtils.IsValidString(p.value)) {
 						int pParenthesis = p.value.indexOf('(');
 
@@ -41,9 +41,9 @@ public class AttachAction extends BehaviorNode {
 							this.m_opr1 = AgentMeta.ParseMethod(p.value);
 						}
 					}
-				} else if (p.name == "Operator") {					
+				} else if (p.name.equals("Operator")) {
 					this.m_operator = OperationUtils.ParseOperatorType(p.value);
-				} else if (p.name == "Opr2") {
+				} else if (p.name.equals("Opr2")) {
 					if (StringUtils.IsValidString(p.value)) {
 						int pParenthesis = p.value.indexOf('(');
 

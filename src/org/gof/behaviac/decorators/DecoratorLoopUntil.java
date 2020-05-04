@@ -23,10 +23,10 @@ public class DecoratorLoopUntil extends DecoratorCount {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name == "Until") {
-				if (p.value == "true") {
+			if (p.name .equals("Until")) {
+				if (p.value .equals("true")) {
 					this.m_until = true;
-				} else if (p.value == "false") {
+				} else if (p.value .equals("false")) {
 					this.m_until = false;
 				}
 			}
