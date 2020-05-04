@@ -25,14 +25,20 @@ public class TestLoader {
 			arg.add(Short.valueOf((short) 101));
 			arg.add(Short.valueOf((short) 102));
 
+			var count = 1;
 			var agent = new MyAgent2();
 			agent.btsetcurrent("b1");
 			while (agent.btexec() == EBTStatus.BT_RUNNING) {
 				System.out.println("running " + System.currentTimeMillis());
 				Thread.sleep(300);
+				++count;
 
-				//agent.FireEvent("task1", new Object[] { arg }, new ClassInfo[] { new ClassInfo(true, Short.class) });
-				agent.FireEvent("task2", new Object[] { Integer.valueOf(13131) }, new ClassInfo[] { new ClassInfo(Integer.class) });
+				if ((count % 4) == 0) {
+					// agent.FireEvent("task1", new Object[] { arg }, new ClassInfo[] { new
+					// ClassInfo(true, Short.class) });
+					agent.FireEvent("task2", new Object[] { Integer.valueOf(13131) },
+							new ClassInfo[] { new ClassInfo(Integer.class) });
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
