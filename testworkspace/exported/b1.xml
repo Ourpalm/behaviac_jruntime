@@ -6,11 +6,17 @@
     <property Count="const int 5" />
     <property DecorateWhenChildEnds="true" />
     <property DoneWithinFrame="false" />
+    <attachment class="Event" id="8" flag="event">
+      <property ReferenceFilename="b2" />
+      <property Task="Self.testbehaviac::x1::MyAgent2::task2(0)" />
+      <property TriggeredOnce="false" />
+      <property TriggerMode="Return" />
+    </attachment>
     <node class="Sequence" id="0">
       <node class="Assignment" id="6">
         <property CastRight="false" />
         <property Opl="org::gof::worldsrv::StructTest Self.testbehaviac::x1::MyAgent2::vstruct" />
-        <property Opr="const org::gof::worldsrv::StructTest {sv1=234;sv2=24234.4453125;}" />
+        <property Opr="const org::gof::worldsrv::StructTest {sv1=234;sv2=24234.4453125;sv4=121;}" />
       </node>
       <node class="Assignment" id="5">
         <property CastRight="false" />
@@ -22,11 +28,11 @@
         <property ResultOption="BT_SUCCESS" />
       </node>
       <node class="Action" id="7">
-        <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha2(2:{sv1=1;sv2=2;}|{sv1=3;sv2=4;})" />
+        <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha2(1:{sv1=2147483647;sv2=4234;xx3=111;})" />
         <property ResultOption="BT_SUCCESS" />
       </node>
       <node class="Action" id="2">
-        <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha({sv1=345;sv2=345345;})" />
+        <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha({sv1=345;sv2=345345;sv4=4545;})" />
         <property ResultOption="BT_SUCCESS" />
       </node>
       <node class="Wait" id="3">

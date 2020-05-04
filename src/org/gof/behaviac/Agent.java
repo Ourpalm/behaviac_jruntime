@@ -883,7 +883,7 @@ public abstract class Agent implements Closeable {
 		Map<Long, IInstantiatedVariable> eventParams = new HashMap<Long, IInstantiatedVariable>();
 
 		for (int i = 0; i < parameters.length; ++i) {
-			var paramName = String.format("{0}{1}", Task.LOCAL_TASK_PARAM_PRE, i);
+			var paramName = String.format("%s%d", Task.LOCAL_TASK_PARAM_PRE, i);
 			var paramId = Utils.MakeVariableId(paramName);
 			eventParams.put(paramId, new CVariable(paramName, parameters[i], classes[i]));
 		}

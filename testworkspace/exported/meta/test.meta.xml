@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
-<agents version="1" signature="655711021">
-  <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="833939648">
+<agents version="1" signature="721126456">
+  <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="1404767707">
     <properties>
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
       <property name="s2" type="long" member="false" static="true" defaultvalue="0" />
@@ -20,12 +20,12 @@
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
     </properties>
   </agent>
-  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="1805492632">
+  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="121652052">
     <properties>
       <property name="haha_z2" type="vector&lt;int&gt;" member="false" static="true" defaultvalue="0:" />
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
       <property name="s2" type="long" member="false" static="true" defaultvalue="0" />
-      <property name="testHaha" type="org::gof::worldsrv::Haha*" member="false" static="false" defaultvalue="{sv1=0;sv2=0;}" />
+      <property name="testHaha" type="org::gof::worldsrv::Haha*" member="false" static="false" defaultvalue="{sv1=0;sv2=0;xx3=0;}" />
       <property name="v1" type="behaviac::EBTStatus" member="false" static="false" defaultvalue="BT_INVALID" />
       <property name="v11" type="vector&lt;behaviac::EBTStatus&gt;" member="false" static="false" defaultvalue="0:" />
       <property name="v12" type="vector&lt;bool&gt;" member="false" static="false" defaultvalue="0:" />
@@ -39,7 +39,7 @@
       <property name="v5" type="float" member="false" static="false" defaultvalue="0" />
       <property name="v6" type="double" member="false" static="false" defaultvalue="0" />
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
-      <property name="vstruct" type="org::gof::worldsrv::StructTest*" member="false" static="false" defaultvalue="{sv1=0;sv2=0;}" />
+      <property name="vstruct" type="org::gof::worldsrv::StructTest*" member="false" static="false" defaultvalue="{sv1=0;sv2=0;sv4=0;}" />
       <property name="xxx1" type="uint" member="false" static="false" defaultvalue="0" />
     </properties>
   </agent>

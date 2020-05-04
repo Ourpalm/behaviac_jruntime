@@ -97,6 +97,15 @@ public class MyAgent2 extends org.gof.worldsrv.MyAgent
 	public static IMethod CreateMemberMethod_METHODHAHA2() {
 		return new CAgentMethodVoid1<ArrayList<org.gof.worldsrv.Haha>>((Agent _agent,ArrayList<org.gof.worldsrv.Haha> arr)->{ ((testbehaviac.x1.MyAgent2)_agent).methodHaha2(arr);}, new ClassInfo[]{ new ClassInfo(true,org.gof.worldsrv.Haha.class) });
 	}
+	public void task2(Integer task2var)
+	{
+///<<< BEGIN WRITING YOUR CODE task2
+///<<< END WRITING YOUR CODE
+	}
+
+	public static IMethod CreateMemberMethod_TASK2() {
+		return new CAgentMethodVoid1<Integer>((Agent _agent,Integer task2var)->{ /*NamedEvent*/ }, new ClassInfo[]{ new ClassInfo(Integer.class) });
+	}
 	public void zzz2(Integer x1)
 	{
 ///<<< BEGIN WRITING YOUR CODE zzz2

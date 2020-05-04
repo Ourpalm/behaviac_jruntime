@@ -9,12 +9,12 @@
     <struct Type="org::gof::worldsrv::StructTest" Namespace="org::gof::worldsrv" Base="" IsCustomized="true" DisplayName="StructTest" Desc="">
       <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::StructTest" Public="true" />
       <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::StructTest" Public="true" />
-      <Member Name="sv3" DisplayName="sv3" Desc="sv3" Type="bool" TypeFullName="System.Boolean" Class="org::gof::worldsrv::StructTest" Public="true" Readonly="true" />
+      <Member Name="sv4" DisplayName="sv4" Desc="sv4" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::StructTest" Public="true" />
     </struct>
     <struct Type="org::gof::worldsrv::Haha" Namespace="org::gof::worldsrv" Base="" IsCustomized="true" DisplayName="Haha" Desc="">
       <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::Haha" Public="true" />
       <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::Haha" Public="true" />
-      <Member Name="sv3" DisplayName="sv3" Desc="sv3" Type="long" TypeFullName="System.Int64" Class="org::gof::worldsrv::Haha" Public="true" Readonly="true" />
+      <Member Name="xx3" DisplayName="xx3" Desc="xx" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::Haha" Public="true" />
     </struct>
   </types>
   <agents>
@@ -67,9 +67,6 @@
         <Param Name="v12" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v12" Desc="v12" />
         <Param Name="v13" Type="double" TypeFullName="System.Double" DisplayName="v13" Desc="v13" />
       </Method>
-      <Method Name="task1" DisplayName="task1" Desc="task1" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="true">
-        <Param Name="v1" Type="vector&lt;short&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int16, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v1" Desc="v1" />
-      </Method>
       <Method Name="testM2" DisplayName="testM2" Desc="testM2" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
         <Param Name="z1" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="z1" Desc="z1" />
         <Param Name="z2" Type="uint" TypeFullName="System.UInt32" DisplayName="z2" Desc="z2" />
@@ -82,8 +79,8 @@
     <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
       <Member Name="xxx1" DisplayName="xxx1" Desc="xxx1" Class="testbehaviac::x1::MyAgent2" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
       <Member Name="haha_z2" DisplayName="haha_z2" Desc="haha_z2" Class="testbehaviac::x1::MyAgent2" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="true" Public="true" Readonly="false" />
-      <Member Name="testHaha" DisplayName="testHaha" Desc="testHaha" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::Haha*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_Haha" defaultvalue="{sv1=0;sv2=0;}" Static="false" Public="true" Readonly="false" />
-      <Member Name="vstruct" DisplayName="vstruct" Desc="vstruct" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::StructTest*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" defaultvalue="{sv1=0;sv2=0;}" Static="false" Public="false" Readonly="false" />
+      <Member Name="testHaha" DisplayName="testHaha" Desc="testHaha" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::Haha*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_Haha" defaultvalue="{sv1=0;sv2=0;xx3=0;}" Static="false" Public="true" Readonly="false" />
+      <Member Name="vstruct" DisplayName="vstruct" Desc="vstruct" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::StructTest*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" defaultvalue="{sv1=0;sv2=0;sv4=0;}" Static="false" Public="false" Readonly="false" />
       <Method Name="zzz2" DisplayName="zzz2" Desc="zzz2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
         <Param Name="x1" Type="int" TypeFullName="System.Int32" DisplayName="x1" Desc="x1" />
       </Method>
@@ -92,6 +89,9 @@
       </Method>
       <Method Name="methodHaha2" DisplayName="methodHaha2" Desc="methodHaha2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
         <Param Name="arr" Type="vector&lt;org::gof::worldsrv::Haha&gt;" TypeFullName="System.Collections.Generic.List`1[[XMLPluginBehaviac.org_gof_worldsrv_Haha, XMLPluginBehaviac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]" DisplayName="arr" Desc="arr" />
+      </Method>
+      <Method Name="task2" DisplayName="task2" Desc="task2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="true">
+        <Param Name="task2var" Type="int" TypeFullName="System.Int32" DisplayName="task2var" Desc="task2var" />
       </Method>
     </agent>
   </agents>

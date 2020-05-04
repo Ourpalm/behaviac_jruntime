@@ -288,15 +288,6 @@ public class MyAgent extends org.gof.behaviac.Agent
 	public static IMethod CreateStaticMethod_STATICMETHOD1() {
 		return new CAgentStaticMethodVoid2<Boolean, Double>((Boolean z1, Double z2)->{ org.gof.worldsrv.MyAgent.StaticMethod1(z1, z2);},new ClassInfo[]{ new ClassInfo(Boolean.class), new ClassInfo(Double.class) });
 	}
-	public void task1(ArrayList<Short> v1)
-	{
-///<<< BEGIN WRITING YOUR CODE task1
-///<<< END WRITING YOUR CODE
-	}
-
-	public static IMethod CreateMemberMethod_TASK1() {
-		return new CAgentMethodVoid1<ArrayList<Short>>((Agent _agent,ArrayList<Short> v1)->{ /*NamedEvent*/ }, new ClassInfo[]{ new ClassInfo(true,Short.class) });
-	}
 	public void testM2(ArrayList<Float> z1, Integer z2)
 	{
 ///<<< BEGIN WRITING YOUR CODE testM2

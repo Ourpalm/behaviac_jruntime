@@ -91,7 +91,13 @@ public class AgentMeta {
 	}
 
 	public static ICustomizedProperty CreateProperty(String typeName, long varId, String name, String valueStr) {
-		// TODO Auto-generated method stub
+		typeName = GetTypeName(typeName);
+		if (_Creators.containsKey(typeName)) {
+			TypeCreator creator = _Creators.get(typeName);
+			return creator.CreateProperty(varId, name, valueStr);
+		}
+
+		Debug.Check(false);
 		return null;
 	}
 
@@ -100,6 +106,13 @@ public class AgentMeta {
 	}
 
 	public static ICustomizedProperty CreateArrayItemProperty(String typeName, long varId, String name) {
+		typeName = GetTypeName(typeName);
+		if (_Creators.containsKey(typeName)) {
+			TypeCreator creator = _Creators.get(typeName);
+			return creator.CreateArrayItemProperty(varId, name);
+		}
+
+		Debug.Check(false);
 		return null;
 	}
 
