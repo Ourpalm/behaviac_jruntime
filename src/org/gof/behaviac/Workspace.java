@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.gof.behaviac.utils.StringUtils;
 import org.gof.behaviac.utils.Utils;
@@ -21,8 +23,8 @@ public class Workspace implements Closeable {
 	private EFileFormat m_fileFormat = EFileFormat.EFF_xml;
 	private String m_filePath = null;
 	private String m_metaFile = null;
+	private ReadWriteLock m_behaviortreesLock = new ReentrantReadWriteLock();
 	private Map<String, BehaviorTree> m_behaviortrees = new HashMap<>();
-	private Map<String, java.lang.reflect.Method> m_btCreators;
 	private Map<String, Class<?>> m_behaviorNodeTypes = new HashMap<>();
 	private boolean m_bRegistered = false;
 
@@ -39,18 +41,12 @@ public class Workspace implements Closeable {
 	}
 
 	private Map<String, BehaviorTree> GetBehaviorTrees() {
-		if (m_behaviortrees == null) {
-			m_behaviortrees = new HashMap<String, BehaviorTree>();
+		m_behaviortreesLock.readLock().lock();
+		try {
+			return new HashMap<>(m_behaviortrees);
+		} finally {
+			m_behaviortreesLock.readLock().unlock();
 		}
-		return m_behaviortrees;
-	}
-
-	private Map<String, java.lang.reflect.Method> GetBTCreators() {
-		if (m_btCreators == null) {
-			m_btCreators = new HashMap<>();
-		}
-
-		return m_btCreators;
 	}
 
 	public EFileFormat GetFileFormat() {
@@ -87,7 +83,7 @@ public class Workspace implements Closeable {
 		return m_bInited;
 	}
 
-	public boolean TryInit() {
+	public synchronized boolean TryInit() {
 		if (this.m_bInited) {
 			return true;
 		}
@@ -153,12 +149,22 @@ public class Workspace implements Closeable {
 		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
-		m_behaviortrees.remove(relativePath);
+		m_behaviortreesLock.writeLock().lock();
+		try {
+			m_behaviortrees.remove(relativePath);
+		} finally {
+			m_behaviortreesLock.writeLock().unlock();
+		}
+
 	}
 
 	public void UnLoadAll() {
-		m_behaviortrees.clear();
-		m_btCreators.clear();
+		m_behaviortreesLock.writeLock().lock();
+		try {
+			m_behaviortrees.clear();
+		} finally {
+			m_behaviortreesLock.writeLock().unlock();
+		}
 	}
 
 	public byte[] ReadFileToBuffer(String file, String ext) {
@@ -180,18 +186,22 @@ public class Workspace implements Closeable {
 		return filename;
 	}
 
-	public boolean Load(String relativePath, boolean bForce) {
+	public BehaviorTree Load(String relativePath, boolean bForce) {
 		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
-		TryInit();
+		if (!m_bInited) {
+			TryInit();
+		}
 
 		BehaviorTree pBT = null;
-
-		if (m_behaviortrees.containsKey(relativePath)) {
-			if (!bForce)
-				return true;
+		m_behaviortreesLock.readLock().lock();
+		try {
 			pBT = m_behaviortrees.get(relativePath);
+			if (pBT != null && !bForce)
+				return pBT;
+		} finally {
+			m_behaviortreesLock.readLock().unlock();
 		}
 
 		var fullPath = Utils.Combine(this.GetFilePath(), relativePath);
@@ -204,68 +214,73 @@ public class Workspace implements Closeable {
 		var bCleared = false;
 		var bNewly = false;
 
-		if (pBT == null) {
-			bNewly = true;
-			pBT = new BehaviorTree();
+		m_behaviortreesLock.writeLock().lock();
+		try {
+			if (pBT == null) {
+				bNewly = true;
+				pBT = new BehaviorTree();
+				// in case of circular referencebehavior
+				this.m_behaviortrees.put(relativePath, pBT);
+			}
 
-			// in case of circular referencebehavior
-			this.m_behaviortrees.put(relativePath, pBT);
-		}
+			Debug.Check(pBT != null);
 
-		Debug.Check(pBT != null);
+			if (f == EFileFormat.EFF_xml) {
+				byte[] pBuffer = ReadFileToBuffer(fullPath, ext);
 
-		if (f == EFileFormat.EFF_xml) {
-			byte[] pBuffer = ReadFileToBuffer(fullPath, ext);
-
-			if (pBuffer != null) {
-				// if forced to reload
-				if (!bNewly) {
-					bCleared = true;
-					pBT.Clear();
+				if (pBuffer != null) {
+					// if forced to reload
+					if (!bNewly) {
+						bCleared = true;
+						pBT.Clear();
+					}
+					bLoadResult = pBT.load_xml(pBuffer);
+					PopFileFromBuffer(fullPath, ext, pBuffer);
+				} else {
+					Debug.LogError(String.format("'%s' doesn't exist!, Please set Workspace.FilePath", fullPath));
+					Debug.Check(false);
 				}
-				bLoadResult = pBT.load_xml(pBuffer);
-				PopFileFromBuffer(fullPath, ext, pBuffer);
 			} else {
-				Debug.LogError(String.format("'%s' doesn't exist!, Please set Workspace.FilePath", fullPath));
 				Debug.Check(false);
 			}
-		} else {
-			Debug.Check(false);
-		}
 
-		if (bLoadResult) {
-			Debug.Check(pBT.GetName().equals(relativePath));
+			if (bLoadResult) {
+				Debug.Check(pBT.GetName().equals(relativePath));
 
-			if (!bNewly) {
-				Debug.Check(m_behaviortrees.get(pBT.GetName()) == pBT);
+				if (!bNewly) {
+					Debug.Check(m_behaviortrees.get(pBT.GetName()) == pBT);
+				}
+			} else {
+				if (bNewly) {
+					var removed = m_behaviortrees.remove(relativePath);
+					Debug.Check(removed != null);
+				} else if (bCleared) {
+					// it has been cleared but failed to load, to remove it
+					m_behaviortrees.remove(relativePath);
+				}
+
+				Debug.LogError(String.format("%s is not loaded!", fullPath));
 			}
-		} else {
-			if (bNewly) {
-				var removed = m_behaviortrees.remove(relativePath);
-				Debug.Check(removed != null);
-			} else if (bCleared) {
-				// it has been cleared but failed to load, to remove it
-				m_behaviortrees.remove(relativePath);
-			}
-
-			Debug.LogError(String.format("%s is not loaded!", fullPath));
+			return pBT;
+		} finally {
+			m_behaviortreesLock.writeLock().unlock();
 		}
-
-		return bLoadResult;
 	}
 
-	public boolean Load(String relativePath) {
+	public BehaviorTree Load(String relativePath) {
 		return this.Load(relativePath, false);
 	}
 
 	public BehaviorTree LoadBehaviorTree(String relativePath) {
-		var r = m_behaviortrees.get(relativePath);
-		if (r != null)
-			return r;
-		if (this.Load(relativePath, true)) {
-			return m_behaviortrees.get(relativePath);
+		m_behaviortreesLock.readLock().lock();
+		try {
+			var r = m_behaviortrees.get(relativePath);
+			if (r != null)
+				return r;
+		} finally {
+			m_behaviortreesLock.readLock().unlock();
 		}
-		return null;
+		return this.Load(relativePath, false);
 	}
 
 	public boolean IsValidPath(String relativePath) {
@@ -286,14 +301,7 @@ public class Workspace implements Closeable {
 		Debug.Check(Utils.IsNullOrEmpty(StringUtils.FindExtension(relativePath)), "no extention to specify");
 		Debug.Check(this.IsValidPath(relativePath));
 
-		BehaviorTree bt = m_behaviortrees.get(relativePath);
-
-		if (bt == null) {
-			if (this.Load(relativePath)) {
-				bt = m_behaviortrees.get(relativePath);
-			}
-		}
-
+		BehaviorTree bt = this.Load(relativePath);
 		if (bt != null) {
 			BehaviorTask task = bt.CreateAndInitTask();
 			Debug.Check(task instanceof BehaviorTreeTask);

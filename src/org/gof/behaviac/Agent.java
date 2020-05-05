@@ -505,7 +505,7 @@ public abstract class Agent implements Closeable {
 			// if (this.m_currentBT != null && this.m_currentBT.GetName() == relativePath) {
 			// //the same bt is set again return; }
 
-			boolean bLoaded = Workspace.Instance.Load(relativePath);
+			boolean bLoaded = Workspace.Instance.Load(relativePath) != null;
 
 			if (!bLoaded) {
 				String agentName = this.getClass().getName();
@@ -667,7 +667,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	public boolean btload(String relativePath, boolean bForce /* = false */) {
-		boolean bOk = Workspace.Instance.Load(relativePath, bForce);
+		boolean bOk = Workspace.Instance.Load(relativePath, bForce) != null;
 
 		if (bOk) {
 			Workspace.Instance.RecordBTAgentMapping(relativePath, this);
