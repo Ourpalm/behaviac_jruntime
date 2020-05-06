@@ -203,7 +203,7 @@ public class Utils {
 	public static Object ConvertFromString(Class<?> clazz, boolean isList, String valueStr) {
 		try {
 			if (valueStr.startsWith("\"") && valueStr.endsWith("\"")) {
-				valueStr = valueStr.substring(1, valueStr.length() - 2);
+				valueStr = valueStr.substring(1, valueStr.length() - 1);
 			}
 			if (valueStr.equals("null"))
 				return null;

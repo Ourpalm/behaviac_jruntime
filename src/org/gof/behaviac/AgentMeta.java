@@ -172,10 +172,10 @@ public class AgentMeta {
 
 				typeName = typeName.replace("::", ".");
 
-				String strVale = strRemaining.substring(p + 1);
+				String strValue = strRemaining.substring(p + 1);
 
 				// const
-				return AgentMeta.CreateInstanceConst(typeName, strVale);
+				return AgentMeta.CreateInstanceConst(typeName, strValue);
 			} else {
 				String propStr = "";
 				String indexPropStr = "";

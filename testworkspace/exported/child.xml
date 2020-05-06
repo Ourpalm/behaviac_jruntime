@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<!--Source File: child.xml-->
+<behavior name="child" agenttype="testbehaviac::x1::MyAgent2" version="5">
+  <node class="Sequence" id="0">
+    <node class="Action" id="1">
+      <property Method="Self.behaviac::Agent::LogMessage(&quot;child! child!&quot;)" />
+      <property ResultOption="BT_SUCCESS" />
+    </node>
+  </node>
+</behavior>

@@ -84,6 +84,9 @@
         <node class="Wait" id="3">
           <property Time="const float 1000" />
         </node>
+        <node class="ReferencedBehavior" id="19">
+          <property ReferenceBehavior="const string &quot;child&quot;" />
+        </node>
       </node>
     </node>
   </node>
