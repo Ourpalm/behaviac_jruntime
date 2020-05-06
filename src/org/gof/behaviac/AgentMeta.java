@@ -501,7 +501,7 @@ public class AgentMeta {
 			var doc = DocumentHelper.parseText(xml);
 			var rootNode = doc.getRootElement();
 
-			if (rootNode.elements().size() <= 0 || rootNode.getName() != "agents") {
+			if (rootNode.elements().size() <= 0 || !rootNode.getName().equals("agents")) {
 				return false;
 			}
 

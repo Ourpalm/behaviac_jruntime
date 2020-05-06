@@ -532,7 +532,7 @@ public abstract class Agent implements Closeable {
 						// as the bt node has onenter/onexit, the abort can make them paired
 						// Debug.Check (this.m_currentBT.GetName() != relativePath);
 
-						if (this.m_currentBT.GetName() != relativePath) {
+						if (!this.m_currentBT.GetName().equals(relativePath)) {
 							this.m_currentBT.abort(this);
 						} else {
 							Debug.Check(true);
@@ -547,7 +547,7 @@ public abstract class Agent implements Closeable {
 				for (int i = 0; i < this.GetBehaviorTreeTasks().size(); ++i) {
 					BehaviorTreeTask t = this.GetBehaviorTreeTasks().get(i);
 
-					if (t.GetName() == relativePath) {
+					if (t.GetName().equals(relativePath)) {
 						pTask = t;
 						break;
 					}
@@ -561,7 +561,7 @@ public abstract class Agent implements Closeable {
 					for (int i = 0; i < this.GetBTStack().size(); ++i) {
 						BehaviorTreeStackItem_t item = this.GetBTStack().get(i);
 
-						if (item.bt.GetName() == relativePath) {
+						if (item.bt.GetName().equals(relativePath)) {
 							bRecursive = true;
 							break;
 						}
@@ -692,7 +692,7 @@ public abstract class Agent implements Closeable {
 		Debug.Check(Workspace.Instance.IsValidPath(relativePath));
 
 		// clear the current bt if it is the current bt
-		if (this.m_currentBT != null && this.m_currentBT.GetName() == relativePath) {
+		if (this.m_currentBT != null && this.m_currentBT.GetName().equals(relativePath)) {
 			BehaviorNode btNode = this.m_currentBT.GetNode();
 			Debug.Check(btNode instanceof BehaviorTree);
 			BehaviorTree bt = (BehaviorTree) btNode;
@@ -705,7 +705,7 @@ public abstract class Agent implements Closeable {
 		for (int i = 0; i < this.GetBTStack().size(); ++i) {
 			BehaviorTreeStackItem_t item = this.GetBTStack().get(i);
 
-			if (item.bt.GetName() == relativePath) {
+			if (item.bt.GetName().equals(relativePath)) {
 				this.GetBTStack().remove(item);
 				break;
 			}
@@ -714,7 +714,7 @@ public abstract class Agent implements Closeable {
 		for (int i = 0; i < this.GetBehaviorTreeTasks().size(); ++i) {
 			BehaviorTreeTask task = this.GetBehaviorTreeTasks().get(i);
 
-			if (task.GetName() == relativePath) {
+			if (task.GetName().equals(relativePath)) {
 				Workspace.Instance.DestroyBehaviorTreeTask(task, this);
 
 				this.GetBehaviorTreeTasks().remove(task);

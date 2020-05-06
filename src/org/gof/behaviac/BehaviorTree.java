@@ -60,7 +60,7 @@ public class BehaviorTree extends BehaviorNode {
 
 	@Override
 	protected void load_local(int version, String agentType, Element node) {
-		if (node.getName() != "par") {
+		if (!node.getName().equals("par")) {
 			Debug.Check(false);
 			return;
 		}
