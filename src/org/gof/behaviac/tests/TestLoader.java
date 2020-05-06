@@ -29,7 +29,7 @@ public class TestLoader {
 			var agent = new MyAgent2();
 			agent.btsetcurrent("b1");
 			while (agent.btexec() == EBTStatus.BT_RUNNING) {
-				System.out.println("running " + System.currentTimeMillis());
+				System.out.println("running " + System.currentTimeMillis() + " frame=" + agent.GetFrameSinceStartup());
 				Thread.sleep(300);
 				++count;
 

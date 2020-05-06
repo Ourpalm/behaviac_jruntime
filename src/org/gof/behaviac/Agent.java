@@ -75,6 +75,7 @@ public abstract class Agent implements Closeable {
 	}
 
 	private long m_id = -1;
+	private long m_frame = -1;
 	private boolean m_bActive = true;
 	private boolean m_referencetree = false;
 	public int m_priority;
@@ -674,6 +675,7 @@ public abstract class Agent implements Closeable {
 	public EBTStatus btexec() {
 		m_isExecuting = true;
 		try {
+			++m_frame;
 			if (this.m_bActive) {
 				EBTStatus s = this.btexec_();
 				while (this.m_referencetree && s == EBTStatus.BT_RUNNING) {
@@ -1011,7 +1013,6 @@ public abstract class Agent implements Closeable {
 	public long GetFrameSinceStartup() {
 		if (frameGetterFunc != null)
 			return frameGetterFunc.run(this);
-		Debug.Check(false, "没有设置帧计数获取接口!");
-		return 0;
+		return m_frame;
 	}
 }
