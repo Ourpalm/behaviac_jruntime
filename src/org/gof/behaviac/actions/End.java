@@ -15,6 +15,10 @@ import org.gof.behaviac.property_t;
 import org.gof.behaviac.members.IInstanceMember;
 import org.gof.behaviac.utils.StringUtils;
 
+/**
+ * @author caobihuan/ctemple@21cn.com
+ * 结束动作
+ */
 @RegisterableNode
 public class End extends BehaviorNode {
 	IInstanceMember m_endStatus = null;

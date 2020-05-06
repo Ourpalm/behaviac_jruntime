@@ -19,9 +19,14 @@ import org.gof.behaviac.members.CVariable;
 import org.gof.behaviac.members.IInstantiatedVariable;
 import org.gof.behaviac.members.IMethod;
 import org.gof.behaviac.members.IProperty;
+import org.gof.behaviac.utils.Func1;
+import org.gof.behaviac.utils.Proc1;
 import org.gof.behaviac.utils.StringUtils;
 import org.gof.behaviac.utils.Utils;
 
+/**
+ * @author caobihuan/ctemple@21cn.com 代理对象基类
+ */
 public abstract class Agent implements Closeable {
 	private static AtomicLong idAlloc = new AtomicLong(0);
 
@@ -75,6 +80,9 @@ public abstract class Agent implements Closeable {
 	public int m_priority;
 	public int m_contextId;
 	private String name;
+	private Func1<Long, Agent> timeGetterFunc = null;
+	private Func1<Long, Agent> frameGetterFunc = null;
+	private static Proc1<String> sLogMessageProc = null;
 
 	private List<BehaviorTreeTask> m_behaviorTreeTasks;
 
@@ -109,6 +117,18 @@ public abstract class Agent implements Closeable {
 			this.m_behaviorTreeTasks.clear();
 			this.m_behaviorTreeTasks = null;
 		}
+	}
+
+	public void setTimeFunc(Func1<Long, Agent> func) {
+		this.timeGetterFunc = func;
+	}
+
+	public void setFrameFunc(Func1<Long, Agent> func) {
+		this.frameGetterFunc = func;
+	}
+
+	public static void setLogMessageProc(Proc1<String> logProc) {
+		sLogMessageProc = logProc;
 	}
 
 	private static class BehaviorTreeStackItem_t {
@@ -894,11 +914,11 @@ public abstract class Agent implements Closeable {
 	}
 
 	public static void LogMessage(String message) {
-		System.out.print("Agent.LogMessage:");
-		System.out.println(message);
-//        int frames = behaviac.Workspace.Instance.FrameSinceStartup;
-//
-//        behaviac.Debug.Log(string.Format("[{0}]{1}\n", frames, message));
+		if (sLogMessageProc != null) {
+			sLogMessageProc.run(message);
+		} else {
+			System.out.println("Agent.LogMessage:" + message);
+		}
 	}
 
 	public static IMethod CreateStaticMethod_LOGMESSAGE() {
@@ -978,10 +998,15 @@ public abstract class Agent implements Closeable {
 	}
 
 	public long GetCurrentTime() {
+		if (timeGetterFunc != null)
+			return timeGetterFunc.run(this);
 		return System.currentTimeMillis();
 	}
 
 	public long GetFrameSinceStartup() {
-		return System.currentTimeMillis();
+		if (frameGetterFunc != null)
+			return frameGetterFunc.run(this);
+		Debug.Check(false, "没有设置帧计数获取接口!");
+		return 0;
 	}
 }

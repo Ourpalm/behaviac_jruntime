@@ -25,6 +25,10 @@ import org.gof.behaviac.members.IMethod;
 import org.gof.behaviac.utils.Utils;
 import org.gof.behaviac.fsm.State;
 
+/**
+ * @author caobihuan/ctemple@21cn.com
+ * 引用子树
+ */
 @RegisterableNode
 public class ReferencedBehavior extends BehaviorNode {
 	protected List<Transition> m_transitions;
@@ -39,7 +43,7 @@ public class ReferencedBehavior extends BehaviorNode {
 		for (int i = 0; i < properties.size(); ++i) {
 			property_t p = properties.get(i);
 
-			if (p.name .equals( "ReferenceBehavior")) {
+			if (p.name.equals("ReferenceBehavior")) {
 				int pParenthesis = p.value.indexOf('(');
 
 				if (pParenthesis == -1) {
@@ -66,7 +70,7 @@ public class ReferencedBehavior extends BehaviorNode {
 
 					this.m_bHasEvents |= bHasEvents;
 				}
-			} else if (p.name .equals( "Task")) {
+			} else if (p.name.equals("Task")) {
 				this.m_taskMethod = AgentMeta.ParseMethod(p.value);
 			}
 		}
