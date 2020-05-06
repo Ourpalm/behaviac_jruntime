@@ -14,6 +14,12 @@
       <property DecorateWhenChildEnds="true" />
       <property DoneWithinFrame="false" />
       <node class="Sequence" id="9">
+        <node class="Compute" id="24">
+          <property Operator="Add" />
+          <property Opl="double Self.org::gof::worldsrv::MyAgent::v15" />
+          <property Opr1="double Self.org::gof::worldsrv::MyAgent::v15" />
+          <property Opr2="const double 1" />
+        </node>
         <node class="Assignment" id="6">
           <property CastRight="false" />
           <property Opl="org::gof::worldsrv::StructTest Self.testbehaviac::x1::MyAgent2::vstruct" />
@@ -32,12 +38,6 @@
               <node class="Action" id="23">
                 <property Method="Self.behaviac::Agent::LogMessage(string Self.org::gof::worldsrv::MyAgent::v16)" />
                 <property ResultOption="BT_SUCCESS" />
-              </node>
-              <node class="Compute" id="24">
-                <property Operator="Add" />
-                <property Opl="double Self.org::gof::worldsrv::MyAgent::v15" />
-                <property Opr1="double Self.org::gof::worldsrv::MyAgent::v15" />
-                <property Opr2="const double 1" />
               </node>
             </node>
           </node>
