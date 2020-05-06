@@ -1,12 +1,11 @@
 package org.gof.behaviac;
 
-public class RandomGenerator {
-	private static RandomGenerator Instance = null;
-	private static RandomGenerator GetInstance() {
-		if (Instance == null) {
-			Instance = new RandomGenerator(0);
-		}
+import java.util.Random;
 
+public class RandomGenerator {
+	private static RandomGenerator Instance = new RandomGenerator();
+
+	private static RandomGenerator GetInstance() {
 		return RandomGenerator.Instance;
 	}
 
@@ -16,27 +15,10 @@ public class RandomGenerator {
 
 	// [0, 1)
 	public float GetRandom() {
-		m_seed = 214013 * m_seed + 2531011;
-		float r = (m_seed * (1.0f / 4294967296.0f));
-
+		float r = random.nextFloat();
 		Debug.Check(r >= 0.0f && r < 1.0f);
 		return r;
 	}
 
-	// [low, high)
-	public float InRange(float low, float high) {
-		float r = this.GetRandom();
-		float ret = r * (high - low) + low;
-		return ret;
-	}
-
-	public void SetSeed(long seed) {
-		this.m_seed = seed;
-	}
-
-	protected RandomGenerator(long seed) {
-		m_seed = seed;
-	}
-
-	private long m_seed;
+	private Random random = new Random();
 }

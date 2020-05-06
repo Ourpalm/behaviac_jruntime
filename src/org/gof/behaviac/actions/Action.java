@@ -47,7 +47,6 @@ public class Action extends BehaviorNode {
 			} else if (p.name.equals("ResultFunctor")) {
 				if (!Utils.IsNullOrEmpty(p.value)) {
 					this.m_resultFunctor = AgentMeta.ParseMethod(p.value);
-					;
 				}
 			}
 		}

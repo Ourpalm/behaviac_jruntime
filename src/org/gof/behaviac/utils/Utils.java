@@ -208,19 +208,23 @@ public class Utils {
 			if (valueStr.equals("null"))
 				return null;
 			if (!isList) {
-				if (IsNullOrEmpty(valueStr))
+				if (IsNullOrEmpty(valueStr)) {
 					return GetDefaultValue2(clazz, isList);
-				if (IsIntegerClass(clazz)) {
+				} else if (IsIntegerClass(clazz)) {
 					return ConvertFromObject(clazz, false, Long.parseLong(valueStr));
-				}
-				if (IsFloatClass(clazz)) {
+				} else if (IsFloatClass(clazz)) {
 					return ConvertFromObject(clazz, false, Double.parseDouble(valueStr));
-				}
-				if (clazz == String.class) {
+				} else if (clazz == String.class) {
 					return valueStr;
-				}
-				if (clazz == Boolean.class) {
+				} else if (clazz == Boolean.class) {
 					return Boolean.parseBoolean(valueStr);
+				} else if (clazz.isEnum()) {
+					var vals = clazz.getEnumConstants();
+					for (int i = 0; i < vals.length; ++i) {
+						if (vals[i].toString().equals(valueStr))
+							return vals[i];
+					}
+					throw new RuntimeException("找不到匹配枚举的值 clz=" + clazz.getName() + " val=" + valueStr);
 				}
 				return FromStringStruct(clazz, valueStr);
 				// Debug.Check(false, String.format("unsupported convert from '%s' to <%s>",

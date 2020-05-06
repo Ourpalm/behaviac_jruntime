@@ -17,7 +17,7 @@ public class TestLoader {
 	@Test
 	public void Test1() {
 		try {
-			Workspace.Instance.SetFilePath("I:\\workspace\\behaviac_jruntime\\testworkspace\\exported");
+			Workspace.Instance.SetFilePath("G:\\workspace\\behaviac_jruntime\\testworkspace\\exported");
 			AgentMeta.SetBehaviorLoader(new BehaviorLoaderImplement() {
 			});
 			var arg = new ArrayList<Short>();

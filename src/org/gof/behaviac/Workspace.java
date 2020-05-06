@@ -13,6 +13,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.gof.behaviac.utils.StringUtils;
 import org.gof.behaviac.utils.Utils;
 
+/**
+ * 全局唯一工作区，加载部分线程安全
+ * @author caobihuan/ctemple@21cn.com
+ *
+ */
 public class Workspace implements Closeable {
 
 	public static Workspace Instance = null;
