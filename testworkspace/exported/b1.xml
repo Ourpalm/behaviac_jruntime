@@ -47,7 +47,7 @@
           </node>
           <node class="DecoratorWeight" id="11">
             <property DecorateWhenChildEnds="false" />
-            <property Weight="const int 1" />
+            <property Weight="const int 2" />
             <node class="Sequence" id="20">
               <node class="Assignment" id="12">
                 <property CastRight="false" />
@@ -83,19 +83,12 @@
             <property EndStatus="const behaviac::EBTStatus BT_SUCCESS" />
           </node>
         </node>
-        <node class="Action" id="7">
-          <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha2(1:{sv1=2147483647;sv2=4234;xx3=111;})" />
-          <property ResultOption="BT_SUCCESS" />
-        </node>
         <node class="Action" id="2">
           <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha({sv1=345;sv2=345345;sv4=4545;})" />
           <property ResultOption="BT_SUCCESS" />
         </node>
         <node class="Wait" id="3">
           <property Time="const float 1000" />
-        </node>
-        <node class="ReferencedBehavior" id="19">
-          <property ReferenceBehavior="const string &quot;child&quot;" />
         </node>
       </node>
     </node>

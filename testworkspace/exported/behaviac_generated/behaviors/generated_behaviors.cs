@@ -151,7 +151,7 @@ namespace behaviac
 		}
 		protected override int GetWeight(Agent pAgent)
 		{
-			return 1;
+			return 2;
 		}
 	}
 
@@ -241,29 +241,6 @@ namespace behaviac
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
-	class Action_bt_b1_node7 : behaviac.Action
-	{
-		public Action_bt_b1_node7()
-		{
-			this.m_resultOption = EBTStatus.BT_SUCCESS;
-			method_p0 = new List<org.gof.worldsrv.Haha>();
-			method_p0.Capacity = 1;
-			org.gof.worldsrv.Haha method_p0_item0;
-			method_p0_item0 = new org.gof.worldsrv.Haha();
-			method_p0_item0.sv1 = 2147483647;
-			method_p0_item0.sv2 = 4234;
-			method_p0_item0.xx3 = 111;
-			method_p0.Add(method_p0_item0);
-		}
-		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
-		{
-			((testbehaviac.x1.MyAgent2)pAgent).methodHaha2(method_p0);
-			return EBTStatus.BT_SUCCESS;
-		}
-		List<org.gof.worldsrv.Haha> method_p0;
-	}
-
-	[behaviac.GeneratedTypeMetaInfo()]
 	class Action_bt_b1_node2 : behaviac.Action
 	{
 		public Action_bt_b1_node2()
@@ -291,26 +268,6 @@ namespace behaviac
 		protected override double GetTime(Agent pAgent)
 		{
 			return 1000f;
-		}
-	}
-
-	[behaviac.GeneratedTypeMetaInfo()]
-	class ReferencedBehavior_bt_b1_node19 : behaviac.ReferencedBehavior
-	{
-		public ReferencedBehavior_bt_b1_node19()
-		{
-			string szTreePath = this.GetReferencedTree(null);
-			if (!string.IsNullOrEmpty(szTreePath)) {
-			BehaviorTree behaviorTree = Workspace.Instance.LoadBehaviorTree(szTreePath);
-			if (behaviorTree != null)
-			{
-				this.m_bHasEvents |= behaviorTree.HasEvents();
-			}
-			}
-		}
-		public override string GetReferencedTree(Agent pAgent)
-		{
-			return "child";
 		}
 	}
 
@@ -542,16 +499,6 @@ namespace behaviac
 							node9.SetHasEvents(node9.HasEvents() | node15.HasEvents());
 						}
 						{
-							Action_bt_b1_node7 node7 = new Action_bt_b1_node7();
-							node7.SetClassNameString("Action");
-							node7.SetId(7);
-#if !BEHAVIAC_RELEASE
-							node7.SetAgentType("testbehaviac.x1.MyAgent2");
-#endif
-							node9.AddChild(node7);
-							node9.SetHasEvents(node9.HasEvents() | node7.HasEvents());
-						}
-						{
 							Action_bt_b1_node2 node2 = new Action_bt_b1_node2();
 							node2.SetClassNameString("Action");
 							node2.SetId(2);
@@ -570,16 +517,6 @@ namespace behaviac
 #endif
 							node9.AddChild(node3);
 							node9.SetHasEvents(node9.HasEvents() | node3.HasEvents());
-						}
-						{
-							ReferencedBehavior_bt_b1_node19 node19 = new ReferencedBehavior_bt_b1_node19();
-							node19.SetClassNameString("ReferencedBehavior");
-							node19.SetId(19);
-#if !BEHAVIAC_RELEASE
-							node19.SetAgentType("testbehaviac.x1.MyAgent2");
-#endif
-							node9.AddChild(node19);
-							node9.SetHasEvents(node9.HasEvents() | node19.HasEvents());
 						}
 						node4.SetHasEvents(node4.HasEvents() | node9.HasEvents());
 					}

@@ -77,9 +77,7 @@ public class Event extends ConditionBase {
 				Debug.Check(pAgent.GetCurrentTreeTask() != null);
 				pAgent.GetCurrentTreeTask().AddVariables(eventParams);
 
-				if (!pAgent.isExecuting()) {
-					pAgent.btexec();
-				}
+				pAgent.btexec();
 			}
 		}
 	}
