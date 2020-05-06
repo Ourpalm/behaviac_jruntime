@@ -36,8 +36,8 @@ public class TestLoader {
 				if ((count % 4) == 0) {
 					// agent.FireEvent("task1", new Object[] { arg }, new ClassInfo[] { new
 					// ClassInfo(true, Short.class) });
-					agent.FireEvent("task2", new Object[] { Integer.valueOf(13131) },
-							new ClassInfo[] { new ClassInfo(Integer.class) });
+//					agent.FireEvent("task2", new Object[] { Integer.valueOf(13131) },
+//							new ClassInfo[] { new ClassInfo(Integer.class) });
 				}
 			}
 			

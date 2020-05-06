@@ -91,6 +91,8 @@ public class MyAgent2 extends org.gof.worldsrv.MyAgent
 	public void methodHaha2(ArrayList<org.gof.worldsrv.Haha> arr)
 	{
 ///<<< BEGIN WRITING YOUR CODE methodHaha2
+		FireEvent("task2", new Object[] { Integer.valueOf(13131) },
+				new ClassInfo[] { new ClassInfo(Integer.class) });
 ///<<< END WRITING YOUR CODE
 	}
 

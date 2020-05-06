@@ -43,6 +43,22 @@ namespace behaviac
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
+	class Compute_bt_b1_node24 : behaviac.Compute
+	{
+		public Compute_bt_b1_node24()
+		{
+		}
+		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
+		{
+			EBTStatus result = EBTStatus.BT_SUCCESS;
+			double opr1 = (double)AgentMetaVisitor.GetProperty(pAgent, "v15");
+			double opr2 = 1;
+			(double)AgentMetaVisitor.GetProperty(pAgent, "v15") = (double)(opr1 + opr2);
+			return result;
+		}
+	}
+
+	[behaviac.GeneratedTypeMetaInfo()]
 	class Assignment_bt_b1_node6 : behaviac.Assignment
 	{
 		public Assignment_bt_b1_node6()
@@ -112,19 +128,18 @@ namespace behaviac
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
-	class Compute_bt_b1_node24 : behaviac.Compute
+	class Action_bt_b1_node25 : behaviac.Action
 	{
-		public Compute_bt_b1_node24()
+		public Action_bt_b1_node25()
 		{
+			this.m_resultOption = EBTStatus.BT_SUCCESS;
 		}
 		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
 		{
-			EBTStatus result = EBTStatus.BT_SUCCESS;
-			double opr1 = (double)AgentMetaVisitor.GetProperty(pAgent, "v15");
-			double opr2 = 1;
-			(double)AgentMetaVisitor.GetProperty(pAgent, "v15") = (double)(opr1 + opr2);
-			return result;
+			((testbehaviac.x1.MyAgent2)pAgent).methodHaha2(method_p0);
+			return EBTStatus.BT_SUCCESS;
 		}
+		List<org.gof.worldsrv.Haha> method_p0;
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
@@ -347,6 +362,16 @@ namespace behaviac
 #endif
 						node4.AddChild(node9);
 						{
+							Compute_bt_b1_node24 node24 = new Compute_bt_b1_node24();
+							node24.SetClassNameString("Compute");
+							node24.SetId(24);
+#if !BEHAVIAC_RELEASE
+							node24.SetAgentType("testbehaviac.x1.MyAgent2");
+#endif
+							node9.AddChild(node24);
+							node9.SetHasEvents(node9.HasEvents() | node24.HasEvents());
+						}
+						{
 							Assignment_bt_b1_node6 node6 = new Assignment_bt_b1_node6();
 							node6.SetClassNameString("Assignment");
 							node6.SetId(6);
@@ -401,14 +426,14 @@ namespace behaviac
 										node18.SetHasEvents(node18.HasEvents() | node23.HasEvents());
 									}
 									{
-										Compute_bt_b1_node24 node24 = new Compute_bt_b1_node24();
-										node24.SetClassNameString("Compute");
-										node24.SetId(24);
+										Action_bt_b1_node25 node25 = new Action_bt_b1_node25();
+										node25.SetClassNameString("Action");
+										node25.SetId(25);
 #if !BEHAVIAC_RELEASE
-										node24.SetAgentType("testbehaviac.x1.MyAgent2");
+										node25.SetAgentType("testbehaviac.x1.MyAgent2");
 #endif
-										node18.AddChild(node24);
-										node18.SetHasEvents(node18.HasEvents() | node24.HasEvents());
+										node18.AddChild(node25);
+										node18.SetHasEvents(node18.HasEvents() | node25.HasEvents());
 									}
 									node13.SetHasEvents(node13.HasEvents() | node18.HasEvents());
 								}
@@ -596,20 +621,6 @@ namespace behaviac
 	}
 
 	[behaviac.GeneratedTypeMetaInfo()]
-	class Action_bt_b2_node3 : behaviac.Action
-	{
-		public Action_bt_b2_node3()
-		{
-			this.m_resultOption = EBTStatus.BT_SUCCESS;
-		}
-		protected override EBTStatus update_impl(behaviac.Agent pAgent, behaviac.EBTStatus childStatus)
-		{
-			behaviac.Agent.LogMessage((string)AgentMetaVisitor.GetProperty(pAgent, "v16"));
-			return EBTStatus.BT_SUCCESS;
-		}
-	}
-
-	[behaviac.GeneratedTypeMetaInfo()]
 	class Action_bt_b2_node2 : behaviac.Action
 	{
 		public Action_bt_b2_node2()
@@ -664,16 +675,6 @@ namespace behaviac
 #endif
 						node1.AddChild(node4);
 						node1.SetHasEvents(node1.HasEvents() | node4.HasEvents());
-					}
-					{
-						Action_bt_b2_node3 node3 = new Action_bt_b2_node3();
-						node3.SetClassNameString("Action");
-						node3.SetId(3);
-#if !BEHAVIAC_RELEASE
-						node3.SetAgentType("testbehaviac.x1.MyAgent2");
-#endif
-						node1.AddChild(node3);
-						node1.SetHasEvents(node1.HasEvents() | node3.HasEvents());
 					}
 					{
 						Action_bt_b2_node2 node2 = new Action_bt_b2_node2();

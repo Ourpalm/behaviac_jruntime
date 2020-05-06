@@ -80,6 +80,7 @@ public abstract class Agent implements Closeable {
 	public int m_priority;
 	public int m_contextId;
 	private String name;
+	private boolean m_isExecuting = false;
 	private Func1<Long, Agent> timeGetterFunc = null;
 	private Func1<Long, Agent> frameGetterFunc = null;
 	private static Proc1<String> sLogMessageProc = null;
@@ -117,6 +118,10 @@ public abstract class Agent implements Closeable {
 			this.m_behaviorTreeTasks.clear();
 			this.m_behaviorTreeTasks = null;
 		}
+	}
+
+	public boolean isExecuting() {
+		return this.m_isExecuting;
 	}
 
 	public void setTimeFunc(Func1<Long, Agent> func) {
@@ -667,23 +672,23 @@ public abstract class Agent implements Closeable {
 	}
 
 	public EBTStatus btexec() {
-		if (this.m_bActive) {
-
-			EBTStatus s = this.btexec_();
-
-			while (this.m_referencetree && s == EBTStatus.BT_RUNNING) {
-				this.m_referencetree = false;
-				s = this.btexec_();
+		m_isExecuting = true;
+		try {
+			if (this.m_bActive) {
+				EBTStatus s = this.btexec_();
+				while (this.m_referencetree && s == EBTStatus.BT_RUNNING) {
+					this.m_referencetree = false;
+					s = this.btexec_();
+				}
+//				if (this.IsMasked()) {
+//					this.LogVariables(false);
+//				}
+				return s;
 			}
-
-			if (this.IsMasked()) {
-				this.LogVariables(false);
-			}
-
-			return s;
+			return EBTStatus.BT_INVALID;
+		} finally {
+			m_isExecuting = false;
 		}
-
-		return EBTStatus.BT_INVALID;
 	}
 
 	public boolean btload(String relativePath, boolean bForce /* = false */) {

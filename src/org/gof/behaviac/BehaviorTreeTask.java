@@ -14,6 +14,10 @@ public class BehaviorTreeTask extends SingeChildTask {
 	private Set<String> m_ignoreEvents = new HashSet<>();
 	private EBTStatus m_endStatus = EBTStatus.BT_INVALID;
 
+	public BehaviorTreeTask() {
+
+	}
+
 	public Map<Long, IInstantiatedVariable> GetLocalVars() {
 		return this.m_localVars;
 	}
