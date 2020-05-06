@@ -59,20 +59,15 @@ public class DecoratorLoop extends DecoratorCount {
 		protected EBTStatus decorate(EBTStatus status) {
 			if (this.m_n > 0) {
 				this.m_n--;
-
 				if (this.m_n == 0) {
 					return EBTStatus.BT_SUCCESS;
 				}
-
 				return EBTStatus.BT_RUNNING;
 			}
-
 			if (this.m_n == -1) {
 				return EBTStatus.BT_RUNNING;
 			}
-
 			Debug.Check(this.m_n == 0);
-
 			return EBTStatus.BT_SUCCESS;
 		}
 

@@ -40,6 +40,8 @@ public class TestLoader {
 							new ClassInfo[] { new ClassInfo(Integer.class) });
 				}
 			}
+			
+			System.out.println("v15=" + agent._get_v15());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
