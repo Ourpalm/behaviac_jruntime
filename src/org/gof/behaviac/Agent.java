@@ -1015,4 +1015,8 @@ public abstract class Agent implements Closeable {
 			return frameGetterFunc.run(this);
 		return m_frame;
 	}
+	
+	public BehaviorTreeTask getTreeTask() {
+		return this.m_currentBT;
+	}
 }

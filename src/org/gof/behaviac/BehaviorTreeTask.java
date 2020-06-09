@@ -13,6 +13,7 @@ public class BehaviorTreeTask extends SingeChildTask {
 	private BehaviorTreeTask m_excutingTreeTask = null;
 	private Set<String> m_ignoreEvents = new HashSet<>();
 	private EBTStatus m_endStatus = EBTStatus.BT_INVALID;
+	private long latestActionNodeBatchId = 0;
 
 	public BehaviorTreeTask() {
 
@@ -157,5 +158,17 @@ public class BehaviorTreeTask extends SingeChildTask {
 
 	public boolean isIgnoreEvent(String btEvent) {
 		return m_ignoreEvents.contains(btEvent);
+	}
+
+	public void onActionTaskEnter() {
+		latestActionNodeBatchId = Math.max(0, ++latestActionNodeBatchId);
+	}
+
+	public void onActionTaskExit() {
+
+	}
+
+	public long getActionNodeBatchId() {
+		return latestActionNodeBatchId;
 	}
 }

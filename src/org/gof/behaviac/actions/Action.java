@@ -99,11 +99,13 @@ public class Action extends BehaviorNode {
 	private static class ActionTask extends LeafTask {
 		@Override
 		protected boolean onenter(Agent pAgent) {
+			this.getRootTask().onActionTaskEnter();
 			return true;
 		}
 
 		@Override
 		protected void onexit(Agent pAgent, EBTStatus s) {
+			this.getRootTask().onActionTaskExit();
 		}
 
 		@Override
