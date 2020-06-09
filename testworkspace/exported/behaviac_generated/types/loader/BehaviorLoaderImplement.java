@@ -74,7 +74,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 
 	@Override
 	public boolean Load() {
-		AgentMeta.SetTotalSignature(721126456L);
+		AgentMeta.SetTotalSignature(1920889879L);
 
 		{
 			AgentMeta meta;
@@ -164,10 +164,37 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			meta.RegisterStaticMethod(2042517019L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORREMOVE());
 			meta.RegisterMemberMethod(276376776L,testbehaviac.x1.MyAgent2.CreateMemberMethod_ZZZ2());
 		}
+		{
+			AgentMeta meta;
+
+			// org.gof.worldsrv.SandEventBeacon
+			meta = new AgentMeta(224246714L);
+			AgentMeta.RegisterMeta(809683623L, meta);//org.gof.worldsrv.SandEventBeacon
+			meta.RegisterMemberProperty(307498538L,org.gof.worldsrv.SandEventBeacon.CreateMemberProperty_GROUP1());
+			meta.RegisterMemberProperty(615099496L,org.gof.worldsrv.SandEventBeacon.CreateMemberArrayProperty_GROUP1());
+			meta.RegisterMemberProperty(266954404L,org.gof.worldsrv.SandEventBeacon.CreateMemberProperty_VARS());
+			meta.RegisterMemberMethod(245805620L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_CREATETRIGGER());
+			meta.RegisterMemberMethod(1786529168L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_HASHUMANS());
+			meta.RegisterStaticMethod(1396400587L,org.gof.worldsrv.SandEventBeacon.CreateStaticMethod_LOGMESSAGE());
+			meta.RegisterMemberMethod(1197111957L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_SENDAWARD());
+			meta.RegisterMemberMethod(161333911L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_SETHUMANTARGETS());
+			meta.RegisterMemberMethod(2029564917L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_SETVAR());
+			meta.RegisterMemberMethod(212928523L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_SPAWNMONSTER());
+			meta.RegisterMemberMethod(2123832787L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_SPAWNMONSTER2());
+			meta.RegisterStaticMethod(197161586L,org.gof.worldsrv.SandEventBeacon.CreateStaticMethod_VECTORADD());
+			meta.RegisterStaticMethod(1810246298L,org.gof.worldsrv.SandEventBeacon.CreateStaticMethod_VECTORCLEAR());
+			meta.RegisterStaticMethod(2025304058L,org.gof.worldsrv.SandEventBeacon.CreateStaticMethod_VECTORCONTAINS());
+			meta.RegisterStaticMethod(348439993L,org.gof.worldsrv.SandEventBeacon.CreateStaticMethod_VECTORLENGTH());
+			meta.RegisterStaticMethod(2042517019L,org.gof.worldsrv.SandEventBeacon.CreateStaticMethod_VECTORREMOVE());
+			meta.RegisterMemberMethod(2139864962L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_WAITMONSTERKILLED());
+			meta.RegisterMemberMethod(1149435832L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_WAITMONSTERKILLED2());
+			meta.RegisterMemberMethod(518602921L,org.gof.worldsrv.SandEventBeacon.CreateMemberMethod_WAITSIGNAL());
+		}
 
 		AgentMeta.Register("org.gof.behaviac.Agent",org.gof.behaviac.Agent.class);
 		AgentMeta.Register("org.gof.worldsrv.MyAgent",org.gof.worldsrv.MyAgent.class);
 		AgentMeta.Register("testbehaviac.x1.MyAgent2",testbehaviac.x1.MyAgent2.class);
+		AgentMeta.Register("org.gof.worldsrv.SandEventBeacon",org.gof.worldsrv.SandEventBeacon.class);
 		AgentMeta.Register("org.gof.worldsrv.EnumTest", org.gof.worldsrv.EnumTest.class);
 		AgentMeta.Register("org.gof.worldsrv.StructTest", org.gof.worldsrv.StructTest.class);
 		AgentMeta.Register("org.gof.worldsrv.Haha", org.gof.worldsrv.Haha.class);
@@ -180,6 +207,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 		AgentMeta.UnRegister("org.gof.behaviac.Agent");
 		AgentMeta.UnRegister("org.gof.worldsrv.MyAgent");
 		AgentMeta.UnRegister("testbehaviac.x1.MyAgent2");
+		AgentMeta.UnRegister("org.gof.worldsrv.SandEventBeacon");
 		AgentMeta.UnRegister("org.gof.worldsrv.EnumTest");
 		AgentMeta.UnRegister("org.gof.worldsrv.StructTest");
 		AgentMeta.UnRegister("org.gof.worldsrv.Haha");

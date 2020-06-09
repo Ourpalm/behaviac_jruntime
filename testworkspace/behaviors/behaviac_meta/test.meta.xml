@@ -94,6 +94,49 @@
         <Param Name="task2var" Type="int" TypeFullName="System.Int32" DisplayName="task2var" Desc="task2var" />
       </Method>
     </agent>
+    <agent classfullname="org::gof::worldsrv::SandEventBeacon" base="behaviac::Agent" DisplayName="SandEventBeacon" Desc="SandEventBeacon" IsRefType="true" IsCustomized="true">
+      <Member Name="group1" DisplayName="group1" Desc="group1" Class="org::gof::worldsrv::SandEventBeacon" Type="vector&lt;long&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int64, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
+      <Member Name="vars" DisplayName="vars" Desc="vars" Class="org::gof::worldsrv::SandEventBeacon" Type="org::gof::worldsrv::StructTest" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" defaultvalue="{sv1=0;sv2=0;sv4=0;}" Static="false" Public="false" Readonly="false" />
+      <Method Name="spawnMonster" DisplayName="spawnMonster" Desc="spawnMonster" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+        <Param Name="sn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="sn" Desc="sn" />
+      </Method>
+      <Method Name="waitMonsterKilled" DisplayName="waitMonsterKilled" Desc="waitMonsterKilled" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+      </Method>
+      <Method Name="spawnMonster2" DisplayName="spawnMonster2" Desc="spawnMonster2" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="vector&lt;long&gt;" ReturnTypeFullName="System.Collections.Generic.List`1[[System.Int64, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" Static="false" Public="true" istask="false">
+        <Param Name="sn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="sn" Desc="sn" />
+        <Param Name="varname" Type="string" TypeFullName="System.String" DisplayName="varname" Desc="varname" />
+      </Method>
+      <Method Name="waitMonsterKilled2" DisplayName="waitMonsterKilled2" Desc="waitMonsterKilled2" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+        <Param Name="signalName" Type="string" TypeFullName="System.String" DisplayName="signalName" Desc="signalName" />
+      </Method>
+      <Method Name="waitSignal" DisplayName="waitSignal" Desc="waitSignal" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
+        <Param Name="signalName" Type="string" TypeFullName="System.String" DisplayName="signalName" Desc="signalName" />
+      </Method>
+      <Method Name="sendAward" DisplayName="sendAward" Desc="sendAward" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="item" Type="int" TypeFullName="System.Int32" DisplayName="item" Desc="item" />
+        <Param Name="num" Type="int" TypeFullName="System.Int32" DisplayName="num" Desc="num" />
+      </Method>
+      <Method Name="createTrigger" DisplayName="createTrigger" Desc="createTrigger" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="once" Type="bool" TypeFullName="System.Boolean" DisplayName="once" Desc="once" />
+        <Param Name="pos" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="pos" Desc="pos" />
+      </Method>
+      <Method Name="hasHumans" DisplayName="hasHumans" Desc="hasHumans" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="false" Public="true" istask="false" />
+      <Method Name="setVar" DisplayName="setVar" Desc="setVar" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+        <Param Name="value" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="value" Desc="value" />
+      </Method>
+      <Method Name="setHumanTargets" DisplayName="setHumanTargets" Desc="setHumanTargets" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="type" Type="int" TypeFullName="System.Int32" DisplayName="type" Desc="type" />
+        <Param Name="hintText" Type="string" TypeFullName="System.String" DisplayName="hintText" Desc="hintText" />
+        <Param Name="pos" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="pos" Desc="pos" />
+        <Param Name="portalSn" Type="int" TypeFullName="System.Int32" DisplayName="portalSn" Desc="portalSn" />
+        <Param Name="targetSn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="targetSn" Desc="targetSn" />
+        <Param Name="targetNum" Type="int" TypeFullName="System.Int32" DisplayName="targetNum" Desc="targetNum" />
+      </Method>
+    </agent>
   </agents>
   <instances />
 </meta>
