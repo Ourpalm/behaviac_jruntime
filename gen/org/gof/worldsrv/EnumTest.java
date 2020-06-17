@@ -9,8 +9,9 @@ public enum EnumTest
 {
 	EV1(0),
 	EV2(1),
-	EV3(2);
+	EV3(2),
+	EV4(3);
 	private int val;
-	private EnumTest(int val) {} 
+	private EnumTest(int val) { this.val = val; } 
 	public int intValue() { return this.val; } 
 }

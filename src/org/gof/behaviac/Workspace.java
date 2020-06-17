@@ -104,7 +104,7 @@ public class Workspace implements Closeable {
 			return false;
 		}
 
-		Debug.Log(String.format("FilePath: %s\n", this.GetFilePath()));
+//		Debug.Log(String.format("FilePath: %s\n", this.GetFilePath()));
 		Debug.Check(!this.GetFilePath().endsWith("\\"), "use '/' instead of '\\'");
 		return true;
 	}
@@ -329,7 +329,63 @@ public class Workspace implements Closeable {
 	}
 
 	private void LoadBuiltinNodes() {
-		for (var clazz : PackageClass.find("org.gof.behaviac")) {
+		Class<?>[] nodeClasses = new Class<?>[] {
+			org.gof.behaviac.composites.SelectorProbability.class,
+			org.gof.behaviac.actions.WaitFrames.class,
+			org.gof.behaviac.decorators.DecoratorWeight.class,
+			org.gof.behaviac.composites.SelectorLoop.class,
+			org.gof.behaviac.htn.Task.class,
+			org.gof.behaviac.composites.ReferencedBehavior.class,
+			org.gof.behaviac.decorators.DecoratorCount.class,
+			org.gof.behaviac.conditions.And.class,
+			org.gof.behaviac.fsm.WaitTransition.class,
+			org.gof.behaviac.conditions.Condition.class,
+			org.gof.behaviac.htn.Variables.class,
+			org.gof.behaviac.decorators.DecoratorNot.class,
+			org.gof.behaviac.decorators.DecoratorFrames.class,
+			org.gof.behaviac.composites.Sequence.class,
+			org.gof.behaviac.actions.End.class,
+			org.gof.behaviac.decorators.DecoratorAlwaysSuccess.class,
+			org.gof.behaviac.htn.Method.class,
+			org.gof.behaviac.composites.WithPrecondition.class,
+			org.gof.behaviac.fsm.WaitFramesState.class,
+			org.gof.behaviac.composites.IfElse.class,
+			org.gof.behaviac.conditions.True.class,
+			org.gof.behaviac.composites.Parallel.class,
+			org.gof.behaviac.decorators.DecoratorTime.class,
+			org.gof.behaviac.fsm.FSM.class,
+			org.gof.behaviac.decorators.DecoratorAlwaysRunning.class,
+			org.gof.behaviac.actions.WaitforSignal.class,
+			org.gof.behaviac.fsm.AlwaysTransition.class,
+			org.gof.behaviac.decorators.DecoratorLoopUntil.class,
+			org.gof.behaviac.actions.Noop.class,
+			org.gof.behaviac.composites.SelectorStochastic.class,
+			org.gof.behaviac.actions.Action.class,
+			org.gof.behaviac.decorators.DecoratorAlwaysFailure.class,
+			org.gof.behaviac.decorators.DecoratorCountLimit.class,
+			org.gof.behaviac.conditions.False.class,
+			org.gof.behaviac.fsm.StartCondition.class,
+			org.gof.behaviac.decorators.DecoratorIterator.class,
+			org.gof.behaviac.decorators.DecoratorLoop.class,
+			org.gof.behaviac.conditions.Or.class,
+			org.gof.behaviac.composites.CompositeStochastic.class,
+			org.gof.behaviac.actions.Assignment.class,
+			org.gof.behaviac.actions.Wait.class,
+			org.gof.behaviac.composites.Selector.class,
+			org.gof.behaviac.decorators.DecoratorSuccessUntil.class,
+			org.gof.behaviac.decorators.DecoratorLog.class,
+			org.gof.behaviac.Event.class,
+			org.gof.behaviac.decorators.DecoratorFailureUntil.class,
+			org.gof.behaviac.fsm.TransitionCondition.class,
+			org.gof.behaviac.Precondition.class,
+			org.gof.behaviac.fsm.WaitState.class,
+			org.gof.behaviac.decorators.DecoratorRepeat.class,
+			org.gof.behaviac.actions.Compute.class,
+			org.gof.behaviac.fsm.State.class,
+			org.gof.behaviac.fsm.Transition.class,
+		};
+		
+		for(Class<?> clazz : nodeClasses) {
 			var anno = clazz.getAnnotation(RegisterableNode.class);
 			if (anno != null) {
 				String name;
@@ -342,6 +398,21 @@ public class Workspace implements Closeable {
 				m_behaviorNodeTypes.put(name, clazz);
 			}
 		}
+		
+//		for (var clazz : PackageClass.getPackageClasses("org.gof.behaviac")) {
+//			var anno = clazz.getAnnotation(RegisterableNode.class);
+//			if (anno != null) {
+//				String name;
+//				if (!Utils.IsNullOrEmpty(anno.value())) {
+//					name = anno.value();
+//				} else {
+//					name = clazz.getSimpleName();
+//				}
+//				System.out.println(clazz.getName() + ".class,");
+//				name = "behaviac." + name;
+//				m_behaviorNodeTypes.put(name, clazz);
+//			}
+//		}
 	}
 
 	public BehaviorNode CreateBehaviorNode(String className) {
@@ -358,6 +429,12 @@ public class Workspace implements Closeable {
 				Object p = type.newInstance();
 				return (BehaviorNode) p;
 			}
+			
+//			System.err.println("registered nodes============begin============");
+//			for(Map.Entry<String, Class<?>> entry : m_behaviorNodeTypes.entrySet()) {
+//				System.err.println("\t" + entry.getKey() + "=" + entry.getClass().getName());	
+//			}
+//			System.err.println("registered nodes============ended============");
 
 			return null;
 		} catch (Exception e) {

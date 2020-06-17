@@ -127,6 +127,15 @@ public class SandEventBeacon extends org.gof.behaviac.Agent
 	public static IMethod CreateMemberMethod_SPAWNMONSTER2() {
 		return new CAgentMethod2<ArrayList<Long>,ArrayList<Integer>, String>((Agent _agent,ArrayList<Integer> sn, String varname)->{ return ((org.gof.worldsrv.SandEventBeacon)_agent).spawnMonster2(sn, varname);}, new ClassInfo(true,Long.class), new ClassInfo[]{ new ClassInfo(true,Integer.class), new ClassInfo(String.class) });
 	}
+	public void test2()
+	{
+///<<< BEGIN WRITING YOUR CODE test2
+///<<< END WRITING YOUR CODE
+	}
+
+	public static IMethod CreateMemberMethod_TEST2() {
+		return new CAgentMethodVoid0((Agent _agent)->{ ((org.gof.worldsrv.SandEventBeacon)_agent).test2();}, new ClassInfo[]{  });
+	}
 	public org.gof.behaviac.EBTStatus waitMonsterKilled(String name)
 	{
 ///<<< BEGIN WRITING YOUR CODE waitMonsterKilled

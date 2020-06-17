@@ -106,6 +106,15 @@ public class MyAgent2 extends org.gof.worldsrv.MyAgent
 	public static IMethod CreateMemberMethod_TASK2() {
 		return new CAgentMethodVoid1<Integer>((Agent _agent,Integer task2var)->{ /*NamedEvent*/ }, new ClassInfo[]{ new ClassInfo(Integer.class) });
 	}
+	public void test1()
+	{
+///<<< BEGIN WRITING YOUR CODE test1
+///<<< END WRITING YOUR CODE
+	}
+
+	public static IMethod CreateMemberMethod_TEST1() {
+		return new CAgentMethodVoid0((Agent _agent)->{ ((testbehaviac.x1.MyAgent2)_agent).test1();}, new ClassInfo[]{  });
+	}
 	public void zzz2(Integer x1)
 	{
 ///<<< BEGIN WRITING YOUR CODE zzz2

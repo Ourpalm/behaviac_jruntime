@@ -5,6 +5,7 @@
       <enum NativeValue="testbehaviac::EV1" Value="EV1" DisplayName="EV1" Desc="" MemberValue="-1" />
       <enum NativeValue="testbehaviac::EV2" Value="EV2" DisplayName="EV2" Desc="" MemberValue="-1" />
       <enum NativeValue="testbehaviac::EV3" Value="EV3" DisplayName="EV3" Desc="" MemberValue="-1" />
+      <enum NativeValue="org::gof::worldsrv::EV4" Value="EV4" DisplayName="EV4" Desc="" MemberValue="-1" />
     </enumtype>
     <struct Type="org::gof::worldsrv::StructTest" Namespace="org::gof::worldsrv" Base="" IsCustomized="true" DisplayName="StructTest" Desc="">
       <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::StructTest" Public="true" />
@@ -75,6 +76,9 @@
         <Param Name="z1" Type="bool" TypeFullName="System.Boolean" DisplayName="z1" Desc="z1" />
         <Param Name="z2" Type="double" TypeFullName="System.Double" DisplayName="z2" Desc="z2" />
       </Method>
+      <Method Name="destroyTrigger" DisplayName="destroyTrigger" Desc="destroyTrigger" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="groupName" Type="string" TypeFullName="System.String" DisplayName="groupName" Desc="" />
+      </Method>
     </agent>
     <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
       <Member Name="xxx1" DisplayName="xxx1" Desc="xxx1" Class="testbehaviac::x1::MyAgent2" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
@@ -93,6 +97,7 @@
       <Method Name="task2" DisplayName="task2" Desc="task2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="true">
         <Param Name="task2var" Type="int" TypeFullName="System.Int32" DisplayName="task2var" Desc="task2var" />
       </Method>
+      <Method Name="test1" DisplayName="test1" Desc="test1" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false" />
     </agent>
     <agent classfullname="org::gof::worldsrv::SandEventBeacon" base="behaviac::Agent" DisplayName="SandEventBeacon" Desc="SandEventBeacon" IsRefType="true" IsCustomized="true">
       <Member Name="group1" DisplayName="group1" Desc="group1" Class="org::gof::worldsrv::SandEventBeacon" Type="vector&lt;long&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int64, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
@@ -136,6 +141,7 @@
         <Param Name="targetSn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="targetSn" Desc="targetSn" />
         <Param Name="targetNum" Type="int" TypeFullName="System.Int32" DisplayName="targetNum" Desc="targetNum" />
       </Method>
+      <Method Name="test2" DisplayName="test2" Desc="test2" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false" />
     </agent>
   </agents>
   <instances />

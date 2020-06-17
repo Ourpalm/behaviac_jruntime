@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
-<agents version="1" signature="1920889879">
+<agents version="1" signature="1982472407">
   <agent type="org::gof::worldsrv::MyAgent" base="behaviac::Agent" signature="1404767707">
     <properties>
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
@@ -20,7 +20,7 @@
       <property name="v7" type="string" member="false" static="false" defaultvalue="" />
     </properties>
   </agent>
-  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="121652052">
+  <agent type="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" signature="551452642">
     <properties>
       <property name="haha_z2" type="vector&lt;int&gt;" member="false" static="true" defaultvalue="0:" />
       <property name="s1" type="ushort" member="false" static="true" defaultvalue="0" />
@@ -43,7 +43,7 @@
       <property name="xxx1" type="uint" member="false" static="false" defaultvalue="0" />
     </properties>
   </agent>
-  <agent type="org::gof::worldsrv::SandEventBeacon" base="behaviac::Agent" signature="224246714">
+  <agent type="org::gof::worldsrv::SandEventBeacon" base="behaviac::Agent" signature="857566641">
     <properties>
       <property name="group1" type="vector&lt;long&gt;" member="false" static="false" defaultvalue="0:" />
       <property name="vars" type="org::gof::worldsrv::StructTest" member="false" static="false" defaultvalue="{sv1=0;sv2=0;sv4=0;}" />
