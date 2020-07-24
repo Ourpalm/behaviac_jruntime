@@ -39,6 +39,11 @@ public class CAgentMethodBase extends CInstanceMember implements IMethod {
 	}
 
 	@Override
+	public Object GetValueObject(Agent self) {
+		this.GetIValue(self);		
+		return _returnValue.value;
+	}
+	@Override
 	public IValue GetIValue(Agent self) {
 		if (self != null) {
 			Run(self);
