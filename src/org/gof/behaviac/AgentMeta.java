@@ -434,20 +434,20 @@ public class AgentMeta {
 		IProperty prop = meta.GetProperty(nameId);
 		ICustomizedProperty newProp = AgentMeta.CreateCustomizedProperty(typeName, nameId, propName, valueStr);
 
-		if (prop != null && newProp != null) {
-			Object newValue = newProp.GetValueObject(null);
-			Object value = prop.GetValueObject(null);
-
-			if (newValue != null && value != null && newValue.getClass() == value.getClass()) {
-				return;
-			}
-
-			String errorInfo = String.format(
-					"The type of '%s' has been modified to %s, which would bring the unpredictable consequences.",
-					propName, typeName);
-			Debug.LogWarning(errorInfo);
-			Debug.Check(false, errorInfo);
-		}
+//		if (prop != null && newProp != null) {
+//			Object newValue = newProp.GetValueObject(null);
+//			Object value = prop.GetValueObject(null); // 用null参数取agent成员，回报异常
+//
+//			if (newValue != null && value != null && newValue.getClass() == value.getClass()) {
+//				return;
+//			}
+//
+//			String errorInfo = String.format(
+//					"The type of '%s' has been modified to %s, which would bring the unpredictable consequences.",
+//					propName, typeName);
+//			Debug.LogWarning(errorInfo);
+//			Debug.Check(false, errorInfo);
+//		}
 
 		if (isStatic) {
 			meta.RegisterStaticCustomizedProperty(nameId, newProp);

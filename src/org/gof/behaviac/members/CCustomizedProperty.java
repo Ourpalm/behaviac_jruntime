@@ -15,12 +15,14 @@ public class CCustomizedProperty extends CProperty implements ICustomizedPropert
 		_defaultValue = Utils.ConvertFromString(clazz.getElemClass(), clazz.isList(), valueStr);
 	}
 
-	
 	@Override
 	public Object GetValueObject(Agent self) {
-		return self.GetVarValue(_id);
+		if (self != null) {
+			return self.GetVarValue(_id);
+		}
+		return _defaultValue;
 	}
-	
+
 	@Override
 	public void SetValue(Agent self, Object value) {
 		var bOk = self.SetVarValue(_id, value);
