@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<!--Source File: b1.xml-->
+<behavior name="b1" agenttype="testbehaviac::x1::MyAgent2" version="5">
+  <node class="Sequence" id="0">
+    <attachment class="Event" id="8" flag="event">
+      <property ReferenceFilename="b2" />
+      <property Task="Self.testbehaviac::x1::MyAgent2::task2(0)" />
+      <property TriggeredOnce="true" />
+      <property TriggerMode="Return" />
+    </attachment>
+    <node class="DecoratorLoop" id="4">
+      <property Count="const int 5" />
+      <property DecorateWhenChildEnds="true" />
+      <property DoneWithinFrame="false" />
+      <node class="Sequence" id="9">
+        <node class="Compute" id="24">
+          <property Operator="Add" />
+          <property Opl="double Self.org::gof::worldsrv::MyAgent::v15" />
+          <property Opr1="double Self.org::gof::worldsrv::MyAgent::v15" />
+          <property Opr2="const double 1" />
+        </node>
+        <node class="Assignment" id="6">
+          <property CastRight="false" />
+          <property Opl="org::gof::worldsrv::StructTest Self.testbehaviac::x1::MyAgent2::vstruct" />
+          <property Opr="const org::gof::worldsrv::StructTest {sv1=234;sv2=24234.4453125;sv4=121;}" />
+        </node>
+        <node class="SelectorProbability" id="10">
+          <node class="DecoratorWeight" id="13">
+            <property DecorateWhenChildEnds="false" />
+            <property Weight="const int 2" />
+            <node class="Sequence" id="18">
+              <node class="Assignment" id="14">
+                <property CastRight="false" />
+                <property Opl="string Self.org::gof::worldsrv::MyAgent::v16" />
+                <property Opr="const string &quot;zzzzzzzzzzzzzzzzzzzz&quot;" />
+              </node>
+              <node class="Action" id="23">
+                <property Method="Self.behaviac::Agent::LogMessage(string Self.org::gof::worldsrv::MyAgent::v16)" />
+                <property ResultOption="BT_SUCCESS" />
+              </node>
+              <node class="Action" id="25">
+                <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha2(0:)" />
+                <property ResultOption="BT_FAILURE" />
+              </node>
+            </node>
+          </node>
+          <node class="DecoratorWeight" id="11">
+            <property DecorateWhenChildEnds="false" />
+            <property Weight="const int 2" />
+            <node class="Sequence" id="20">
+              <node class="Assignment" id="12">
+                <property CastRight="false" />
+                <property Opl="string Self.org::gof::worldsrv::MyAgent::v16" />
+                <property Opr="const string &quot;xxxxxxxxxxxxx&quot;" />
+              </node>
+              <node class="Action" id="21">
+                <property Method="Self.behaviac::Agent::LogMessage(string Self.org::gof::worldsrv::MyAgent::v16)" />
+                <property ResultOption="BT_SUCCESS" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node class="IfElse" id="15">
+          <node class="Condition" id="16">
+            <property Operator="LessEqual" />
+            <property Opl="int Self.org::gof::worldsrv::MyAgent::v3" />
+            <property Opr="const int 0" />
+          </node>
+          <node class="Sequence" id="22">
+            <node class="Assignment" id="5">
+              <property CastRight="false" />
+              <property Opl="string Self.org::gof::worldsrv::MyAgent::v16" />
+              <property Opr="const string &quot;hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh&quot;" />
+            </node>
+            <node class="Action" id="1">
+              <property Method="Self.behaviac::Agent::LogMessage(string Self.org::gof::worldsrv::MyAgent::v16)" />
+              <property ResultOption="BT_SUCCESS" />
+            </node>
+          </node>
+          <node class="End" id="17">
+            <property EndOutside="false" />
+            <property EndStatus="const behaviac::EBTStatus BT_SUCCESS" />
+          </node>
+        </node>
+        <node class="Action" id="2">
+          <property Method="Self.testbehaviac::x1::MyAgent2::methodHaha({sv1=345;sv2=345345;sv4=4545;})" />
+          <property ResultOption="BT_SUCCESS" />
+        </node>
+        <node class="Wait" id="3">
+          <property Time="const float 1000" />
+        </node>
+      </node>
+    </node>
+  </node>
+</behavior>

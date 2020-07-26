@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<meta>
+  <types>
+    <enumtype Type="org::gof::worldsrv::EnumTest" Namespace="org::gof::worldsrv" IsCustomized="true" DisplayName="EnumTest" Desc="">
+      <enum NativeValue="testbehaviac::EV1" Value="EV1" DisplayName="EV1" Desc="" MemberValue="-1" />
+      <enum NativeValue="testbehaviac::EV2" Value="EV2" DisplayName="EV2" Desc="" MemberValue="-1" />
+      <enum NativeValue="testbehaviac::EV3" Value="EV3" DisplayName="EV3" Desc="" MemberValue="-1" />
+      <enum NativeValue="org::gof::worldsrv::EV4" Value="EV4" DisplayName="EV4" Desc="" MemberValue="-1" />
+    </enumtype>
+    <struct Type="org::gof::worldsrv::StructTest" Namespace="org::gof::worldsrv" Base="" IsCustomized="true" DisplayName="StructTest" Desc="">
+      <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::StructTest" Public="true" />
+      <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::StructTest" Public="true" />
+      <Member Name="sv4" DisplayName="sv4" Desc="sv4" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::StructTest" Public="true" />
+    </struct>
+    <struct Type="org::gof::worldsrv::Haha" Namespace="org::gof::worldsrv" Base="" IsCustomized="true" DisplayName="Haha" Desc="">
+      <Member Name="sv1" DisplayName="sv1" Desc="sv1" Type="int" TypeFullName="System.Int32" Class="org::gof::worldsrv::Haha" Public="true" />
+      <Member Name="sv2" DisplayName="sv2" Desc="sv2" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::Haha" Public="true" />
+      <Member Name="xx3" DisplayName="xx3" Desc="xx" Type="double" TypeFullName="System.Double" Class="org::gof::worldsrv::Haha" Public="true" />
+    </struct>
+  </types>
+  <agents>
+    <agent classfullname="behaviac::Agent" DisplayName="behaviac::Agent" Desc="behaviac::Agent" IsRefType="true" IsImplemented="true">
+      <Method Name="VectorLength" DisplayName="VectorLength" Desc="VectorLength" Class="behaviac::Agent" ReturnType="int" ReturnTypeFullName="System.Int32" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="const IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+      </Method>
+      <Method Name="VectorAdd" DisplayName="VectorAdd" Desc="VectorAdd" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorRemove" DisplayName="VectorRemove" Desc="VectorRemove" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorContains" DisplayName="VectorContains" Desc="VectorContains" Class="behaviac::Agent" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorClear" DisplayName="VectorClear" Desc="VectorClear" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+      </Method>
+      <Method Name="LogMessage" DisplayName="LogMessage" Desc="LogMessage" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="const char*" TypeFullName="System.String" DisplayName="param0" Desc="param0" />
+      </Method>
+    </agent>
+    <agent classfullname="org::gof::worldsrv::MyAgent" base="behaviac::Agent" DisplayName="org::gof::worldsrv::MyAgent" Desc="org::gof::worldsrv::MyAgent" IsRefType="true" IsCustomized="true">
+      <Member Name="v1" DisplayName="v1" Desc="v1" Class="org::gof::worldsrv::MyAgent" Type="behaviac::EBTStatus" TypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" defaultvalue="BT_INVALID" Static="false" Public="false" Readonly="false" />
+      <Member Name="v2" DisplayName="v2" Desc="v2" Class="org::gof::worldsrv::MyAgent" Type="bool" TypeFullName="System.Boolean" defaultvalue="false" Static="false" Public="false" Readonly="false" />
+      <Member Name="v3" DisplayName="v3" Desc="v3" Class="org::gof::worldsrv::MyAgent" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v4" DisplayName="v4" Desc="v4" Class="org::gof::worldsrv::MyAgent" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v5" DisplayName="v5" Desc="v5" Class="org::gof::worldsrv::MyAgent" Type="float" TypeFullName="System.Single" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v6" DisplayName="v6" Desc="v6" Class="org::gof::worldsrv::MyAgent" Type="double" TypeFullName="System.Double" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v7" DisplayName="v7" Desc="v7" Class="org::gof::worldsrv::MyAgent" Type="string" TypeFullName="System.String" defaultvalue="" Static="false" Public="false" Readonly="false" />
+      <Member Name="v11" DisplayName="v11" Desc="v11" Class="org::gof::worldsrv::MyAgent" Type="vector&lt;behaviac::EBTStatus&gt;" TypeFullName="System.Collections.Generic.List`1[[XMLPluginBehaviac.behaviac_EBTStatus, BehaviacDesignerBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
+      <Member Name="v12" DisplayName="v12" Desc="v12" Class="org::gof::worldsrv::MyAgent" Type="vector&lt;bool&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
+      <Member Name="v13" DisplayName="v13" Desc="v13" Class="org::gof::worldsrv::MyAgent" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v14" DisplayName="v14" Desc="v14" Class="org::gof::worldsrv::MyAgent" Type="float" TypeFullName="System.Single" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v15" DisplayName="v15" Desc="v15" Class="org::gof::worldsrv::MyAgent" Type="double" TypeFullName="System.Double" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="v16" DisplayName="v16" Desc="v16" Class="org::gof::worldsrv::MyAgent" Type="string" TypeFullName="System.String" defaultvalue="" Static="false" Public="false" Readonly="false" />
+      <Member Name="s1" DisplayName="s1" Desc="s1" Class="org::gof::worldsrv::MyAgent" Type="ushort" TypeFullName="System.UInt16" defaultvalue="0" Static="true" Public="true" Readonly="false" />
+      <Member Name="s2" DisplayName="s2" Desc="s2" Class="org::gof::worldsrv::MyAgent" Type="long" TypeFullName="System.Int64" defaultvalue="0" Static="true" Public="false" Readonly="true" />
+      <Method Name="m1" DisplayName="m1" Desc="m1" Class="org::gof::worldsrv::MyAgent" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
+        <Param Name="v1" Type="bool" TypeFullName="System.Boolean" DisplayName="v1" Desc="v1" />
+        <Param Name="v2" Type="uint" TypeFullName="System.UInt32" DisplayName="v2" Desc="v2" />
+        <Param Name="v3" Type="float" TypeFullName="System.Single" DisplayName="v3" Desc="v3" />
+        <Param Name="v4" Type="string" TypeFullName="System.String" DisplayName="v4" Desc="v4" />
+        <Param Name="v5" Type="long" TypeFullName="System.Int64" DisplayName="v5" Desc="v5" />
+        <Param Name="v11" Type="vector&lt;bool&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v11" Desc="v11" />
+        <Param Name="v12" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="v12" Desc="v12" />
+        <Param Name="v13" Type="double" TypeFullName="System.Double" DisplayName="v13" Desc="v13" />
+      </Method>
+      <Method Name="testM2" DisplayName="testM2" Desc="testM2" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="z1" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="z1" Desc="z1" />
+        <Param Name="z2" Type="uint" TypeFullName="System.UInt32" DisplayName="z2" Desc="z2" />
+      </Method>
+      <Method Name="StaticMethod1" DisplayName="StaticMethod1" Desc="StaticMethod1" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="z1" Type="bool" TypeFullName="System.Boolean" DisplayName="z1" Desc="z1" />
+        <Param Name="z2" Type="double" TypeFullName="System.Double" DisplayName="z2" Desc="z2" />
+      </Method>
+      <Method Name="destroyTrigger" DisplayName="destroyTrigger" Desc="destroyTrigger" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="groupName" Type="string" TypeFullName="System.String" DisplayName="groupName" Desc="" />
+      </Method>
+    </agent>
+    <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
+      <Member Name="xxx1" DisplayName="xxx1" Desc="xxx1" Class="testbehaviac::x1::MyAgent2" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="haha_z2" DisplayName="haha_z2" Desc="haha_z2" Class="testbehaviac::x1::MyAgent2" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="true" Public="true" Readonly="false" />
+      <Member Name="testHaha" DisplayName="testHaha" Desc="testHaha" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::Haha*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_Haha" defaultvalue="{sv1=0;sv2=0;xx3=0;}" Static="false" Public="true" Readonly="false" />
+      <Member Name="vstruct" DisplayName="vstruct" Desc="vstruct" Class="testbehaviac::x1::MyAgent2" Type="org::gof::worldsrv::StructTest*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" defaultvalue="{sv1=0;sv2=0;sv4=0;}" Static="false" Public="false" Readonly="false" />
+      <Method Name="zzz2" DisplayName="zzz2" Desc="zzz2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="x1" Type="int" TypeFullName="System.Int32" DisplayName="x1" Desc="x1" />
+      </Method>
+      <Method Name="methodHaha" DisplayName="methodHaha" Desc="methodHaha" Class="testbehaviac::x1::MyAgent2" ReturnType="org::gof::worldsrv::Haha" ReturnTypeFullName="XMLPluginBehaviac.org_gof_worldsrv_Haha" Static="false" Public="true" istask="false">
+        <Param Name="t1" Type="org::gof::worldsrv::StructTest*" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" DisplayName="t1" Desc="t1" />
+      </Method>
+      <Method Name="methodHaha2" DisplayName="methodHaha2" Desc="methodHaha2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="arr" Type="vector&lt;org::gof::worldsrv::Haha&gt;" TypeFullName="System.Collections.Generic.List`1[[XMLPluginBehaviac.org_gof_worldsrv_Haha, XMLPluginBehaviac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]" DisplayName="arr" Desc="arr" />
+      </Method>
+      <Method Name="task2" DisplayName="task2" Desc="task2" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="true">
+        <Param Name="task2var" Type="int" TypeFullName="System.Int32" DisplayName="task2var" Desc="task2var" />
+      </Method>
+      <Method Name="test1" DisplayName="test1" Desc="test1" Class="testbehaviac::x1::MyAgent2" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false" />
+    </agent>
+    <agent classfullname="org::gof::worldsrv::SandEventBeacon" base="behaviac::Agent" DisplayName="SandEventBeacon" Desc="SandEventBeacon" IsRefType="true" IsCustomized="true">
+      <Member Name="group1" DisplayName="group1" Desc="group1" Class="org::gof::worldsrv::SandEventBeacon" Type="vector&lt;long&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int64, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
+      <Member Name="vars" DisplayName="vars" Desc="vars" Class="org::gof::worldsrv::SandEventBeacon" Type="org::gof::worldsrv::StructTest" TypeFullName="XMLPluginBehaviac.org_gof_worldsrv_StructTest" defaultvalue="{sv1=0;sv2=0;sv4=0;}" Static="false" Public="false" Readonly="false" />
+      <Method Name="spawnMonster" DisplayName="spawnMonster" Desc="spawnMonster" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+        <Param Name="sn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="sn" Desc="sn" />
+      </Method>
+      <Method Name="waitMonsterKilled" DisplayName="waitMonsterKilled" Desc="waitMonsterKilled" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+      </Method>
+      <Method Name="spawnMonster2" DisplayName="spawnMonster2" Desc="spawnMonster2" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="vector&lt;long&gt;" ReturnTypeFullName="System.Collections.Generic.List`1[[System.Int64, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" Static="false" Public="true" istask="false">
+        <Param Name="sn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="sn" Desc="sn" />
+        <Param Name="varname" Type="string" TypeFullName="System.String" DisplayName="varname" Desc="varname" />
+      </Method>
+      <Method Name="waitMonsterKilled2" DisplayName="waitMonsterKilled2" Desc="waitMonsterKilled2" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+        <Param Name="signalName" Type="string" TypeFullName="System.String" DisplayName="signalName" Desc="signalName" />
+      </Method>
+      <Method Name="waitSignal" DisplayName="waitSignal" Desc="waitSignal" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
+        <Param Name="signalName" Type="string" TypeFullName="System.String" DisplayName="signalName" Desc="signalName" />
+      </Method>
+      <Method Name="sendAward" DisplayName="sendAward" Desc="sendAward" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="item" Type="int" TypeFullName="System.Int32" DisplayName="item" Desc="item" />
+        <Param Name="num" Type="int" TypeFullName="System.Int32" DisplayName="num" Desc="num" />
+      </Method>
+      <Method Name="createTrigger" DisplayName="createTrigger" Desc="createTrigger" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="once" Type="bool" TypeFullName="System.Boolean" DisplayName="once" Desc="once" />
+        <Param Name="pos" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="pos" Desc="pos" />
+      </Method>
+      <Method Name="hasHumans" DisplayName="hasHumans" Desc="hasHumans" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="false" Public="true" istask="false" />
+      <Method Name="setVar" DisplayName="setVar" Desc="setVar" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="name" Type="string" TypeFullName="System.String" DisplayName="name" Desc="name" />
+        <Param Name="value" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="value" Desc="value" />
+      </Method>
+      <Method Name="setHumanTargets" DisplayName="setHumanTargets" Desc="setHumanTargets" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
+        <Param Name="type" Type="int" TypeFullName="System.Int32" DisplayName="type" Desc="type" />
+        <Param Name="hintText" Type="string" TypeFullName="System.String" DisplayName="hintText" Desc="hintText" />
+        <Param Name="pos" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="pos" Desc="pos" />
+        <Param Name="portalSn" Type="int" TypeFullName="System.Int32" DisplayName="portalSn" Desc="portalSn" />
+        <Param Name="targetSn" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" DisplayName="targetSn" Desc="targetSn" />
+        <Param Name="targetNum" Type="int" TypeFullName="System.Int32" DisplayName="targetNum" Desc="targetNum" />
+      </Method>
+      <Method Name="test2" DisplayName="test2" Desc="test2" Class="org::gof::worldsrv::SandEventBeacon" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false" />
+    </agent>
+  </agents>
+  <instances />
+</meta>

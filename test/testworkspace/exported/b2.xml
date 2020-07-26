@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<!--Source File: b2.xml-->
+<behavior name="b2" agenttype="testbehaviac::x1::MyAgent2" version="5">
+  <pars>
+    <par name="_$local_task_param_$_0" type="int" value="0" />
+  </pars>
+  <node class="Task" id="0">
+    <property Prototype="Self.testbehaviac::x1::MyAgent2::task2(0)" />
+    <property IsHTN="false" />
+    <node class="Sequence" id="1">
+      <node class="Assignment" id="4">
+        <property CastRight="false" />
+        <property Opl="int Self.org::gof::worldsrv::MyAgent::v13" />
+        <property Opr="int Self.testbehaviac::x1::MyAgent2::_$local_task_param_$_0" />
+      </node>
+      <node class="Action" id="2">
+        <property Method="Self.behaviac::Agent::LogMessage(&quot;触发成功!!&quot;)" />
+        <property ResultOption="BT_SUCCESS" />
+      </node>
+    </node>
+  </node>
+</behavior>
