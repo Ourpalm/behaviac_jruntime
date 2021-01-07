@@ -320,6 +320,26 @@ public class MyAgent extends org.gof.behaviac.Agent
 	public static IMethod CreateStaticMethod_STATICMETHOD1() {
 		return new CAgentStaticMethodVoid2<Boolean, Double>((Boolean z1, Double z2)->{ org.gof.worldsrv.MyAgent.StaticMethod1(z1, z2);},new ClassInfo[]{ new ClassInfo(Boolean.class), new ClassInfo(Double.class) });
 	}
+	public ArrayList<Integer> testFnReturnArray()
+	{
+///<<< BEGIN WRITING YOUR CODE testFnReturnArray
+		return null;
+///<<< END WRITING YOUR CODE
+	}
+
+	public static IMethod CreateMemberMethod_TESTFNRETURNARRAY() {
+		return new CAgentMethod0<ArrayList<Integer>>((Agent _agent)->{ return ((org.gof.worldsrv.MyAgent)_agent).testFnReturnArray();}, new ClassInfo(true,Integer.class), new ClassInfo[]{  });
+	}
+	public ArrayList<String> testFnReturnArray2()
+	{
+///<<< BEGIN WRITING YOUR CODE testFnReturnArray2
+		return null;
+///<<< END WRITING YOUR CODE
+	}
+
+	public static IMethod CreateMemberMethod_TESTFNRETURNARRAY2() {
+		return new CAgentMethod0<ArrayList<String>>((Agent _agent)->{ return ((org.gof.worldsrv.MyAgent)_agent).testFnReturnArray2();}, new ClassInfo(true,String.class), new ClassInfo[]{  });
+	}
 	public void testM2(ArrayList<Float> z1, Integer z2)
 	{
 ///<<< BEGIN WRITING YOUR CODE testM2

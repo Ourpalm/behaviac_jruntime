@@ -74,7 +74,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 
 	@Override
 	public boolean Load() {
-		AgentMeta.SetTotalSignature(128433163L);
+		AgentMeta.SetTotalSignature(807072395L);
 
 		{
 			AgentMeta meta;
@@ -93,7 +93,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			AgentMeta meta;
 
 			// org.gof.worldsrv.MyAgent
-			meta = new AgentMeta(59394718L);
+			meta = new AgentMeta(209604042L);
 			AgentMeta.RegisterMeta(646043850L, meta);//org.gof.worldsrv.MyAgent
 			meta.RegisterStaticProperty(15114L,org.gof.worldsrv.MyAgent.CreateStaticProperty_S1());
 			meta.RegisterStaticProperty(15115L,org.gof.worldsrv.MyAgent.CreateStaticProperty_S2());
@@ -118,6 +118,8 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			meta.RegisterStaticMethod(1396400587L,org.gof.worldsrv.MyAgent.CreateStaticMethod_LOGMESSAGE());
 			meta.RegisterMemberMethod(14328L,org.gof.worldsrv.MyAgent.CreateMemberMethod_M1());
 			meta.RegisterStaticMethod(1738753698L,org.gof.worldsrv.MyAgent.CreateStaticMethod_STATICMETHOD1());
+			meta.RegisterMemberMethod(801975247L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TESTFNRETURNARRAY());
+			meta.RegisterMemberMethod(1979542303L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TESTFNRETURNARRAY2());
 			meta.RegisterMemberMethod(1952612959L,org.gof.worldsrv.MyAgent.CreateMemberMethod_TESTM2());
 			meta.RegisterStaticMethod(197161586L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORADD());
 			meta.RegisterStaticMethod(1810246298L,org.gof.worldsrv.MyAgent.CreateStaticMethod_VECTORCLEAR());
@@ -129,7 +131,7 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			AgentMeta meta;
 
 			// testbehaviac.x1.MyAgent2
-			meta = new AgentMeta(1356717505L);
+			meta = new AgentMeta(269151197L);
 			AgentMeta.RegisterMeta(1464643067L, meta);//testbehaviac.x1.MyAgent2
 			meta.RegisterStaticProperty(1683652181L,testbehaviac.x1.MyAgent2.CreateStaticProperty_HAHA_Z2());
 			meta.RegisterStaticProperty(910089963L,testbehaviac.x1.MyAgent2.CreateStaticArrayProperty_HAHA_Z2());
@@ -163,6 +165,8 @@ public class BehaviorLoaderImplement extends BehaviorLoader
 			meta.RegisterStaticMethod(1738753698L,testbehaviac.x1.MyAgent2.CreateStaticMethod_STATICMETHOD1());
 			meta.RegisterMemberMethod(22304877L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TASK2());
 			meta.RegisterMemberMethod(31298419L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TEST1());
+			meta.RegisterMemberMethod(801975247L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTFNRETURNARRAY());
+			meta.RegisterMemberMethod(1979542303L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTFNRETURNARRAY2());
 			meta.RegisterMemberMethod(1952612959L,testbehaviac.x1.MyAgent2.CreateMemberMethod_TESTM2());
 			meta.RegisterStaticMethod(197161586L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORADD());
 			meta.RegisterStaticMethod(1810246298L,testbehaviac.x1.MyAgent2.CreateStaticMethod_VECTORCLEAR());

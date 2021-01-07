@@ -80,6 +80,8 @@
       <Method Name="destroyTrigger" DisplayName="destroyTrigger" Desc="destroyTrigger" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
         <Param Name="groupName" Type="string" TypeFullName="System.String" DisplayName="groupName" Desc="groupName" />
       </Method>
+      <Method Name="testFnReturnArray" DisplayName="testFnReturnArray" Desc="testFnReturnArray" Class="org::gof::worldsrv::MyAgent" ReturnType="vector&lt;int&gt;" ReturnTypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" Static="false" Public="true" istask="false" />
+      <Method Name="testFnReturnArray2" DisplayName="testFnReturnArray2" Desc="testFnReturnArray2" Class="org::gof::worldsrv::MyAgent" ReturnType="vector&lt;string&gt;" ReturnTypeFullName="System.Collections.Generic.List`1[[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" Static="false" Public="true" istask="false" />
     </agent>
     <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
       <Member Name="xxx1" DisplayName="xxx1" Desc="xxx1" Class="testbehaviac::x1::MyAgent2" Type="uint" TypeFullName="System.UInt32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
