@@ -4,9 +4,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -15,6 +18,7 @@ import org.gof.behaviac.utils.Utils;
 
 /**
  * 全局唯一工作区，加载部分线程安全
+ * 
  * @author caobihuan/ctemple@21cn.com
  *
  */
@@ -25,10 +29,21 @@ public class Workspace implements Closeable {
 	public final int EFF_XML = 1;
 	public final int EFF_BSON = 2;
 
+	private static class LoadedBehaviorInfo {
+		public String md5;
+		public String fullPath;
+
+		public LoadedBehaviorInfo(String fullPath, String md5) {
+			this.fullPath = fullPath;
+			this.md5 = md5;
+		}
+	}
+
 	private EFileFormat m_fileFormat = EFileFormat.EFF_xml;
 	private String m_filePath = null;
 	private String m_metaFile = null;
 	private ReadWriteLock m_behaviortreesLock = new ReentrantReadWriteLock();
+	private ConcurrentMap<String, LoadedBehaviorInfo> m_loadedBehaviorTreeInfos = new ConcurrentHashMap<>();
 	private Map<String, BehaviorTree> m_behaviortrees = new HashMap<>();
 	private Map<String, Class<?>> m_behaviorNodeTypes = new HashMap<>();
 	private boolean m_bRegistered = false;
@@ -157,6 +172,7 @@ public class Workspace implements Closeable {
 		m_behaviortreesLock.writeLock().lock();
 		try {
 			m_behaviortrees.remove(relativePath);
+			m_loadedBehaviorTreeInfos.remove(relativePath);
 		} finally {
 			m_behaviortreesLock.writeLock().unlock();
 		}
@@ -189,6 +205,49 @@ public class Workspace implements Closeable {
 		filename = filename.replace("/", "_");
 		filename = filename.replace("-", "_");
 		return filename;
+	}
+
+	private static byte[] EmptyBuffer = new byte[0];
+
+	public static String md5(byte[] buff) {
+		return md5(buff, 0, buff.length);
+	}
+
+	public static String md5(byte[] buff, int offset, int length) {
+		if (buff == null) {
+			buff = EmptyBuffer;
+			offset = 0;
+			length = 0;
+		}
+		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+		try {
+			MessageDigest mdTemp = MessageDigest.getInstance("MD5");
+			mdTemp.update(buff, offset, length);
+			byte[] md = mdTemp.digest();
+			int j = md.length;
+			char str[] = new char[j * 2];
+			int k = 0;
+			for (int i = 0; i < j; i++) {
+				byte byte0 = md[i];
+				str[k++] = hexDigits[byte0 >>> 4 & 0xf];
+				str[k++] = hexDigits[byte0 & 0xf];
+			}
+			return new String(str);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void UnloadChangedXmls() {
+		HashMap<String, LoadedBehaviorInfo> loadedInfos = new HashMap<>(m_loadedBehaviorTreeInfos);
+		for (Map.Entry<String, LoadedBehaviorInfo> info : loadedInfos.entrySet()) {
+			byte[] pBuffer = ReadFileToBuffer(info.getKey(), ".xml");
+			String newMd5 = md5(pBuffer);
+			if (newMd5.equals(info.getValue().md5)) {
+				continue;
+			}
+			this.UnLoad(info.getValue().fullPath);
+		}
 	}
 
 	public BehaviorTree Load(String relativePath, boolean bForce) {
@@ -241,6 +300,7 @@ public class Workspace implements Closeable {
 					}
 					bLoadResult = pBT.load_xml(pBuffer);
 					PopFileFromBuffer(fullPath, ext, pBuffer);
+					m_loadedBehaviorTreeInfos.put(relativePath, new LoadedBehaviorInfo(fullPath, md5(pBuffer)));
 				} else {
 					Debug.LogError(String.format("'%s' doesn't exist!, Please set Workspace.FilePath", fullPath));
 					Debug.Check(false);
@@ -398,7 +458,7 @@ public class Workspace implements Closeable {
 				m_behaviorNodeTypes.put(name, clazz);
 			}
 		}
-		
+
 //		for (var clazz : PackageClass.getPackageClasses("org.gof.behaviac")) {
 //			var anno = clazz.getAnnotation(RegisterableNode.class);
 //			if (anno != null) {
@@ -429,7 +489,7 @@ public class Workspace implements Closeable {
 				Object p = type.newInstance();
 				return (BehaviorNode) p;
 			}
-			
+
 //			System.err.println("registered nodes============begin============");
 //			for(Map.Entry<String, Class<?>> entry : m_behaviorNodeTypes.entrySet()) {
 //				System.err.println("\t" + entry.getKey() + "=" + entry.getClass().getName());	
