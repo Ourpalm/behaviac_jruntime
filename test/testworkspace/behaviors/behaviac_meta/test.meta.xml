@@ -58,6 +58,7 @@
       <Member Name="v16" DisplayName="v16" Desc="v16" Class="org::gof::worldsrv::MyAgent" Type="string" TypeFullName="System.String" defaultvalue="" Static="false" Public="false" Readonly="false" />
       <Member Name="s1" DisplayName="s1" Desc="s1" Class="org::gof::worldsrv::MyAgent" Type="ushort" TypeFullName="System.UInt16" defaultvalue="0" Static="true" Public="true" Readonly="false" />
       <Member Name="s2" DisplayName="s2" Desc="s2" Class="org::gof::worldsrv::MyAgent" Type="long" TypeFullName="System.Int64" defaultvalue="0" Static="true" Public="false" Readonly="true" />
+      <Member Name="testArrayResult" DisplayName="testArrayResult" Desc="testArrayResult" Class="org::gof::worldsrv::MyAgent" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="0:" Static="false" Public="false" Readonly="false" />
       <Method Name="m1" DisplayName="m1" Desc="m1" Class="org::gof::worldsrv::MyAgent" ReturnType="behaviac::EBTStatus" ReturnTypeFullName="XMLPluginBehaviac.behaviac_EBTStatus" Static="false" Public="true" istask="false">
         <Param Name="v1" Type="bool" TypeFullName="System.Boolean" DisplayName="v1" Desc="v1" />
         <Param Name="v2" Type="uint" TypeFullName="System.UInt32" DisplayName="v2" Desc="v2" />
@@ -77,7 +78,7 @@
         <Param Name="z2" Type="double" TypeFullName="System.Double" DisplayName="z2" Desc="z2" />
       </Method>
       <Method Name="destroyTrigger" DisplayName="destroyTrigger" Desc="destroyTrigger" Class="org::gof::worldsrv::MyAgent" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="true" istask="false">
-        <Param Name="groupName" Type="string" TypeFullName="System.String" DisplayName="groupName" Desc="" />
+        <Param Name="groupName" Type="string" TypeFullName="System.String" DisplayName="groupName" Desc="groupName" />
       </Method>
     </agent>
     <agent classfullname="testbehaviac::x1::MyAgent2" base="org::gof::worldsrv::MyAgent" DisplayName="testbehaviac::x1::MyAgent2" Desc="testbehaviac::x1::MyAgent2" IsRefType="true" IsCustomized="true">
