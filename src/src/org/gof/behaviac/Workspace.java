@@ -241,12 +241,12 @@ public class Workspace implements Closeable {
 	public void UnloadChangedXmls() {
 		HashMap<String, LoadedBehaviorInfo> loadedInfos = new HashMap<>(m_loadedBehaviorTreeInfos);
 		for (Map.Entry<String, LoadedBehaviorInfo> info : loadedInfos.entrySet()) {
-			byte[] pBuffer = ReadFileToBuffer(info.getKey(), ".xml");
+			byte[] pBuffer = ReadFileToBuffer(info.getValue().fullPath, ".xml");
 			String newMd5 = md5(pBuffer);
 			if (newMd5.equals(info.getValue().md5)) {
 				continue;
 			}
-			this.UnLoad(info.getValue().fullPath);
+			this.UnLoad(info.getKey());
 		}
 	}
 
